@@ -1,47 +1,61 @@
 <?php
-
-// Données dans l'extrait mais sous la forme d'une liste en PHP
-$data = [
-    [
-        'by' => 'Superdrag',
-        'entryId' => 67913,
-        'genre' => ['Rock', 'Punk'],
-        'img' => 'images/Superdrag-Stereo_360_Sound.jpg',
-        'parent' => 'Superdrag',
-        'releaseYear' => 1998,
-        'title' => 'Stereo 360 Sound',
-    ],
-    [
-        'by' => '16 Horsepower',
-        'entryId' => 10575,
-        'genre' => ['Alternative country', 'neofolk'],
-        'img' => 'images/220px-Folklore_hp.jpg',
-        'parent' => '16 Horsepower',
-        'releaseYear' => 2002,
-        'title' => 'Folklore',
-    ],
-];
+include 'data.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="variables.css">
+    <script src="index.js" defer></script>
+    <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
+
 <body>
-    <main>
-        <?php foreach ($data as $album) : ?>
-            <article>
-                <h2><?= $album['title'] ?></h2>
-                <p><?= $album['by'] ?></p>
-                <p><?= $album['releaseYear'] ?></p>
-                <p><?= $album['genre'][0] ?></p>
-                <p><?= $album['genre'][1] ?></p>
-                <img src="<?= $album['img'] ?>" alt="">
-            </article>
-        <?php endforeach; ?>
-    </main>
+    <div class="partie__gauche">
+        <div class="jenesaispas">        
+        </div>
+        <div class="liste__playlist">
+            <div class="ajout__playlist">
+                <h2><i class="fa-solid fa-list"></i> Playlists</h2>
+                <i class="fa-solid fa-plus" onclick="ajouterPlaylist()"></i>
+            </div>
+            <ul>
+                <li>
+                    <img src="images/logo-musique.webp" alt="">
+                    <p>Playlist 1</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="partie__droite">
+        <div class="barre__recherche">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input class="barre__recherche__input" placeholder="Que souhaitez-vous rechercher ?" type="text" id="search" oninput="filterResults(event)" onkeypress="handleKeyPress(event)">
+            <i id="croixSelector" class="fa-solid" onclick="resetInputValue()"></i>
+        </div>
+        <div class="recherche-approfondis">
+            <button>Artistes</button>
+            <button>Genre</button>
+            <button>Année</button>
+        </div>
+
+        <main>
+            <?php foreach ($data as $album) : ?>
+                <article class="album" data-title="<?= strtolower($album['title']) ?>" data-artist="<?= strtolower($album['by']) ?>">
+                    <img src="<?= $album['img'] ?>" alt="">
+                    <div class="contenu">
+                        <h3 class="test-arrow"><span><?= $album['title'] ?></span></h3>
+                        <p><?= $album['releaseYear'] ?> - <?= $album['by'] ?></p>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+        </main>
+    </div>
 </body>
+
 </html>
