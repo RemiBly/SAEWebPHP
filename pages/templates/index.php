@@ -17,8 +17,19 @@ include 'data.php';
 
 <body>
     <div class="partie__gauche">
-        <div>
-
+        <div class="jenesaispas">        
+        </div>
+        <div class="liste__playlist">
+            <div class="ajout__playlist">
+                <h2><i class="fa-solid fa-list"></i> Playlists</h2>
+                <i class="fa-solid fa-plus" onclick="ajouterPlaylist()"></i>
+            </div>
+            <ul>
+                <li>
+                    <img src="images/logo-musique.webp" alt="">
+                    <p>Playlist 1</p>
+                </li>
+            </ul>
         </div>
     </div>
     <div class="partie__droite">
@@ -35,7 +46,7 @@ include 'data.php';
 
         <main>
             <?php foreach ($data as $album) : ?>
-                <article class="album" data-title="<?= strtolower($album['title']) ?>" data-artist="<?= strtolower($album['by']) ?>">
+                <article class="album" data-year="<?= strtolower($album['releaseYear']) ?>" data-title="<?= strtolower($album['title']) ?>" data-artist="<?= strtolower($album['by']) ?>">
                     <?php if(is_null($album['img'])){ ?>
                         <img src="./images/default.jpg" alt="">
                     <?php } else{ ?>

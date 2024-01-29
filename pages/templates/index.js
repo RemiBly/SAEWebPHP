@@ -9,7 +9,8 @@ function filterResults(event) {
     articles.forEach(function(article) {
         var title = article.dataset.title;
         var artist = article.dataset.artist;
-        var isMatch = title.includes(searchTerm) || artist.includes(searchTerm);
+        var date = article.dataset.year
+        var isMatch = title.includes(searchTerm) || artist.includes(searchTerm) || date.includes(parseInt(searchTerm));
 
         if (isMatch) {
             article.classList.remove('hidden');

@@ -123,7 +123,7 @@ $data = [
         'by' => 'Alabama Shakes',
         'entryId' => 10809,
         'genre' => ['Blues rock', 'roots rock', 'soul', 'Southern rock', 'garage rock', 'Americana'],
-        'img' => 'images/220px-Alabama_Shakes_-_Sound_%26_Color_album_cover.jpg',
+        'img' => 'images/220px-Alabama_Shakes_-_Sound_26_Color_album_cover.jpg',
         'parent' => 'Alabama Shakes',
         'releaseYear' => 2015,
         'title' => 'Sound & Color',
@@ -182,5 +182,14 @@ $data = [
         'releaseYear' => 2011,
         'title' => 'Eleven Eleven',
     ],
+    [
+        'by' => "c'est pas irvyn",
+        'entryId' => 69,
+        'genre' => ['Porno', 'OF'],
+        'img' => 'images/IMG_0814.PNG',
+        'parent' => 'Neuille',
+        'releaseYear' => 2024,
+        'title' => 'Woif woif je lèche ça',
+    ]
 ];
 ?>
