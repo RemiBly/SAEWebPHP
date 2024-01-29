@@ -1,5 +1,50 @@
 <?php
-include 'data.php';
+date_default_timezone_set('Europe/Paris');
+try {
+    $file_db = new PDO('sqlite:BD.sqlite3');
+    $file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $file_db->exec("CREATE TABLE IF NOT EXISTS utilisateur( 
+        ID_Utilisateur INTEGER PRIMARY KEY AUTOINCREMENT,
+        Nom_Utilisateur TEXT,
+        Mot_de_Passe TEXT,
+        Email TEXT)");
+
+    $file_db->exec("CREATE TABLE IF NOT EXISTS Playlist( 
+        ID_Playlist INTEGER PRIMARY KEY AUTOINCREMENT,
+        Titre_Playlist TEXT,
+        ID_Utilisateur INTEGER,
+        FOREIGN KEY (ID_Utilisateur) REFERENCES utilisateur(ID_Utilisateur))");
+
+    $file_db->exec("CREATE TABLE IF NOT EXISTS Artiste( 
+        ID_Artiste INTEGER PRIMARY KEY AUTOINCREMENT,
+        Nom_Artiste TEXT,
+        Biographie TEXT,
+        Photo TEXT)");
+    
+    $file_db->exec("CREATE TABLE IF NOT EXISTS Album(
+        ID_Album INTEGER PRIMARY KEY AUTOINCREMENT,
+        Titre_Album TEXT,
+        Année_de_sortie INTEGER,
+        Genre TEXT,
+        ID_Artiste INTEGER,
+        Pochette TEXT,
+        FOREIGN KEY (ID_Artiste) REFERENCES Artiste(ID_Artiste))");
+    
+    $file_db->exec("CREATE TABLE IF NOT EXISTS NoteAlbum( 
+        ID_Album INTEGER,
+        ID_Utilisateur INTEGER,
+        Note INTEGER,
+        PRIMARY KEY (ID_Album, ID_Utilisateur),
+        FOREIGN KEY (ID_Album) REFERENCES Album(ID_Album),
+        FOREIGN KEY (ID_Utilisateur) REFERENCES utilisateur(ID_Utilisateur))");
+
+    $resultat = $file_db->query("SELECT Album.*, Artiste.Nom_Artiste FROM Album INNER JOIN Artiste ON Album.ID_Artiste = Artiste.ID_Artiste");
+    $albums = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $ex) {
+    echo "Erreur de connexion à la base de données : " . $ex->getMessage();
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,22 +84,17 @@ include 'data.php';
             <i id="croixSelector" class="fa-solid" onclick="resetInputValue()"></i>
         </div>
         <div class="recherche-approfondis">
-            <button>Artistes</button>
-            <button>Genre</button>
-            <button>Année</button>
+            <a href="ajouter_artiste.html" class="ajouter-artiste-btn">Ajouter un Artiste</a>
+            <a href="ajouter_album.html" class="ajouter-album-btn">Ajouter un Album</a>
         </div>
 
         <main>
-            <?php foreach ($data as $album) : ?>
-                <article class="album" data-year="<?= strtolower($album['releaseYear']) ?>" data-title="<?= strtolower($album['title']) ?>" data-artist="<?= strtolower($album['by']) ?>">
-                    <?php if(is_null($album['img'])){ ?>
-                        <img src="./images/default.jpg" alt="">
-                    <?php } else{ ?>
-                        <img src="<?= $album['img'] ?>" alt="">
-                    <?php } ?>
+            <?php foreach ($albums as $album) : ?>
+                <article class="album" data-title="<?= strtolower($album['Titre_Album']) ?>" data-year="<?= strtolower($album['Année_de_sortie']) ?>" data-artist="<?= strtolower($album['Titre_Album']) ?>">
+                    <img src="<?= !empty($album['Pochette']) ? $album['Pochette'] : './images/default.jpg' ?>" alt="Pochette d'album">
                     <div class="contenu">
-                        <h3 class="test-arrow"><span><?= $album['title'] ?></span></h3>
-                        <p><?= $album['releaseYear'] ?> - <?= $album['by'] ?></p>
+                        <h3 class="test-arrow"><span><?= $album['Titre_Album'] ?></span></h3>
+                        <p><?= $album['Année_de_sortie'] ?> - <?= $album['Nom_Artiste'] ?></p>
                     </div>
                 </article>
             <?php endforeach; ?>
