@@ -20,6 +20,9 @@ main{
   flex-wrap: wrap;
 }
 
+h2{
+  font-size: 90%;
+}
 
 /* Cart */
 .album{
@@ -168,4 +171,5 @@ main{
 .liste__playlist li img{
   height: 2rem;
   margin-right: 2%;
+  border-radius: 10px;  
 }

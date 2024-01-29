@@ -21,13 +21,13 @@ include 'data.php';
         </div>
         <div class="liste__playlist">
             <div class="ajout__playlist">
-                <h2><i class="fa-solid fa-list"></i> Playlists</h2>
+                <h2><i class="fa-solid fa-list"></i> Votre bibliotèque</h2>
                 <i class="fa-solid fa-plus" onclick="ajouterPlaylist()"></i>
             </div>
             <ul>
                 <li>
-                    <img src="images/logo-musique.webp" alt="">
-                    <p>Playlist 1</p>
+                    <img src="images/coupDeCoeur.jpeg" alt="">
+                    <p>Coup de cœur</p>
                 </li>
             </ul>
         </div>
