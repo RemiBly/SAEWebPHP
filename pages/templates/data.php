@@ -1,7 +1,7 @@
 <?php
 
 // Données dans l'extrait mais sous la forme d'une liste en PHP
-$data = [
+$dataAlbum = [
     [
         'by' => 'Superdrag',
         'entryId' => 67913,
@@ -191,5 +191,58 @@ $data = [
         'releaseYear' => 2024,
         'title' => 'Woif woif je lèche ça',
     ]
+];
+
+$dataArtistes = [
+    [
+        'nom' => 'Yeat',
+        'img' => 'https://img.buzzfeed.com/buzzfeed-static/complex/images/eys5ntxw6zjcxijbdznf/yeat-what-you-need-to-know.jpg?output-format=jpg&output-quality=auto',
+        'biographie' => 'Noah Smith, connu sous le nom de Yeat, est un rappeur, chanteur, auteur-compositeur et producteur de musique américain.'
+    ],
+    [
+        'nom' => 'Kanye West',
+        'img' => 'https://media.gq.com/photos/5ad93798ceb93861adb912d8/16:9/w_2560%2Cc_limit/kanye-west-0814-GQ-FEKW01.01.jpg',
+        'biographie' => 'Kanye West est un rappeur, producteur musical, styliste et designer américain.'
+    ],
+    [
+        'nom' => 'Billie Eilish',
+        'img' => 'https://mobile-img.lpcdn.ca/lpca/924x/r3996/5e5dedad-5507-11eb-a88b-02fe89184577.jpg',
+        'biographie' => 'Billie Eilish Pirate Baird O\'Connell est une chanteuse, auteure-compositrice-interprète américaine.'
+    ],
+    [
+        'nom' => 'Drake',
+        'img' => 'https://resize.elle.fr/original/var/plain_site/storage/images/people/la-vie-des-people/news/drake-qui-est-sa-nouvelle-petite-amie-3938562/95093565-1-fre-FR/Drake-qui-est-sa-nouvelle-petite-amie.jpg',
+        'biographie' => 'Drake est un rappeur, chanteur, auteur-compositeur-interprète et producteur de disques canadien.'
+    ],
+    [
+        'nom' => 'Beyoncé',
+        'img' => 'https://www.parismatch.com/lmnr/var/pm/public/media/image/Beyonce-Knowles_0.jpg?VersionId=KGBZadeqyxD5sVlf0jjQZmnd9cg3jR2p',
+        'biographie' => 'Beyoncé Giselle Knowles-Carter est une chanteuse, actrice et productrice américaine.'
+    ],
+    [
+        'nom' => 'Ed Sheeran',
+        'img' => 'https://upload.wikimedia.org/wikipedia/commons/e/e9/Ed_Sheeran-6826_%28cropped%29.jpg',
+        'biographie' => 'Ed Sheeran est un auteur-compositeur-interprète et musicien anglais.'
+    ],
+    [
+        'nom' => 'Adele',
+        'img' => 'https://resize.prod.femina.ladmedia.fr/rblr/652,438/img/var/2021-10/adelecoupeb.jpg',
+        'biographie' => 'Adele Laurie Blue Adkins est une chanteuse et compositrice britannique.'
+    ],
+    [
+        'nom' => 'Lady Gaga',
+        'img' => 'https://www.gala.fr/imgre/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2Fprismamedia_people.2F2017.2F06.2F30.2Fe90d4ee0-c836-47ac-b696-bed2484c2882.2Ejpeg/2216x1536/quality/80/lady-gaga.jpeg',
+        'biographie' => 'Lady Gaga, de son vrai nom Stefani Joanne Angelina Germanotta, est une chanteuse et actrice américaine.'
+    ],
+    [
+        'nom' => 'Travis Scott',
+        'img' => 'https://cdn-s-www.lalsace.fr/images/FE598AA4-3A48-4C24-B3BD-D78C4746E323/NW_raw/l-artiste-travis-scott-en-mai-2022-photo-sipa-image-press-agency-sipa-usa-xavier-collin-1689675643.jpg',
+        'biographie' => 'Travis Scott, de son vrai nom Jacques Webster II, est un rappeur, chanteur et producteur américain.'
+    ],
+    [
+        'nom' => 'Taylor Swift',
+        'img' => 'https://images.seattletimes.com/wp-content/uploads/2023/07/07222023_swift_213100.jpg?d=2040x1479',
+        'biographie' => 'Taylor Swift est une auteure-compositrice-interprète et actrice américaine.'
+    ],
 ];
 ?>

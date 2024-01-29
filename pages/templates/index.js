@@ -10,7 +10,12 @@ function filterResults(event) {
         var title = article.dataset.title;
         var artist = article.dataset.artist;
         var date = article.dataset.year
-        var isMatch = title.includes(searchTerm) || artist.includes(searchTerm) || date.includes(parseInt(searchTerm));
+        var nomArtiste = article.dataset.name;
+        if(nomArtiste == null){
+            var isMatch = title.includes(searchTerm) || artist.includes(searchTerm) || date.includes(parseInt(searchTerm));
+        } else {
+            var isMatch = nomArtiste.includes(searchTerm);
+        }
 
         if (isMatch) {
             article.classList.remove('hidden');

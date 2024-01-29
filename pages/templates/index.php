@@ -1,5 +1,6 @@
 <?php
 include 'data.php';
+$selected = isset($_GET['searchArtist']) && $_GET['searchArtist'] == '1' ? 'artiste' : 'album';
 ?>
 
 <!DOCTYPE html>
@@ -16,49 +17,78 @@ include 'data.php';
 </head>
 
 <body>
-    <div class="partie__gauche">
-        <div class="jenesaispas">        
-        </div>
-        <div class="liste__playlist">
-            <div class="ajout__playlist">
-                <h2><i class="fa-solid fa-list"></i> Votre bibliotèque</h2>
-                <i class="fa-solid fa-plus" onclick="ajouterPlaylist()"></i>
-            </div>
-            <ul>
-                <li>
-                    <img src="images/coupDeCoeur.jpeg" alt="">
-                    <p>Coup de cœur</p>
-                </li>
-            </ul>
+    <div class="header">
+        <h1 class="header__title"> SPOT'MUSIC</h1>
+
+        <div class="account">
+            <a href="login.php"><i class="fa-regular fa-user"></i></a>
         </div>
     </div>
-    <div class="partie__droite">
-        <div class="barre__recherche">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input class="barre__recherche__input" placeholder="Que souhaitez-vous rechercher ?" type="text" id="search" oninput="filterResults(event)" onkeypress="handleKeyPress(event)">
-            <i id="croixSelector" class="fa-solid" onclick="resetInputValue()"></i>
-        </div>
-        <div class="recherche-approfondis">
-            <button>Artistes</button>
-            <button>Genre</button>
-            <button>Année</button>
-        </div>
 
-        <main>
-            <?php foreach ($data as $album) : ?>
-                <article class="album" data-year="<?= strtolower($album['releaseYear']) ?>" data-title="<?= strtolower($album['title']) ?>" data-artist="<?= strtolower($album['by']) ?>">
-                    <?php if(is_null($album['img'])){ ?>
-                        <img src="./images/default.jpg" alt="">
-                    <?php } else{ ?>
-                        <img src="<?= $album['img'] ?>" alt="">
-                    <?php } ?>
-                    <div class="contenu">
-                        <h3 class="test-arrow"><span><?= $album['title'] ?></span></h3>
-                        <p><?= $album['releaseYear'] ?> - <?= $album['by'] ?></p>
-                    </div>
-                </article>
-            <?php endforeach; ?>
-        </main>
+    <div class="main__application">
+        <div class="partie__gauche">
+            <div class="jenesaispas">
+                <div class="compte">
+                    <h2>Bienvenue, Kris</h2>
+                    <img class="photo__profil" src="../images/image-compte.jpg" alt="">
+                </div>
+                <div class="recherche__artiste__album">
+                    <h3><a href="?searchArtist=1"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un artiste</a></h3>
+                    <h3><a href="?searchArtist=0"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un album</a></h3>
+                </div>      
+            </div>
+            <div class="liste__playlist">
+                <div class="ajout__playlist">
+                    <h2><i class="fa-solid fa-list"></i> Votre bibliotèque</h2>
+                    <i class="fa-solid fa-plus" onclick="ajouterPlaylist()"></i>
+                </div>
+                <ul>
+                    <li>
+                        <img src="images/coupDeCoeur.jpeg" alt="">
+                        <p>Coup de cœur</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="partie__droite">
+            <div class="barre__recherche">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input class="barre__recherche__input" placeholder="Que souhaitez-vous rechercher ?" type="text" id="search" oninput="filterResults(event)" onkeypress="handleKeyPress(event)">
+                <i id="croixSelector" class="fa-solid" onclick="resetInputValue()"></i>
+            </div>
+
+            <main>
+                <?php if ($selected === 'artiste') : ?>
+                    <?php foreach ($dataArtistes as $artiste) : ?>
+                        <article class="album artiste" data-name="<?= strtolower($artiste['nom']) ?>">
+                            <?php if (is_null($artiste['img'])) : ?>
+                                <img src="./images/default.jpg" alt="">
+                            <?php else : ?>
+                                <img src="<?= $artiste['img'] ?>" alt="">
+                            <?php endif; ?>
+                            <div class="contenu">
+                                <h3 class="test-arrow"><span><?= $artiste['nom'] ?></span></h3>
+                                <p>Artiste</p>
+                            </div>
+                        </article>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <?php foreach ($dataAlbum as $album) : ?>
+                        <article class="album album__css" data-year="<?= strtolower($album['releaseYear']) ?>" data-title="<?= strtolower($album['title']) ?>" data-artist="<?= strtolower($album['by']) ?>">
+                            <?php if (is_null($album['img'])) : ?>
+                                <img src="./images/default.jpg" alt="">
+                            <?php else : ?>
+                                <img src="<?= $album['img'] ?>" alt="">
+                            <?php endif; ?>
+                            <div class="contenu">
+                                <h3 class="test-arrow"><span><?= $album['title'] ?></span></h3>
+                                <p><?= $album['releaseYear'] ?> - <?= $album['by'] ?></p>
+                            </div>
+                        </article>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </main>
+        </div>
     </div>
 </body>
 
