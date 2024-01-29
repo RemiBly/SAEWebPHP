@@ -9,6 +9,8 @@ body{
   flex-basis: 30%;
   flex-grow: 1;
   margin: 0 2%;
+  position: fixed;
+  top: 0;
 }
 
 .partie__droite{
@@ -42,6 +44,7 @@ main{
 .album img{
   border-radius: 10px;
   height: 12.5rem;
+  width : 90%;
   box-shadow: 0px 0px 50px -10px #FFFFFF;
 }
 
