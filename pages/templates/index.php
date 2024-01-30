@@ -60,7 +60,7 @@ $selected = isset($_GET['searchArtist']) && $_GET['searchArtist'] == '1' ? 'arti
             <main>
                 <?php if ($selected === 'artiste') : ?>
                     <?php foreach ($dataArtistes as $artiste) : ?>
-                        <article class="album artiste" data-name="<?= strtolower($artiste['nom']) ?>">
+                        <a href="detail-artiste.php" class="album artiste" data-name="<?= strtolower($artiste['nom']) ?>">
                             <?php if (is_null($artiste['img'])) : ?>
                                 <img src="./images/default.jpg" alt="">
                             <?php else : ?>
@@ -70,7 +70,7 @@ $selected = isset($_GET['searchArtist']) && $_GET['searchArtist'] == '1' ? 'arti
                                 <h3 class="test-arrow"><span><?= $artiste['nom'] ?></span></h3>
                                 <p>Artiste</p>
                             </div>
-                        </article>
+                        </a>
                     <?php endforeach; ?>
                 <?php else : ?>
                     <?php foreach ($dataAlbum as $album) : ?>

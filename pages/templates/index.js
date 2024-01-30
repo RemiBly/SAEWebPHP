@@ -12,9 +12,9 @@ function filterResults(event) {
         var date = article.dataset.year
         var nomArtiste = article.dataset.name;
         if(nomArtiste == null){
-            var isMatch = title.includes(searchTerm) || artist.includes(searchTerm) || date.includes(parseInt(searchTerm));
+            var isMatch = title.startsWith(searchTerm) || artist.startsWith(searchTerm) || date.startsWith(parseInt(searchTerm));
         } else {
-            var isMatch = nomArtiste.includes(searchTerm);
+            var isMatch = nomArtiste.startsWith(searchTerm);
         }
 
         if (isMatch) {
@@ -44,4 +44,9 @@ function ajouterPlaylist() {
         li.innerHTML = '<img src="images/logo-musique.webp" alt=""><p>' + nomPlaylist + '</p>';
         ul.appendChild(li);
     }
+}
+
+function changementCoeur(){
+    var coeur = document.getElementById('coeur');
+    coeur.classList.toggle('fa-solid fa-heart');
 }

@@ -124,6 +124,10 @@ h3 .fa-magnifying-glass{
   padding: 2%;
 }
 
+.album{
+  text-decoration: none;
+}
+
 .recherche__artiste__album a{
   color: #b6b6b6;
   transition: all 0.2s ease-in-out;
