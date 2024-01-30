@@ -2,10 +2,10 @@
 <html lang="fr">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="login.css" />
-    <link rel="stylesheet" href="variables.css" />
+    <link rel="stylesheet" href="../static/CSS/login.css" />
+    <link rel="stylesheet" href="../static/CSS/variables.css" />
     <title>Connexion - Inscription</title>
-    <script src="JS/login.js" defer></script>
+    <script src="../static/JS/login.js" defer></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
 <body>
 	<div class="container" id="container">
