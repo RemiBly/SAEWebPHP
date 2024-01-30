@@ -300,7 +300,7 @@ $dataTest = [
     ],
 ];
 
-$dataAlbumSimilaires = $dataAlbum = [
+$dataAlbumSimilaires = [
     [
         'by' => 'Superdrag',
         'entryId' => 67913,
@@ -410,4 +410,6 @@ $dataAlbumSimilaires = $dataAlbum = [
         'title' => 'Orion',
     ],
 ];
+
+
 ?>

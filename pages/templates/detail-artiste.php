@@ -18,8 +18,8 @@
     <div class="artiste">
         <img src="https://mnrepublic.com/wp-content/uploads/2022/04/MNR-Yeat.jpg" alt="artiste1" />
         <div class="contenu">
-            <h1>Yeat</h1>
-            <p class="biographie">Noah Smith (né le 26 février 2000 ), connu sous le nom de Yeat (stylisé comme YËAT), est un rappeur, chanteur, auteur-compositeur et producteur de musique</p>
+            <h1>{{artiste[nom]}}</h1>
+            <p class="biographie">{{artiste[biographie]}}</p>
         </div>
     </div>
     <div class="liste__titre">
@@ -69,7 +69,7 @@
             <?php foreach ($dataTest as $album) : ?>
                 <article class="album album__css">
                     <?php if (is_null($album['img'])) : ?>
-                        <img src="./pages/static/images/default.jpg" alt="">
+                        <img src="../static/images/default2.jpg" alt="">
                     <?php else : ?>
                         <img src="<?= $album['img'] ?>" alt="">
                     <?php endif; ?>
@@ -87,7 +87,7 @@
             <?php foreach ($dataAlbumSimilaires as $album) : ?>
                 <article class="album album__css">
                     <?php if (is_null($album['img'])) : ?>
-                        <img src="./pages/static/images/default.jpg" alt="">
+                        <img src="../static/images/default2.jpg" alt="">
                     <?php else : ?>
                         <img src="<?= $album['img'] ?>" alt="">
                     <?php endif; ?>

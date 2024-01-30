@@ -41,7 +41,7 @@ function ajouterPlaylist() {
     if (nomPlaylist) {
         var ul = document.querySelector('.liste__playlist ul');
         var li = document.createElement('li');
-        li.innerHTML = '<img src="images/logo-musique.webp" alt=""><p>' + nomPlaylist + '</p>';
+        li.innerHTML = '<img src="./pages/static/images/logo-musique.webp" alt=""><p>' + nomPlaylist + '</p>';
         ul.appendChild(li);
     }
 }

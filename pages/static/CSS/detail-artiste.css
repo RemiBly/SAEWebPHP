@@ -140,3 +140,7 @@ body{
 .similaire{
     margin-top: 10%;
 }
+
+.fa-regular .fa-heart{
+    color: #7a7a7a;
+}

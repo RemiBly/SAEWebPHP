@@ -76,7 +76,7 @@ $selected = isset($_GET['searchArtist']) && $_GET['searchArtist'] == '1' ? 'arti
                     <?php foreach ($dataAlbum as $album) : ?>
                         <article class="album album__css" data-year="<?= strtolower($album['releaseYear']) ?>" data-title="<?= strtolower($album['title']) ?>" data-artist="<?= strtolower($album['by']) ?>">
                             <?php if (is_null($album['img'])) : ?>
-                                <img src="./pages/static/images/default.jpg" alt="">
+                                <img src="./pages/static/images/default2.jpg" alt="">
                             <?php else : ?>
                                 <img src="<?= $album['img'] ?>" alt="">
                             <?php endif; ?>
