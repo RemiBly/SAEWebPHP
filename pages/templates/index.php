@@ -1,65 +1,107 @@
 <?php
-include 'data.php';
+include 'creationBD.php';
+session_start();
+
+function redirectHome() {
+    header('Location: accueil.php');
+    exit;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
+    $file_db = new PDO('sqlite:BD.sqlite3');
+    $file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    if ($_POST['action'] == 'inscription') {
+        $nom = $_POST['name'];
+        $email = $_POST['mail'];
+        $mdp = $_POST['mdp'];
+
+        // Vérification si l'email existe déjà
+        $stmt = $file_db->prepare("SELECT ID_Utilisateur FROM utilisateur WHERE Email = ?");
+        $stmt->execute([$email]);
+        if ($stmt->fetch()) {
+            echo "Un compte avec cette adresse email existe déjà.";
+        } else {
+            // Inscription
+            $mdp_hache = password_hash($mdp, PASSWORD_DEFAULT);
+            $stmt = $file_db->prepare("INSERT INTO utilisateur (Nom_Utilisateur, Email, Mot_de_Passe) VALUES (?, ?, ?)");
+            $stmt->execute([$nom, $email, $mdp_hache]);
+
+            // Enregistrement dans la session
+            $_SESSION['user_id'] = $file_db->lastInsertId();
+            $_SESSION['user_name'] = $nom;
+            $_SESSION['user_email'] = $email;
+
+            redirectHome();
+        }
+    } elseif ($_POST['action'] == 'connexion') {
+        $email = $_POST['mail'];
+        $mdp = $_POST['mdp'];
+
+        // Connexion
+        $stmt = $file_db->prepare("SELECT * FROM utilisateur WHERE Email = ?");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user && password_verify($mdp, $user['Mot_de_Passe'])) {
+            // Enregistrement dans la session
+            $_SESSION['user_id'] = $user['ID_Utilisateur'];
+            $_SESSION['user_name'] = $user['Nom_Utilisateur'];
+            $_SESSION['user_email'] = $user['Email'];
+
+            redirectHome();
+        } else {
+            echo "Informations d'identification incorrectes.";
+        }
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="variables.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="variables.css" />
+    <title>Connexion - Inscription</title>
     <script src="index.js" defer></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
-    <title>Document</title>
-</head>
-
 <body>
-    <div class="partie__gauche">
-        <div class="jenesaispas">        
-        </div>
-        <div class="liste__playlist">
-            <div class="ajout__playlist">
-                <h2><i class="fa-solid fa-list"></i> Votre bibliotèque</h2>
-                <i class="fa-solid fa-plus" onclick="ajouterPlaylist()"></i>
-            </div>
-            <ul>
-                <li>
-                    <img src="images/coupDeCoeur.jpeg" alt="">
-                    <p>Coup de cœur</p>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="partie__droite">
-        <div class="barre__recherche">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input class="barre__recherche__input" placeholder="Que souhaitez-vous rechercher ?" type="text" id="search" oninput="filterResults(event)" onkeypress="handleKeyPress(event)">
-            <i id="croixSelector" class="fa-solid" onclick="resetInputValue()"></i>
-        </div>
-        <div class="recherche-approfondis">
-            <button>Artistes</button>
-            <button>Genre</button>
-            <button>Année</button>
-        </div>
-
-        <main>
-            <?php foreach ($data as $album) : ?>
-                <article class="album" data-year="<?= strtolower($album['releaseYear']) ?>" data-title="<?= strtolower($album['title']) ?>" data-artist="<?= strtolower($album['by']) ?>">
-                    <?php if(is_null($album['img'])){ ?>
-                        <img src="./images/default.jpg" alt="">
-                    <?php } else{ ?>
-                        <img src="<?= $album['img'] ?>" alt="">
-                    <?php } ?>
-                    <div class="contenu">
-                        <h3 class="test-arrow"><span><?= $album['title'] ?></span></h3>
-                        <p><?= $album['releaseYear'] ?> - <?= $album['by'] ?></p>
-                    </div>
-                </article>
-            <?php endforeach; ?>
-        </main>
-    </div>
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
+			<form action="{{ url_for('inscription') }}" method="post">
+				<h1>Créer un compte</h1>
+				<span>Crée ton compte en utilisant ton adresse mail</span>
+				<input name="name" type="text" placeholder="Name" />
+				<input name="mail" type="email" placeholder="Email" />
+				<input name="mdp" type="password" placeholder="Password" />
+				<button type="submit" name="action" value="inscription">S'inscrire</button>
+			</form>
+		</div>
+		<div class="form-container sign-in-container">
+		<form action="index.php" method="post">
+			<h1>Se connecter</h1>
+			<span>Utilise ton email pour te connecter</span>
+			<input name="mail" type="email" placeholder="Email" />
+			<input name="mdp" type="password" placeholder="Password" />
+			<button type="submit" name="action" value="connexion">Se connecter</button>
+		</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1 class="titre-gradiant">Content de te revoir</h1>
+					<p>Pour rester connecter avec nous, connectes-toi en entrant tes données personnelles</p>
+					<button class="ghost" id="signIn">Se connecter</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1 class="titre-gradiant">Salut !</h1>
+					<p>Si tu souhaites acheter des billets, entres tes données personnelles pour t'inscrire !</p>
+					<button class="ghost" id="signUp">S'inscrire</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
-
 </html>
