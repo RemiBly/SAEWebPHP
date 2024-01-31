@@ -57,15 +57,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="fr">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="variables.css" />
+    <link rel="stylesheet" href="./pages/static/CSS/login.css" />
+    <link rel="stylesheet" href="./pages/static/CSS/variables.css" />
     <title>Connexion - Inscription</title>
-    <script src="index.js" defer></script>
+    <script src="./pages/static/JS/login.js" defer></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
 <body>
 	<div class="container" id="container">

@@ -1,4 +1,8 @@
-<?php include 'creationBD.php';
+
+<?php
+include '../static/data.php';
+include 'creationBD.php';
+$selected = isset($_GET['searchArtist']) && $_GET['searchArtist'] == '1' ? 'artiste' : 'album';
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'ajouter_playlist') {
@@ -16,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
     }
 }
 
-
 $playlists = [];
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
@@ -24,7 +27,6 @@ if (isset($_SESSION['user_id'])) {
     $stmt->execute([$userId]);
     $playlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -33,16 +35,33 @@ if (isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="accueil.css">
-    <link rel="stylesheet" href="variables.css">
-    <script src="accueil.js" defer></script>
+    <link rel="stylesheet" href="../static/CSS/index.css">
+    <link rel="stylesheet" href="../static/CSS/variables.css">
+    <link rel="stylesheet" href="../static/CSS/header.css">
+    <script src="../static/JS/index.js" defer></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 
 <body>
+    <div class="header">
+        <h1 class="header__title"><a href="./index.php"> SPOT'MUSIC</a> </h1>
+
+        <div class="account">
+            <a href="./pages/templates/login.php"><i class="fa-regular fa-user"></i></a>
+        </div>
+    </div>
+      
     <div class="partie__gauche">
-        <div class="jenesaispas">        
+        <div class="jenesaispas">
+          <div class="compte">
+                    <h2>Bienvenue, Kris</h2>
+                    <p class="premiere__lettre__pseudo">K</p>
+                </div>
+                <div class="recherche__artiste__album">
+                    <h3 class="rechercher_artiste"><a href="?searchArtist=1"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un artiste</a></h3>
+                    <h3 class="rechercher_album"><a href="?searchArtist=0"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un album</a></h3>
+                </div>
         </div>
         <div class="liste__playlist">
             <div class="ajout__playlist">
@@ -55,8 +74,10 @@ if (isset($_SESSION['user_id'])) {
             <ul>
                 <?php foreach ($playlists as $playlist) : ?>
                     <li>
-                        <img src="images/coupDeCoeur.jpeg" alt="Image Playlist"> 
-                        <p><?= htmlspecialchars($playlist['Titre_Playlist']) ?></p>
+                        <a href="./pages/templates/playlist.php">
+                            <img src="images/coupDeCoeur.jpeg" alt="Image Playlist"> 
+                            <p><?= htmlspecialchars($playlist['Titre_Playlist']) ?></p>
+                        </a>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -74,6 +95,21 @@ if (isset($_SESSION['user_id'])) {
         </div>
 
         <main>
+          <?php if ($selected === 'artiste') : ?>
+                    <?php foreach ($dataArtistes as $artiste) : ?>
+                        <a href="./detail-artiste.php" class="album artiste" data-name="<?= strtolower($artiste['nom']) ?>">
+                            <?php if (is_null($artiste['img'])) : ?>
+                                <img src="../static/images/default.jpg" alt="">
+                            <?php else : ?>
+                                <img src="<?= $artiste['img'] ?>" alt="">
+                            <?php endif; ?>
+                            <div class="contenu">
+                                <h3 class="test-arrow"><span><?= $artiste['nom'] ?></span></h3>
+                                <p>Artiste</p>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
+                <?php else : ?>
             <?php foreach ($albums as $album) : ?>
                 <article class="album" data-title="<?= strtolower($album['Titre_Album']) ?>" data-year="<?= strtolower($album['Année_de_sortie']) ?>" data-artist="<?= strtolower($album['Titre_Album']) ?>">
                     <img src="<?= !empty($album['Pochette']) ? $album['Pochette'] : './images/default.jpg' ?>" alt="Pochette d'album">
@@ -83,8 +119,8 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                 </article>
             <?php endforeach; ?>
+          <?php endif; ?>
         </main>
     </div>
 </body>
-
 </html>
