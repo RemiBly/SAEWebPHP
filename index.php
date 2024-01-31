@@ -1,9 +1,9 @@
 <?php
-include 'creationBD.php';
+include './pages/templates/creationBD.php';
 session_start();
 
 function redirectHome() {
-    header('Location: accueil.php');
+    header('Location: ./pages/templates/accueil.php');
     exit;
 }
 

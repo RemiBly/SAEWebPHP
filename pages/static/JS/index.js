@@ -42,4 +42,5 @@ function ajouterPlaylist() {
         var li = document.createElement('li');
         li.innerHTML = '<a href="./pages/templates/playlist.php"> <img src="./pages/static/images/logo-musique.webp" alt=""><p>' + nomPlaylist + '</p> </a>';
         ul.appendChild(li);
+    }
 }
