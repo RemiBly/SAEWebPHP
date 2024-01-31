@@ -8,7 +8,7 @@ include '../static/data.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/CSS/detail-artiste.css">
+    <link rel="stylesheet" href="../static/CSS/detail-album.css">
     <link rel="stylesheet" href="../static/CSS/variables.css">
     <link rel="stylesheet" href="../static/CSS/album.css">
     <link rel="stylesheet" href="../static/CSS/titre.css">
@@ -29,18 +29,16 @@ include '../static/data.php';
         </div>
     </div>
     <main>
-    <div class="artiste">
-        <img src="https://mnrepublic.com/wp-content/uploads/2022/04/MNR-Yeat.jpg" alt="artiste1" />
-        <div class="contenu">
-            <h1>{{artiste[nom]}}</h1>
-            <p class="biographie">{{artiste[biographie]}}</p>
+        <div class="album">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png" alt="artiste1" />
+            <div class="contenu">
+                <h1>{{album[nom]}}</h1>
+                <p class="biographie">{{artiste[nom]}}</p>
+            </div>
         </div>
-    </div>
-    <div class="liste__titre">
-        <h2>Titres phares</h2>
-        <div class="contenu__liste__titres">
-        <?php for ($i = 0; $i < 3; $i++) { ?>
-            <div class="titre">
+        <div class="liste__titres">
+            <?php for ($i = 0; $i < count($dataTitres); $i++) { ?>
+                <div class="titre">
                     <div class="image__int">
                         <p class="int"><?= $i + 1 ?></p>
                         <img src="<?= $dataTitres[$i]['image'] ?>" alt="titre<?= $i + 1 ?>" />
@@ -54,30 +52,11 @@ include '../static/data.php';
                 </div>
             <?php } ?>
         </div>
-    </div>
-    <div class="liste__albums">
-        <h2>Albums</h2>
-        <div class="carousel">
-            <?php foreach ($dataTest as $album) : ?>
-                <a href="../templates/detail-album.php" class="album album__css">
-                    <?php if (is_null($album['img'])) : ?>
-                        <img src="../static/images/default2.jpg" alt="">
-                    <?php else : ?>
-                        <img src="<?= $album['img'] ?>" alt="">
-                    <?php endif; ?>
-                    <div class="contenu__album">
-                        <h3 class="test-arrow"><span><?= $album['title'] ?></span></h3>
-                        <p><?= $album['releaseYear'] ?> - Album</p>
-                    </div>
-                </a>
-            <?php endforeach; ?>
-        </div>
-    </div>
-    <div class="liste__albums similaire">
+        <div class="liste__albums similaire">
         <h2>Albums similaires</h2>
         <div class="carousel">
             <?php foreach ($dataAlbumSimilaires as $album) : ?>
-                <a href="../templates/detail-album.php" class="album album__css">
+                <article class="album album__css">
                     <?php if (is_null($album['img'])) : ?>
                         <img src="../static/images/default2.jpg" alt="">
                     <?php else : ?>
@@ -87,25 +66,7 @@ include '../static/data.php';
                         <h3 class="test-arrow"><span><?= $album['title'] ?></span></h3>
                         <p><?= $album['releaseYear'] ?> - <?= $album['by'] ?></p>
                     </div>
-                </a>
-            <?php endforeach; ?>
-        </div>
-    </div>
-    <div class="artistes__similaires similaire">
-        <h2>Artistes similaires</h2>
-        <div class="carousel">
-            <?php foreach ($dataArtistes as $artiste) : ?>
-                <a href="#" class="album artiste__similaire" data-name="<?= strtolower($artiste['nom']) ?>">
-                    <?php if (is_null($artiste['img'])) : ?>
-                        <img src="./pages/static/images/default.jpg" alt="">
-                    <?php else : ?>
-                        <img src="<?= $artiste['img'] ?>" alt="">
-                    <?php endif; ?>
-                    <div class="contenu__artiste__similaire">
-                        <h3 class="test-arrow"><span><?= $artiste['nom'] ?></span></h3>
-                        <p>Artiste</p>
-                    </div>
-                </a>
+                </article>
             <?php endforeach; ?>
         </div>
     </div>

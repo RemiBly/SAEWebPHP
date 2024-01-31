@@ -411,5 +411,154 @@ $dataAlbumSimilaires = [
     ],
 ];
 
+$dataTitres = [
+    [
+        'position' => 1,
+        'nom' => 'Poppin',
+        'duree' => '2:48',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 2,
+        'nom' => 'Outsidë',
+        'duree' => '3:51',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 3,
+        'nom' => 'Rëal six',
+        'duree' => '3:29',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 4,
+        'nom' => 'Nvr again',
+        'duree' => '2:47',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 5,
+        'nom' => 'Luh gëek',
+        'duree' => '2:56',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 6,
+        'nom' => 'Rackz got më',
+        'duree' => '3:02',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 7,
+        'nom' => 'Doublë',
+        'duree' => '2:51',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 8,
+        'nom' => 'On tha linë',
+        'duree' => '2:35',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 9,
+        'nom' => 'Jus bëtter',
+        'duree' => '3:09',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 10,
+        'nom' => 'Jump',
+        'duree' => '3:13',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 11,
+        'nom' => 'Dnt lië',
+        'duree' => '3:32',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 12,
+        'nom' => 'Rollin',
+        'duree' => '3:37',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 13,
+        'nom' => 'Taliban',
+        'duree' => '2:59',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 14,
+        'nom' => 'Narcoticz',
+        'duree' => '3:50',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 15,
+        'nom' => 'Call më',
+        'duree' => '3:40',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 16,
+        'nom' => 'Kant dië',
+        'duree' => '2:42',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 17,
+        'nom' => 'Gëek high',
+        'duree' => '2:33',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 18,
+        'nom' => 'Luh m',
+        'duree' => '3:30',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 19,
+        'nom' => 'Smooktobër',
+        'duree' => '2:56',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+    [
+        'position' => 20,
+        'nom' => 'Still countin',
+        'duree' => '2:51',
+        'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png',
+        'album' => '2 Alivë'
+    ],
+];
+
+
+
+
+
+
+
 
 ?>

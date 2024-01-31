@@ -1,5 +1,6 @@
 .album__css{
     width: 15rem;
+    text-decoration: none;
     flex: 0 0 auto;
     margin-right: 2.5%;
     margin-top: 2%;

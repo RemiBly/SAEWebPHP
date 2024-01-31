@@ -50,19 +50,6 @@ h2{
     border-radius: 10px;
 }
 
-  .carousel{
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-.carousel::-webkit-scrollbar {
-    height: 5px;
-}
-
-.similaire{
-    margin-top: 10%;
-}
-
 .fa-regular .fa-heart{
     color: #7a7a7a;
 }

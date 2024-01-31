@@ -5,6 +5,12 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body{
+    background: #000000;
+    color: #ffffff;
+    padding: 0;
+}
+
 ::-webkit-scrollbar {
     width: 5px;
 }
