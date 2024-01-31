@@ -21,6 +21,18 @@ try {
         Nom_Artiste TEXT,
         Biographie TEXT,
         Photo TEXT)");
+
+    $file_db->exec("CREATE TABLE IF NOT EXISTS Titre( 
+        ID_Titre INTEGER PRIMARY KEY AUTOINCREMENT,
+        Nom_Titre TEXT,
+        Photo TEXT,
+        Duree INTEGER,
+        Lien TEXT,
+        ID_Album INTEGER,
+        ID_Artiste INTEGER,
+        FOREIGN KEY (ID_Album) REFERENCES Album(ID_Album),
+        FOREIGN KEY (ID_Artiste) REFERENCES Artiste(ID_Artiste))");
+
     
     $file_db->exec("CREATE TABLE IF NOT EXISTS Album(
         ID_Album INTEGER PRIMARY KEY AUTOINCREMENT,
