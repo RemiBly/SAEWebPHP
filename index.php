@@ -11,6 +11,7 @@ $selected = isset($_GET['searchArtist']) && $_GET['searchArtist'] == '1' ? 'arti
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/static/CSS/index.css">
     <link rel="stylesheet" href="./pages/static/CSS/variables.css">
+    <link rel="stylesheet" href="./pages/static/CSS/header.css">
     <script src="./pages/static/JS/index.js" defer></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
     <title>Document</title>

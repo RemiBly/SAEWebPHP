@@ -9,30 +9,117 @@ main{
   margin-top: 2%
 }
 
-/* Header */
-.header {
-  width: 100%;
+
+.main__application{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Pour la partie gauche */
+.partie__gauche{
+  flex-basis: 25%;
+  flex-grow: 1;
+  margin: 0 2%;
+}
+
+.partie__droite{
+  flex-basis: 75%;
+}
+
+h2{
+  font-size: 90%;
+}
+
+.compte{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 2% 2%;
 }
 
-.account{
-  margin-right: 3.125rem;
-  color: white;
+.photo__profil{
+  width: 7%;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.account i {
-  color: white;
+h1{
+  font-size: 125%;
 }
 
-.header__title{
-  margin-left: 3.125rem;
+h2{
+  font-size: 90%;
 }
 
 
-/* Pour la partie gauche */
+.jenesaispas{
+  background-color: #242424;
+  border-radius: 10px;
+  padding-bottom: 2%;
+}
 
+.jenesaispas h2{
+  margin: 0;
+  padding: 2%;
+}
+
+.liste__playlist{
+  padding-top: 2%;
+  margin-top: 2%;
+  background-color: #242424;
+  border-radius: 10px;
+}
+
+.ajout__playlist{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2%;
+}
+
+.liste__playlist h2{
+  margin: 0;
+}
+
+.liste__playlist ul{
+  padding: 0;
+}
+
+.liste__playlist li{
+  display: flex;
+  align-items: center;
+  padding: 2%;
+  list-style: none;
+}
+
+.liste__playlist li:hover{
+  background-color: #3b3b3b;
+  border-radius: 10px;
+}
+
+.liste__playlist li img{
+  height: 2rem;
+  margin-right: 2%;
+  border-radius: 10px;  
+}
+
+h3 .fa-magnifying-glass{
+  padding: 2%;
+}
+
+.album{
+  text-decoration: none;
+}
+
+.recherche__artiste__album a{
+  color: #b6b6b6;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.recherche__artiste__album a:hover{
+  color: #ffffff;
+}
 
 
 /* Cart */

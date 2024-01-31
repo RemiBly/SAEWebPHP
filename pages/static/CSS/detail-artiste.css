@@ -1,8 +1,14 @@
 body{
     background: #000000;
     color: #ffffff;
-    margin: 2% 20%;
     padding: 0;
+}
+main{
+    margin: 2% 20%;
+}
+
+h2{
+    font-size: 125% !important;
 }
 
 .artiste{
@@ -43,90 +49,6 @@ body{
     margin-top: 5%;
     border-radius: 10px;
 }
-
-.titre{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1% 2%;
-    transition: 0.1s ease-in-out;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.titre img{
-    margin: 1% 50px 1% 20px;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 5px;
-  object-fit: cover;
-}
-
-.titre:hover{
-    background-color: #4e4e4e;
-    border-radius: 5px;
-}
-
-.contenu__titre{
-    display: flex;
-    width: 80%;
-    justify-content: space-between;
-    align-items: center;    
-}
-
-.image__int{
-    display: flex;
-    flex-basis: 80%;
-    align-items: center;
-}
-
-.int{
-    color: #7a7a7a;
-}
-
-#coeur{
-    color: white;
-}
-
-
-  .album__css{
-    width: 15rem;
-    flex: 0 0 auto;
-    margin-right: 2.5%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    padding-top: 1%;
-    background-color: #161616;
-    color: white;
-    border-radius: 10px;
-    text-align: center;
-    overflow: hidden;
-    transition: all 0.2s ease-in-out;
-    padding: 1%;
-  }
-
-  .album__css:last-child{
-    margin-right: 0;
-  }
-  
-  .album__css:hover{
-    background-color: #3b3b3b;
-  }
-  
-  .album__css img{
-    border-radius: 10px;
-    height: 12.5rem;
-    width : 90%;
-    box-shadow: 0px 0px 50px -10px #ffffff7a;
-    object-fit: cover;
-  }
-  
-  
-  .contenu__album{
-    text-align: start;
-    font-size: 75%;
-    padding: 5%;
-  }
 
   .carousel{
     display: flex;

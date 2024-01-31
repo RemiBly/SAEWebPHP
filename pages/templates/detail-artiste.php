@@ -1,20 +1,33 @@
-<?php 
-    include '../static/data.php';
+<?php
+include '../static/data.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/CSS/detail-artiste.css">
     <link rel="stylesheet" href="../static/CSS/variables.css">
+    <link rel="stylesheet" href="../static/CSS/album.css">
+    <link rel="stylesheet" href="../static/CSS/titre.css">
+    <link rel="stylesheet" href="../static/CSS/artiste.css">
+    <link rel="stylesheet" href="../static/CSS/header.css">
     <script src="../static/JS/detail-artiste.js" defer></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 
 <body>
+    <div class="header">
+        <h1 class="header__title">SPOT'MUSIC</h1>
+
+        <div class="account">
+            <a href="./pages/templates/login.php"><i class="fa-regular fa-user"></i></a>
+        </div>
+    </div>
+    <main>
     <div class="artiste">
         <img src="https://mnrepublic.com/wp-content/uploads/2022/04/MNR-Yeat.jpg" alt="artiste1" />
         <div class="contenu">
@@ -99,6 +112,25 @@
             <?php endforeach; ?>
         </div>
     </div>
+    <div class="artistes__similaires similaire">
+        <h2>Artistes similaires</h2>
+        <div class="carousel">
+            <?php foreach ($dataArtistes as $artiste) : ?>
+                <a href="#" class="album artiste__similaire" data-name="<?= strtolower($artiste['nom']) ?>">
+                    <?php if (is_null($artiste['img'])) : ?>
+                        <img src="./pages/static/images/default.jpg" alt="">
+                    <?php else : ?>
+                        <img src="<?= $artiste['img'] ?>" alt="">
+                    <?php endif; ?>
+                    <div class="contenu__artiste__similaire">
+                        <h3 class="test-arrow"><span><?= $artiste['nom'] ?></span></h3>
+                        <p>Artiste</p>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    </main>
 </body>
 
 </html>
