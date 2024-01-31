@@ -95,10 +95,13 @@ h2{
 }
 
 .liste__playlist li{
-  display: flex;
-  align-items: center;
   padding: 2%;
   list-style: none;
+}
+
+.liste__playlist li a{
+  display: flex;
+  align-items: center;
 }
 
 .liste__playlist li:hover{

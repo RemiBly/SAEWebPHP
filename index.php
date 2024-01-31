@@ -19,7 +19,7 @@ $selected = isset($_GET['searchArtist']) && $_GET['searchArtist'] == '1' ? 'arti
 
 <body>
     <div class="header">
-        <h1 class="header__title"> SPOT'MUSIC</h1>
+        <h1 class="header__title"><a href="./index.php"> SPOT'MUSIC</a> </h1>
 
         <div class="account">
             <a href="./pages/templates/login.php"><i class="fa-regular fa-user"></i></a>
@@ -36,7 +36,7 @@ $selected = isset($_GET['searchArtist']) && $_GET['searchArtist'] == '1' ? 'arti
                 <div class="recherche__artiste__album">
                     <h3 class="rechercher_artiste"><a href="?searchArtist=1"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un artiste</a></h3>
                     <h3 class="rechercher_album"><a href="?searchArtist=0"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un album</a></h3>
-                </div>      
+                </div>
             </div>
             <div class="liste__playlist">
                 <div class="ajout__playlist">
@@ -45,8 +45,10 @@ $selected = isset($_GET['searchArtist']) && $_GET['searchArtist'] == '1' ? 'arti
                 </div>
                 <ul>
                     <li>
-                        <img src="./pages/static/images/coupDeCoeur.jpeg" alt="">
-                        <p>Coup de cœur</p>
+                        <a href="./pages/templates/playlist.php"> 
+                            <img src="./pages/static/images/coupDeCoeur.jpeg" alt="">
+                            <p>Coup de cœur</p>
+                        </a>
                     </li>
                 </ul>
             </div>
