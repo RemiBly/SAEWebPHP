@@ -37,10 +37,19 @@ h2{
   padding: 2% 2%;
 }
 
-.photo__profil{
-  width: 7%;
+.premiere__lettre__pseudo{
+  font-weight: bold;
+  background-color: #cca9dd;
+  color: black;
   border-radius: 50%;
-  object-fit: cover;
+  width: 0.9rem;
+  height: 0.9rem;
+  padding: 2%;
+  vertical-align: baseline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2%;
 }
 
 h1{
@@ -109,6 +118,18 @@ h3 .fa-magnifying-glass{
 
 .album{
   text-decoration: none;
+}
+
+.rechercher_artiste{
+  margin-top: 0;
+}
+
+.rechercher_album{
+  margin-bottom: 0;
+}
+
+.recherche__artiste__album{
+  padding: 0 2%;
 }
 
 .recherche__artiste__album a{

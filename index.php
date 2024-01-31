@@ -31,11 +31,11 @@ $selected = isset($_GET['searchArtist']) && $_GET['searchArtist'] == '1' ? 'arti
             <div class="jenesaispas">
                 <div class="compte">
                     <h2>Bienvenue, Kris</h2>
-                    <img class="photo__profil" src="./pages/static/images/image-compte.jpg" alt="">
+                    <p class="premiere__lettre__pseudo">K</p>
                 </div>
                 <div class="recherche__artiste__album">
-                    <h3><a href="?searchArtist=1"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un artiste</a></h3>
-                    <h3><a href="?searchArtist=0"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un album</a></h3>
+                    <h3 class="rechercher_artiste"><a href="?searchArtist=1"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un artiste</a></h3>
+                    <h3 class="rechercher_album"><a href="?searchArtist=0"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un album</a></h3>
                 </div>      
             </div>
             <div class="liste__playlist">
