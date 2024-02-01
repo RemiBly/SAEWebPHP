@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
         $stmt = $file_db->prepare("INSERT INTO Playlist (Titre_Playlist, ID_Utilisateur) VALUES (?, ?)");
         $stmt->execute([$titre_playlist, $userId]);
 
-        header('Location: ./pages/templates/accueil.php');
+        header('Location: ./accueil.php');
         exit;
     } catch (PDOException $ex) {
         echo "Erreur lors de l'ajout de la playlist : " . $ex->getMessage();
@@ -74,6 +74,12 @@ if (isset($_SESSION['user_id'])) {
                 </form>
             </div>
             <ul>
+                <li>
+                    <a href="./playlist.php">
+                        <img src="../static/images/coupDeCoeur.jpeg" alt="Image Playlist">
+                        <p>Coup de coeur</p>
+                    </a>
+                </li>
                 <?php foreach ($playlists as $playlist) : ?>
                     <li>
                         <a href="./playlist.php">
