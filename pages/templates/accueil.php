@@ -47,7 +47,7 @@ if (isset($_SESSION['user_id'])) {
 
 <body>
     <div class="header">
-        <h1 class="header__title"><a href="./index.php"> SPOT'MUSIC</a> </h1>
+        <h1 class="header__title"><a href="./accueil.php"> SPOT'MUSIC</a> </h1>
 
         <div class="account">
             <a href="./pages/templates/login.php"><i class="fa-regular fa-user"></i></a>
@@ -58,7 +58,7 @@ if (isset($_SESSION['user_id'])) {
         <div class="jenesaispas">
             <div class="compte">
                 <h2>Bienvenue, <?= $nomUtilisateur ?></h2>
-                <p class="premiere__lettre__pseudo"><?= $nomUtilisateur[0] ?></p>
+                <p class="premiere__lettre__pseudo"><?=strtoupper($nomUtilisateur[0]) ?></p>
             </div>
             <div class="recherche__artiste__album">
                 <h3 class="rechercher_artiste"><a href="?searchArtist=1"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un artiste</a></h3>
@@ -76,7 +76,7 @@ if (isset($_SESSION['user_id'])) {
             <ul>
                 <?php foreach ($playlists as $playlist) : ?>
                     <li>
-                        <a href="./pages/templates/playlist.php">
+                        <a href="./playlist.php">
                             <img src="../static/images/coupDeCoeur.jpeg" alt="Image Playlist">
                             <p><?= htmlspecialchars($playlist['Titre_Playlist']) ?></p>
                         </a>

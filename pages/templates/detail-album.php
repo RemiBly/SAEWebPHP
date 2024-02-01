@@ -22,7 +22,7 @@ include '../static/data.php';
 
 <body>
     <div class="header">
-    <h1 class="header__title"><a href="../../index.php">SPOT'MUSIC</a></h1>
+        <h1 class="header__title"><a href="./accueil.php"> SPOT'MUSIC</a> </h1>
 
         <div class="account">
             <a href="./pages/templates/login.php"><i class="fa-regular fa-user"></i></a>
