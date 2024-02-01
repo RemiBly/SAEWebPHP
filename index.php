@@ -1,5 +1,6 @@
 <?php
-include './pages/templates/creationBD.php';
+include 'creationBD.php';
+include 'configBD.php';
 session_start();
 
 function redirectHome() {
@@ -8,8 +9,6 @@ function redirectHome() {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
-    $file_db = new PDO('sqlite:BD.sqlite3');
-    $file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if ($_POST['action'] == 'inscription') {
         $nom = $_POST['name'];

@@ -1,6 +1,6 @@
 <?php
-include '../static/data.php';
-include './creationBD.php';
+include '../../configBD.php';
+
 $selected = isset($_GET['searchArtist']) && $_GET['searchArtist'] == '1' ? 'artiste' : 'album';
 session_start();
 
