@@ -21,3 +21,8 @@
   .header__title{
     margin-left: 3.125rem;
   }
+
+  .fa-arrow-right-from-bracket{
+    font-weight: 100;
+    font-size: 80%;
+  }

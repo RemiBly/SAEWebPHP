@@ -50,7 +50,7 @@ if (isset($_SESSION['user_id'])) {
         <h1 class="header__title"><a href="./accueil.php"> SPOT'MUSIC</a> </h1>
 
         <div class="account">
-            <a href="./pages/templates/login.php"><i class="fa-regular fa-user"></i></a>
+            <a href="../../index.php">Se déconnecter <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
     </div>
     <div class="main__application">
