@@ -9,14 +9,13 @@ function filterResults(event) {
     articles.forEach(function(article) {
         var title = article.dataset.title;
         var artist = article.dataset.artist;
-        var date = article.dataset.year
+        var date = article.dataset.year;
         var nomArtiste = article.dataset.name;
         if(nomArtiste == null){
             var isMatch = title.startsWith(searchTerm) || artist.startsWith(searchTerm) || date.startsWith(parseInt(searchTerm));
         } else {
             var isMatch = nomArtiste.startsWith(searchTerm);
         }
-
         if (isMatch) {
             article.classList.remove('hidden');
         } else {
@@ -43,5 +42,4 @@ function ajouterPlaylist() {
         var li = document.createElement('li');
         li.innerHTML = '<a href="./pages/templates/playlist.php"> <img src="./pages/static/images/logo-musique.webp" alt=""><p>' + nomPlaylist + '</p> </a>';
         ul.appendChild(li);
-    }
 }
