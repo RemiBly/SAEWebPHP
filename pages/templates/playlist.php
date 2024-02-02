@@ -49,6 +49,7 @@ include '../static/data.php';
                     </div>
                     <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>')"></i>
                     <a target="_blank" href="https://www.youtube.com/watch?v=zTr9Iffkzjg&list=RD4EKEmQtmitc&index=5"><i class="fa-solid fa-play play"></i></a>
+                    <i id="plus<?= $i + 1 ?>" class="fa-solid fa-plus"></i>
                 </div>
             <?php } ?>
         </div>

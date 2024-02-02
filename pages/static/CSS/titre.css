@@ -31,7 +31,7 @@
 
 .image__int{
     display: flex;
-    flex-basis: 80%;
+    flex-basis: 85%;
     align-items: center;
 }
 
@@ -68,4 +68,12 @@
     color: #7a7a7a;
     font-size: 0.8rem;
     text-align: end;
+}
+
+.fa-plus{
+    color: transparent !important;
+}
+
+.titre:hover .fa-plus{
+    color: #7a7a7a !important;
 }
