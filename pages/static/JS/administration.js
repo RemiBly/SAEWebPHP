@@ -7,15 +7,15 @@ document.addEventListener("DOMContentLoaded", function() {
         const recherche = barreRecherche.value.toLowerCase();
         const resultats = [];
 
-        for (const artiste of dataArtisteTest) {
-            if (artiste.nom.toLowerCase().startsWith(recherche)) {
+        for (const artiste of dataArtiste) {
+            if (artiste.Nom_Artiste.toLowerCase().startsWith(recherche)) {
                 resultats.push(artiste);
             }
         }
 
         const resultatHTML = resultats.map(artiste => {
-            return `<div class="resultat-item" data-id="${artiste.id}">
-                        ${artiste.id} - ${artiste.nom}
+            return `<div class="resultat-item" data-id="${artiste.ID_Artiste}">
+                        ${artiste.ID_Artiste} - ${artiste.Nom_Artiste}
                     </div>`;
         }).join("");
 

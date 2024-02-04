@@ -22,8 +22,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <?php
-include '../static/data.php';
+try {
+    $bdd = new PDO('sqlite:BD.sqlite3');
+} catch (PDOException $e) {
+    die("Erreur de connexion à la base de données : " . $e->getMessage());
+}
+
+$sql = "SELECT ID_Artiste, Nom_Artiste FROM Artiste";
+$resultat = $bdd->query($sql);
+
+if ($resultat) {
+    $dataArtiste = $resultat->fetchAll(PDO::FETCH_ASSOC);
+    $dataArtisteJSON = json_encode($dataArtiste);
+    $bdd = null;
+} else {
+    die("Erreur lors de l'exécution de la requête : " . print_r($bdd->errorInfo(), true));
+}
 ?>
+
+<!-- Intégrer les données encodées en JSON dans le script JavaScript -->
+<script>
+    const dataArtiste = <?php echo $dataArtisteJSON; ?>;
+</script>
 
 <!DOCTYPE html>
 <html lang="fr">
