@@ -1,6 +1,5 @@
 <?php
 include 'creationBD.php';
-include 'configBD.php';
 session_start();
 
 function redirectHome() {
@@ -8,12 +7,20 @@ function redirectHome() {
     exit;
 }
 
+function redirectPageAdmin() {
+    header('Location: ./pages/templates/administration.php');
+    exit;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
+    $file_db = new PDO('sqlite:BD.sqlite3');
+    $file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if ($_POST['action'] == 'inscription') {
         $nom = $_POST['name'];
         $email = $_POST['mail'];
         $mdp = $_POST['mdp'];
+        $role = 1;
 
         // Vérification si l'email existe déjà
         $stmt = $file_db->prepare("SELECT ID_Utilisateur FROM utilisateur WHERE Email = ?");
@@ -23,14 +30,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
         } else {
             // Inscription
             $mdp_hache = password_hash($mdp, PASSWORD_DEFAULT);
-            $stmt = $file_db->prepare("INSERT INTO utilisateur (Nom_Utilisateur, Email, Mot_de_Passe) VALUES (?, ?, ?)");
-            $stmt->execute([$nom, $email, $mdp_hache]);
+            $stmt = $file_db->prepare("INSERT INTO utilisateur (Nom_Utilisateur, Email, Mot_de_Passe, Id_role) VALUES (?, ?, ?, ?)");
+            $stmt->execute([$nom, $email, $mdp_hache, $role]);
 
             // Enregistrement dans la session
             $_SESSION['user_id'] = $file_db->lastInsertId();
             $_SESSION['user_name'] = $nom;
             $_SESSION['user_email'] = $email;
-
+            $_SESSION['Id_role'] = $role;
             redirectHome();
         }
     } elseif ($_POST['action'] == 'connexion') {
@@ -47,8 +54,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
             $_SESSION['user_id'] = $user['ID_Utilisateur'];
             $_SESSION['user_name'] = $user['Nom_Utilisateur'];
             $_SESSION['user_email'] = $user['Email'];
+            $_SESSION['Id_role'] = $user['Id_role'];
 
-            redirectHome();
+            if($_SESSION['Id_role'] == 1){
+                redirectHome();
+            }else{
+                redirectPageAdmin();
+            }
         } else {
             echo "Informations d'identification incorrectes.";
         }

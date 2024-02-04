@@ -1,5 +1,19 @@
 <?php
-include '../static/data.php';
+include __DIR__ . '/../../configBD.php';
+
+if (isset($_GET['id'])) {
+    $albumId = $_GET['id'];
+
+    // Récupération des informations de l'album
+    $stmt = $file_db->prepare("SELECT * FROM Album WHERE ID_Album = ?");
+    $stmt->execute([$albumId]);
+    $album = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Récupération des titres de l'album
+    $stmtTitres = $file_db->prepare("SELECT * FROM Titre WHERE ID_Album = ?");
+    $stmtTitres->execute([$albumId]);
+    $dataTitres = $stmtTitres->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,20 +51,24 @@ include '../static/data.php';
             </div>
         </div>
         <div class="liste__titres">
-            <?php for ($i = 0; $i < count($dataTitres); $i++) { ?>
-                <div class="titre">
-                    <div class="image__int">
-                        <p class="int"><?= $i + 1 ?></p>
-                        <img src="<?= $dataTitres[$i]['image'] ?>" alt="titre<?= $i + 1 ?>" />
-                        <div class="contenu__titre">
-                            <p class="titre__musique"><span><?= $dataTitres[$i]['nom'] ?></span><span> - </span><span><?= $dataTitres[$i]['album'] ?></span></p>
-                            <p class="duree"><?= $dataTitres[$i]['duree'] ?></p>
+            <?php if (!empty($dataTitres)): ?>
+                <?php foreach ($dataTitres as $titre): ?>
+                    <div class="titre">
+                        <div class="image__int">
+                            <p class="int"><?= htmlspecialchars($titre['Duree']) ?></p> <!-- Utilisez les vraies données ici -->
+                            <img src="<?= htmlspecialchars($titre['Photo']) ?>" alt="titre" />
+                            <div class="contenu__titre">
+                                <p class="titre__musique"><span><?= htmlspecialchars($titre['Nom_Titre']) ?></span></p>
+                                <p class="duree"><?= htmlspecialchars($titre['Duree']) ?>s</p> <!-- Adaptez selon le format de votre durée -->
+                            </div>
                         </div>
+                        <!-- Exemple de lien vers YouTube, adaptez selon vos données -->
+                        <a target="_blank" href="<?= htmlspecialchars($titre['Lien']) ?>"><i class="fa-solid fa-play play"></i></a>
                     </div>
-                    <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>')"></i>
-                    <a target="_blank" href="https://www.youtube.com/watch?v=zTr9Iffkzjg&list=RD4EKEmQtmitc&index=5"><i class="fa-solid fa-play play"></i></a>
-                </div>
-            <?php } ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>Aucun titre trouvé pour cet album.</p>
+            <?php endif; ?>
         </div>
         <div class="liste__albums similaire">
         <h2>Albums similaires</h2>

@@ -1,14 +1,15 @@
 <?php
 date_default_timezone_set('Europe/Paris');
 try {
-    $file_db = new PDO('sqlite: BD.sqlite3');
+    $file_db = new PDO('sqlite:BD.sqlite3');
     $file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $file_db->exec("CREATE TABLE IF NOT EXISTS utilisateur( 
         ID_Utilisateur INTEGER PRIMARY KEY AUTOINCREMENT,
         Nom_Utilisateur TEXT,
         Mot_de_Passe TEXT,
-        Email TEXT)");
+        Email TEXT,
+        Id_role INTEGER)");
 
     $file_db->exec("CREATE TABLE IF NOT EXISTS Playlist( 
         ID_Playlist INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -50,6 +51,8 @@ try {
         PRIMARY KEY (ID_Album, ID_Utilisateur),
         FOREIGN KEY (ID_Album) REFERENCES Album(ID_Album),
         FOREIGN KEY (ID_Utilisateur) REFERENCES utilisateur(ID_Utilisateur))");
+
+
 
 } catch (PDOException $ex) {
     echo "Erreur de connexion à la base de données : " . $ex->getMessage();

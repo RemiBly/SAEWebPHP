@@ -1,5 +1,5 @@
 <?php
-include '../static/data.php';
+include __DIR__ . '/../../configBD.php';
 ?>
 
 <!DOCTYPE html>
