@@ -1,5 +1,12 @@
 <?php
 include '../static/data.php';
+include './creationBD.php';
+echo "id:".$_GET['id']."\n";
+$query = "SELECT * FROM Artiste WHERE ID_Artiste = ?";
+$stmt = $file_db->prepare($query);
+$stmt->execute([$_GET['id']]);
+$artiste = $stmt->fetch(PDO::FETCH_ASSOC);
+print_r($artiste);
 ?>
 
 <!DOCTYPE html>
@@ -30,10 +37,15 @@ include '../static/data.php';
     </div>
     <main>
     <div class="artiste">
-        <img src="https://mnrepublic.com/wp-content/uploads/2022/04/MNR-Yeat.jpg" alt="artiste1" />
+        <!-- <img src="https://mnrepublic.com/wp-content/uploads/2022/04/MNR-Yeat.jpg" alt="artiste1" />
         <div class="contenu">
             <h1>{{artiste[nom]}}</h1>
             <p class="biographie">{{artiste[biographie]}}</p>
+        </div> -->
+        <img src="<?php echo $artiste['Photo'] ?>" alt="img">
+        <div>
+            <h1><?php echo $artiste['Nom_Artiste'] ?></h1>
+            <p><?php echo $artiste['Biographie'] ?></p>
         </div>
     </div>
     <div class="liste__titre">

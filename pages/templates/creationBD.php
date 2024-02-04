@@ -54,6 +54,9 @@ try {
     $resultat = $file_db->query("SELECT Album.*, Artiste.Nom_Artiste FROM Album INNER JOIN Artiste ON Album.ID_Artiste = Artiste.ID_Artiste");
     $albums = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
+    $resultat = $file_db->query("SELECT Artiste.Nom_Artiste, Artiste.Photo FROM Artiste");
+    $artistes = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
     if (isset($_SESSION['user_id'])) {
         $userId = $_SESSION['user_id'];
         $stmtPlaylists = $file_db->prepare("SELECT * FROM Playlist WHERE ID_Utilisateur = ?");
