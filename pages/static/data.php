@@ -555,10 +555,56 @@ $dataTitres = [
 ];
 
 
-
-
-
-
-
+$dataArtisteTest = [
+    [
+        'id' => 1,
+        'nom' => 'Yeat',
+    ],
+    [
+        'id' => 2,
+        'nom' => 'Rémi',
+    ],
+    [
+        'id' => 3,
+        'nom' => 'Kris',
+    ],
+    [
+        'id' => 4,
+        'nom' => 'Irvyn',
+    ],
+    [
+        'id' => 5,
+        'nom' => 'Kaaris',
+    ],
+    [
+        'id' => 6,
+        'nom' => 'Jenesaispas',
+    ],
+    [
+        'id' => 7,
+        'nom' => 'Playboi Carti',
+    ],
+    [
+        'id' => 8,
+        'nom' => 'Taylor Swift',
+    ],
+    [
+        'id' => 9,
+        'nom' => 'Kayne West',
+    ],
+    [
+        'id' => 10,
+        'nom' => 'MIGOS',
+    ],
+    [
+        'id' => 11,
+        'nom' => 'Talmo',
+    ],
+]
 
 ?>
+
+<script>
+// Initialiser la variable JavaScript avec les données artistiques
+const dataArtisteTest = <?php echo json_encode($dataArtisteTest); ?>;
+</script>
