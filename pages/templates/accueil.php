@@ -104,15 +104,15 @@ if (isset($_SESSION['user_id'])) {
 
         <main>
             <?php if ($selected === 'artiste') : ?>
-                <?php foreach ($dataArtistes as $artiste) : ?>
-                    <a href="./detail-artiste.php" class="album artiste" data-name="<?= strtolower($artiste['nom']) ?>">
-                        <?php if (is_null($artiste['img'])) : ?>
+                <?php foreach ($artistes as $artiste) : ?>
+                    <a href="./detail-artiste.php?id=<?php echo $artiste['ID_Artiste']; ?>" class="album artiste" data-name="<?= strtolower($artiste['Nom_Artiste']) ?>">
+                        <?php if (is_null($artiste['Photo'])) : ?>
                             <img src="../static/images/default.jpg" alt="">
                         <?php else : ?>
-                            <img src="<?= $artiste['img'] ?>" alt="">
+                            <img src="<?= $artiste['Photo'] ?>" alt="">
                         <?php endif; ?>
                         <div class="contenu">
-                            <h3 class="test-arrow"><span><?= $artiste['nom'] ?></span></h3>
+                            <h3 class="test-arrow"><span><?= $artiste['Nom_Artiste'] ?></span></h3>
                             <p>Artiste</p>
                         </div>
                     </a>
@@ -120,11 +120,13 @@ if (isset($_SESSION['user_id'])) {
             <?php else : ?>
                 <?php foreach ($albums as $album) : ?>
                     <article class="album__css album" data-title="<?= strtolower($album['Titre_Album']) ?>" data-year="<?= strtolower($album['Année_de_sortie']) ?>" data-artist="<?= strtolower($album['Titre_Album']) ?>">
-                        <img src="<?= !empty($album['Pochette']) ? $album['Pochette'] : '../static/images/default.jpg' ?>" alt="Pochette d'album">
-                        <div class="contenu">
-                            <h3 class="test-arrow"><span><?= $album['Titre_Album'] ?></span></h3>
-                            <p><?= $album['Année_de_sortie'] ?> - <?= $album['Nom_Artiste'] ?></p>
-                        </div>
+                        <a href="./detail-album.php?id=<?php echo $album["ID_Album"] ?>">
+                            <img src="<?= !empty($album['Pochette']) ? $album['Pochette'] : (!empty($album['Photo']) ? $album['Photo']: '../static/images/default.jpg') ?>" alt="Pochette d'album">
+                            <div class="contenu">
+                                <h3 class="test-arrow"><span><?= $album['Titre_Album'] ?></span></h3>
+                                <p><?= $album['Année_de_sortie'] ?> - <?= $album['Nom_Artiste'] ?></p>
+                            </div>
+                        </a>
                     </article>
                 <?php endforeach; ?>
             <?php endif; ?>
