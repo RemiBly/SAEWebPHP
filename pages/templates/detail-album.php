@@ -1,10 +1,15 @@
 <?php
 include '../static/data.php';
 include './creationBD.php';
-$query = "SELECT *, Artiste.Nom_Artiste FROM Album INNER JOIN Artiste ON Album.ID_Artiste = Artiste.ID_Artiste WHERE ID_Album = ?";
+$query = "SELECT * FROM Album INNER JOIN Artiste ON Album.ID_Artiste = Artiste.ID_Artiste WHERE ID_Album = ?";
 $stmt = $file_db->prepare($query);
 $stmt->execute([$_GET['id']]);
 $album = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$query = "SELECT * FROM Titre WHERE ID_Album = ?";
+$stmt = $file_db->prepare($query);
+$stmt->execute([$_GET['id']]);
+$titres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -50,19 +55,13 @@ $album = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
         </div>
         <div class="liste__titres">
-            <?php
-            $query = "SELECT * FROM Titre WHERE ID_Album = ?";
-            $stmt = $file_db->prepare($query);
-            $stmt->execute([$_GET['id']]);
-            $titres = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            ?>
             <?php for ($i = 0; $i < count($titres); $i++) { ?>
                 <div class="titre">
                     <div class="image__int">
                         <p class="int"><?= $i + 1 ?></p>
                         <img src="<?= $titres[$i]['Photo'] ?>" alt="titre<?= $i + 1 ?>" />
                         <div class="contenu__titre">
-                            <p class="titre__musique"><span><?= $titres[$i]['Nom_Titre'] ?></span><span> - </span><span><?= $album["Nom_Album"] ?></span></p>
+                            <p class="titre__musique"><span><?= $titres[$i]['Nom_Titre'] ?></span><span> - </span><span><?= $album["Titre_Album"] ?></span></p>
                             <p class="duree"><?= $titres[$i]['Duree'] ?></p>
                         </div>
                     </div>

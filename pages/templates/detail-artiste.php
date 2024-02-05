@@ -5,6 +5,21 @@ $query = "SELECT * FROM Artiste WHERE ID_Artiste = ?";
 $stmt = $file_db->prepare($query);
 $stmt->execute([$_GET['id']]);
 $artiste = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$query = "SELECT * FROM Titre INNER JOIN Album ON Titre.ID_Album = Album.ID_Album WHERE Titre.ID_Artiste = ? ORDER BY Duree DESC LIMIT 5";
+$stmt = $file_db->prepare($query);
+$stmt->execute([$artiste['ID_Artiste']]);
+$titresArtiste = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$query = "SELECT * FROM Album WHERE ID_Artiste = ?";
+$stmt = $file_db->prepare($query);
+$stmt->execute([$artiste['ID_Artiste']]);
+$albumsArtiste = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$query = "SELECT DISTINCT Artiste.ID_Artiste, Artiste.Nom_Artiste, Artiste.Photo, Album.Genre FROM Album INNER JOIN Artiste ON Album.ID_Artiste = Artiste.ID_Artiste WHERE Album.Genre IN (SELECT Genre FROM Album WHERE ID_Artiste = ?) AND Artiste.ID_Artiste != ?";
+$stmt = $file_db->prepare($query);
+$stmt->execute([$artiste['ID_Artiste'], $artiste['ID_Artiste']]);
+$artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -35,84 +50,68 @@ $artiste = $stmt->fetch(PDO::FETCH_ASSOC);
     </div>
     <main>
     <div class="artiste">
-        <!-- <img src="https://mnrepublic.com/wp-content/uploads/2022/04/MNR-Yeat.jpg" alt="artiste1" />
-        <div class="contenu">
-            <h1>{{artiste[nom]}}</h1>
-            <p class="biographie">{{artiste[biographie]}}</p>
-        </div> -->
         <img src="<?php echo $artiste['Photo'] ?>" alt="img">
         <div>
             <h1><?php echo $artiste['Nom_Artiste'] ?></h1>
             <p><?php echo $artiste['Biographie'] ?></p>
         </div>
     </div>
-    <div class="liste__titre">
-        <h2>Titres phares</h2>
-        <div class="contenu__liste__titres">
-        <?php for ($i = 0; $i < 3; $i++) { ?>
-            <div class="titre">
-                    <div class="image__int">
-                        <p class="int"><?= $i + 1 ?></p>
-                        <img src="<?= $dataTitres[$i]['image'] ?>" alt="titre<?= $i + 1 ?>" />
-                        <div class="contenu__titre">
-                            <p class="titre__musique"><span><?= $dataTitres[$i]['nom'] ?></span><span> - </span><span><?= $dataTitres[$i]['album'] ?></span></p>
-                            <p class="duree"><?= $dataTitres[$i]['duree'] ?></p>
+        <div class="liste__titre">
+            <h2>Titres phares</h2>
+            <?php if (count($titresArtiste) > 0) : ?>
+            <div class="contenu__liste__titres">
+                <?php for ($i = 0; $i < count($titresArtiste); $i++) { ?>
+                    <div class="titre">
+                        <div class="image__int">
+                            <p class="int"><?= $i + 1 ?></p>
+                            <img src="<?= $titresArtiste[$i]['Photo'] ?>" alt="titre<?= $i + 1 ?>" />
+                            <div class="contenu__titre">
+                                <p class="titre__musique"><span><?= $titresArtiste[$i]['Nom_Titre'] ?></span><span> - </span><span><?= $titresArtiste[$i]['Nom_Album'] ?></span></p>
+                                <p class="duree"><?= $titresArtiste[$i]['Duree'] ?></p>
+                            </div>
                         </div>
+                        <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>')"></i>
+                        <a target="_blank" href="<?php echo $titresArtiste[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
                     </div>
-                    <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>')"></i>
-                    <a target="_blank" href="https://www.youtube.com/watch?v=zTr9Iffkzjg&list=RD4EKEmQtmitc&index=5"><i class="fa-solid fa-play play"></i></a>
-                </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
+            <?php else: ?>
+                <p>Cet artiste n'a pas de titres</p>
+            <?php endif; ?>
         </div>
-    </div>
     <div class="liste__albums">
         <h2>Albums</h2>
         <div class="carousel">
-            <?php foreach ($dataTest as $album) : ?>
-                <a href="../templates/detail-album.php" class="album album__css">
-                    <?php if (is_null($album['img'])) : ?>
-                        <img src="../static/images/default2.jpg" alt="">
-                    <?php else : ?>
-                        <img src="<?= $album['img'] ?>" alt="">
-                    <?php endif; ?>
-                    <div class="contenu__album">
-                        <h3 class="test-arrow"><span><?= $album['title'] ?></span></h3>
-                        <p><?= $album['releaseYear'] ?> - Album</p>
-                    </div>
-                </a>
-            <?php endforeach; ?>
-        </div>
-    </div>
-    <div class="liste__albums similaire">
-        <h2>Albums similaires</h2>
-        <div class="carousel">
-            <?php foreach ($dataAlbumSimilaires as $album) : ?>
-                <a href="../templates/detail-album.php" class="album album__css">
-                    <?php if (is_null($album['img'])) : ?>
-                        <img src="../static/images/default2.jpg" alt="">
-                    <?php else : ?>
-                        <img src="<?= $album['img'] ?>" alt="">
-                    <?php endif; ?>
-                    <div class="contenu__album">
-                        <h3 class="test-arrow"><span><?= $album['title'] ?></span></h3>
-                        <p><?= $album['releaseYear'] ?> - <?= $album['by'] ?></p>
-                    </div>
-                </a>
+            <?php foreach ($albumsArtiste as $album) : ?>
+                <a href="./detail-album.php?id=<?php echo $album["ID_Album"] ?>" class="album album__css">
+                        <?php if (is_null($album['Pochette']) || $album['Pochette']==="") : ?>
+                            <?php if (is_null($artiste['Photo']) || $artiste['Photo']==="") : ?>
+                                <img src="../static/images/default2.jpg" alt="">
+                            <?php else : ?>
+                                <img src="<?= $artiste['Photo'] ?>" alt="">
+                            <?php endif; ?>
+                        <?php else : ?>
+                            <img src="<?= $album['Pochette'] ?>" alt="">
+                        <?php endif; ?>
+                        <div class="contenu__album">
+                            <p><?= $album['Année_de_sortie'] ?> - <?= $album['Titre_Album'] ?></p>
+                        </div>
+                    </a>
             <?php endforeach; ?>
         </div>
     </div>
     <div class="artistes__similaires similaire">
         <h2>Artistes similaires</h2>
         <div class="carousel">
-            <?php foreach ($dataArtistes as $artiste) : ?>
-                <a href="#" class="album artiste__similaire" data-name="<?= strtolower($artiste['nom']) ?>">
-                    <?php if (is_null($artiste['img'])) : ?>
+            <?php foreach ($artistesSimilaires as $artisteSimilaire) : ?>
+                <a href="./detail-artiste.php?id=<?php echo $artisteSimilaire["ID_Artiste"] ?>" class="album artiste__similaire" data-name="<?= strtolower($artisteSimilaire['Nom_Artiste']) ?>">
+                    <?php if (is_null($artisteSimilaire['Photo'])) : ?>
                         <img src="./pages/static/images/default.jpg" alt="">
                     <?php else : ?>
-                        <img src="<?= $artiste['img'] ?>" alt="">
+                        <img src="<?= $artisteSimilaire['Photo'] ?>" alt="">
                     <?php endif; ?>
                     <div class="contenu__artiste__similaire">
-                        <h3 class="test-arrow"><span><?= $artiste['nom'] ?></span></h3>
+                        <h3 class="test-arrow"><span><?= $artisteSimilaire['Nom_Artiste'] ?></span></h3>
                         <p>Artiste</p>
                     </div>
                 </a>
