@@ -50,36 +50,51 @@ $album = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
         </div>
         <div class="liste__titres">
-            <?php for ($i = 0; $i < count($dataTitres); $i++) { ?>
+            <?php
+            $query = "SELECT * FROM Titre WHERE ID_Album = ?";
+            $stmt = $file_db->prepare($query);
+            $stmt->execute([$_GET['id']]);
+            $titres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <?php for ($i = 0; $i < count($titres); $i++) { ?>
                 <div class="titre">
                     <div class="image__int">
                         <p class="int"><?= $i + 1 ?></p>
-                        <img src="<?= $dataTitres[$i]['image'] ?>" alt="titre<?= $i + 1 ?>" />
+                        <img src="<?= $titres[$i]['Photo'] ?>" alt="titre<?= $i + 1 ?>" />
                         <div class="contenu__titre">
-                            <p class="titre__musique"><span><?= $dataTitres[$i]['nom'] ?></span><span> - </span><span><?= $dataTitres[$i]['album'] ?></span></p>
-                            <p class="duree"><?= $dataTitres[$i]['duree'] ?></p>
+                            <p class="titre__musique"><span><?= $titres[$i]['Nom_Titre'] ?></span><span> - </span><span><?= $album["Nom_Album"] ?></span></p>
+                            <p class="duree"><?= $titres[$i]['Duree'] ?></p>
                         </div>
                     </div>
                     <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>')"></i>
-                    <a target="_blank" href="https://www.youtube.com/watch?v=zTr9Iffkzjg&list=RD4EKEmQtmitc&index=5"><i class="fa-solid fa-play play"></i></a>
+                    <a target="_blank" href="<?php echo $titres[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
                 </div>
             <?php } ?>
+            <?php if (count($titres) === 0) {
+                echo "<p>Aucun titre disponible</p>";
+            } ?>
         </div>
         <div class="liste__albums similaire">
         <h2>Albums similaires</h2>
         <div class="carousel">
-            <?php foreach ($dataAlbumSimilaires as $album) : ?>
-                <a href="#" class="album album__css">
-                    <?php if (is_null($album['img'])) : ?>
-                        <img src="../static/images/default2.jpg" alt="">
-                    <?php else : ?>
-                        <img src="<?= $album['img'] ?>" alt="">
-                    <?php endif; ?>
-                    <div class="contenu__album">
-                        <h3 class="test-arrow"><span><?= $album['title'] ?></span></h3>
-                        <p><?= $album['releaseYear'] ?> - <?= $album['by'] ?></p>
-                    </div>
-                </a>
+            <?php foreach ($albums as $albumSimilaire) : ?>
+                <?php if ($albumSimilaire['Genre'] === $album['Genre'] && $albumSimilaire['ID_Album'] !== $album['ID_Album']) : ?>
+                    <a href="./detail-album.php?id=<?php echo $albumSimilaire["ID_Album"] ?>" class="album album__css">
+                        <?php if (is_null($albumSimilaire['Pochette']) || $albumSimilaire['Pochette']==="") : ?>
+                            <?php if (is_null($albumSimilaire['Photo']) || $albumSimilaire['Photo']==="") : ?>
+                                <img src="../static/images/default2.jpg" alt="">
+                            <?php else : ?>
+                                <img src="<?= $albumSimilaire['Photo'] ?>" alt="">
+                            <?php endif; ?>
+                        <?php else : ?>
+                            <img src="<?= $albumSimilaire['Pochette'] ?>" alt="">
+                        <?php endif; ?>
+                        <div class="contenu__album">
+                            <h3 class="test-arrow"><span><?= $albumSimilaire['Titre_Album'] ?></span></h3>
+                            <p><?= $albumSimilaire['Année_de_sortie'] ?> - <?= $albumSimilaire['Nom_Artiste'] ?></p>
+                        </div>
+                    </a>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
     </div>

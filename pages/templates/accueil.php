@@ -121,7 +121,7 @@ if (isset($_SESSION['user_id'])) {
                 <?php foreach ($albums as $album) : ?>
                     <article class="album__css album" data-title="<?= strtolower($album['Titre_Album']) ?>" data-year="<?= strtolower($album['Année_de_sortie']) ?>" data-artist="<?= strtolower($album['Titre_Album']) ?>">
                         <a href="./detail-album.php?id=<?php echo $album["ID_Album"] ?>">
-                            <img src="<?= !empty($album['Pochette']) ? $album['Pochette'] : '../static/images/default.jpg' ?>" alt="Pochette d'album">
+                            <img src="<?= !empty($album['Pochette']) ? $album['Pochette'] : (!empty($album['Photo']) ? $album['Photo']: '../static/images/default.jpg') ?>" alt="Pochette d'album">
                             <div class="contenu">
                                 <h3 class="test-arrow"><span><?= $album['Titre_Album'] ?></span></h3>
                                 <p><?= $album['Année_de_sortie'] ?> - <?= $album['Nom_Artiste'] ?></p>

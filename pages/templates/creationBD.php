@@ -51,7 +51,7 @@ try {
         FOREIGN KEY (ID_Album) REFERENCES Album(ID_Album),
         FOREIGN KEY (ID_Utilisateur) REFERENCES utilisateur(ID_Utilisateur))");
 
-    $resultat = $file_db->query("SELECT Album.*, Artiste.Nom_Artiste FROM Album INNER JOIN Artiste ON Album.ID_Artiste = Artiste.ID_Artiste");
+    $resultat = $file_db->query("SELECT Album.*, Artiste.Nom_Artiste, Artiste.Photo FROM Album INNER JOIN Artiste ON Album.ID_Artiste = Artiste.ID_Artiste");
     $albums = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
     $resultat = $file_db->query("SELECT Artiste.* FROM Artiste");
