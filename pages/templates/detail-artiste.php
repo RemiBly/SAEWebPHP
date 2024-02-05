@@ -66,8 +66,8 @@ $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <p class="int"><?= $i + 1 ?></p>
                             <img src="<?= $titresArtiste[$i]['Photo'] ?>" alt="titre<?= $i + 1 ?>" />
                             <div class="contenu__titre">
-                                <p class="titre__musique"><span><?= $titresArtiste[$i]['Nom_Titre'] ?></span><span> - </span><span><?= $titresArtiste[$i]['Nom_Album'] ?></span></p>
-                                <p class="duree"><?= $titresArtiste[$i]['Duree'] ?></p>
+                                <p class="titre__musique"><span><?= $titresArtiste[$i]['Nom_Titre'] ?></span><span> - </span><span><?= $titresArtiste[$i]['Titre_Album'] ?></span></p>
+                                <p class="duree"><?php echo $titresArtiste[$i]['Duree'] ?></p>
                             </div>
                         </div>
                         <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>')"></i>
