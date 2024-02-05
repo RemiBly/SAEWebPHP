@@ -105,7 +105,7 @@ if (isset($_SESSION['user_id'])) {
         <main>
             <?php if ($selected === 'artiste') : ?>
                 <?php foreach ($artistes as $artiste) : ?>
-                    <a href="./detail-artiste.php?id=<?php $artiste['ID_Artiste']; ?>" class="album artiste" data-name="<?= strtolower($artiste['Nom_Artiste']) ?>">
+                    <a href="./detail-artiste.php?id=<?php echo $artiste['ID_Artiste']; ?>" class="album artiste" data-name="<?= strtolower($artiste['Nom_Artiste']) ?>">
                         <?php if (is_null($artiste['Photo'])) : ?>
                             <img src="../static/images/default.jpg" alt="">
                         <?php else : ?>

@@ -1,12 +1,10 @@
 <?php
 include '../static/data.php';
 include './creationBD.php';
-echo "id:".$_GET['id']."\n";
 $query = "SELECT * FROM Artiste WHERE ID_Artiste = ?";
 $stmt = $file_db->prepare($query);
 $stmt->execute([$_GET['id']]);
 $artiste = $stmt->fetch(PDO::FETCH_ASSOC);
-print_r($artiste);
 ?>
 
 <!DOCTYPE html>
