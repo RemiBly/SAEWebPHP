@@ -8,7 +8,8 @@ try {
         ID_Utilisateur INTEGER PRIMARY KEY AUTOINCREMENT,
         Nom_Utilisateur TEXT,
         Mot_de_Passe TEXT,
-        Email TEXT)");
+        Email TEXT,
+        Id_role INTEGER)");
 
     $file_db->exec("CREATE TABLE IF NOT EXISTS Playlist( 
         ID_Playlist INTEGER PRIMARY KEY AUTOINCREMENT,

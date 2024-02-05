@@ -6,10 +6,11 @@
 }
 
 body{
-    background: #000000;
-    color: #ffffff;
+    background-color: black;
+    color: white;
+    margin: 0;
     padding: 0;
-}
+  }
 
 ::-webkit-scrollbar {
     width: 5px;
