@@ -1,5 +1,10 @@
 <?php
 include '../static/data.php';
+include './creationBD.php';
+$query = "SELECT *, Artiste.Nom_Artiste FROM Album INNER JOIN Artiste ON Album.ID_Artiste = Artiste.ID_Artiste WHERE ID_Album = ?";
+$stmt = $file_db->prepare($query);
+$stmt->execute([$_GET['id']]);
+$album = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -30,10 +35,18 @@ include '../static/data.php';
     </div>
     <main>
         <div class="album">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png" alt="artiste1" />
+            <?php if (!isset($album['Pochette']) || $album['Pochette']==="") : ?>
+                <?php if (!isset($album['Photo']) || $album['Photo']==="") : ?>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png" alt="artiste1" />
+                <?php else : ?>
+                    <img src="<?php echo $album['Photo'] ?>" alt="artiste1" />
+                <?php endif; ?>
+            <?php else : ?>
+                <img src="<?php echo $album['Pochette'] ?>" alt="artiste1" />
+            <?php endif; ?>
             <div class="contenu">
-                <h1>{{album[nom]}}</h1>
-                <p class="biographie">{{artiste[nom]}}</p>
+                <h1><?php echo $album["Titre_Album"] ?></h1>
+                <p class="biographie"><?php echo $album["Nom_Artiste"] ?></p>
             </div>
         </div>
         <div class="liste__titres">
