@@ -3,7 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titre_album = $_POST['titre_album'];
     $annee_sortie = $_POST['annee_sortie'];
     $genre = $_POST['genre'];
-    $id_artiste = $_POST['id_artiste'];
+    $id_artiste = intval($_POST['barre-recherche']);
     $pochette = $_POST['pochette'];
 
     try {
@@ -81,7 +81,7 @@ if ($resultat) {
 
                 <div class="recherche-artiste">
                     <label for="idartiste">ID Artiste</label>
-                    <input type="text" id="barre-recherche" placeholder="Rechercher un artiste">
+                    <input type="text" name='barre-recherche' id="barre-recherche" placeholder="Rechercher un artiste">
                     <div id="resultats-recherche"></div>
                 </div>
 
