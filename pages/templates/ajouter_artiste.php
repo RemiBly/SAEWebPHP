@@ -1,22 +1,24 @@
 <?php
+include __DIR__ . '/../../configBD.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nom_artiste = $_POST['nom_artiste'];
-    $biographie = $_POST['biographie'];
-    $photo = $_POST['photo'];
+    include __DIR__ . '/../../configBD.php';
+    $id_album = $_POST['id_album'];
+    $nom_titre = $_POST['nom_titre'];
+    $duree = $_POST['duree'];
+    $lien = $_POST['lien'];
 
     try {
-        $file_db = new PDO('sqlite:BD.sqlite3');
-        $file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $query = "INSERT INTO Artiste (Nom_Artiste, Biographie, Photo) VALUES (?, ?, ?)";
+        $query = "INSERT INTO Titre (Nom_Titre, Duree, Lien, ID_Album) VALUES (?, ?, ?, ?)";
         $stmt = $file_db->prepare($query);
-        $stmt->execute([$nom_artiste, $biographie, $photo]);
+        $stmt->execute([$nom_titre, $duree, $lien, $id_album]);
 
-        echo "<p class='message__ajout'>Artiste ajouté avec succès.</p>";
+        echo "Titre ajouté avec succès à l'album.";
     } catch (PDOException $e) {
-        echo "Erreur lors de l'ajout de l'artiste : " . $e->getMessage();
+        echo "Erreur lors de l'ajout du titre : " . $e->getMessage();
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -58,5 +60,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </main>
 </body>
-
 </html>

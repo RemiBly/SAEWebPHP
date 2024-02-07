@@ -1,6 +1,7 @@
 <?php
-include '../static/data.php';
-include './creationBD.php';
+
+include __DIR__ . '/../../configBD.php';
+
 $selected = isset($_GET['searchArtist']) && $_GET['searchArtist'] == '1' ? 'artiste' : 'album';
 session_start();
 
@@ -100,32 +101,33 @@ if (isset($_SESSION['user_id'])) {
         <div class="recherche-approfondis">
             <a href="./ajouter_artiste.php" class="ajouter-artiste-btn">Ajouter un Artiste</a>
             <a href="./ajouter_album.php" class="ajouter-album-btn">Ajouter un Album</a>
+            <a href="./ajouter_titre.php" class="ajouter-album-btn">Ajouter un Titre</a>
         </div>
 
         <main>
             <?php if ($selected === 'artiste') : ?>
-                <?php foreach ($dataArtistes as $artiste) : ?>
-                    <a href="./detail-artiste.php" class="album artiste" data-name="<?= strtolower($artiste['nom']) ?>">
-                        <?php if (is_null($artiste['img'])) : ?>
-                            <img src="../static/images/default.jpg" alt="">
+                <?php foreach ($artistes as $artiste) : ?>
+                    <a href="./detail-artiste.php?id=<?= $artiste['ID_Artiste'] ?>" data-name="<?=$artiste['Nom_Artiste']?>" class="album artiste">
+                        <?php if (empty($artiste['Photo'])) : ?>
+                            <img src="../static/images/default.jpg" alt="Image par défaut">
                         <?php else : ?>
-                            <img src="<?= $artiste['img'] ?>" alt="">
+                            <img src="<?= $artiste['Photo'] ?>" alt="Photo de <?= htmlspecialchars($artiste['Nom_Artiste']) ?>">
                         <?php endif; ?>
                         <div class="contenu">
-                            <h3 class="test-arrow"><span><?= $artiste['nom'] ?></span></h3>
+                            <h3 class="test-arrow"><span><?= $artiste['Nom_Artiste'] ?></span></h3>
                             <p>Artiste</p>
                         </div>
                     </a>
                 <?php endforeach; ?>
             <?php else : ?>
                 <?php foreach ($albums as $album) : ?>
-                    <article class="album__css album" data-title="<?= strtolower($album['Titre_Album']) ?>" data-year="<?= strtolower($album['Année_de_sortie']) ?>" data-artist="<?= strtolower($album['Titre_Album']) ?>">
+                    <a href="./detail-album.php?id=<?= $album['ID_Album'] ?>" class="album__css album" data-title="<?= strtolower($album['Titre_Album']) ?>" data-year="<?= strtolower($album['Année_de_sortie']) ?>" data-artist="<?= strtolower($album['Titre_Album']) ?>">
                         <img src="<?= !empty($album['Pochette']) ? $album['Pochette'] : '../static/images/default.jpg' ?>" alt="Pochette d'album">
                         <div class="contenu">
                             <h3 class="test-arrow"><span><?= $album['Titre_Album'] ?></span></h3>
                             <p><?= $album['Année_de_sortie'] ?> - <?= $album['Nom_Artiste'] ?></p>
                         </div>
-                    </article>
+                    </a>
                 <?php endforeach; ?>
             <?php endif; ?>
         </main>
