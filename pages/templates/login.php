@@ -37,7 +37,7 @@
 				</div>
 				<div class="overlay-panel overlay-right">
 					<h1 class="titre-gradiant">Salut !</h1>
-					<p>Si tu souhaites acheter des billets, entres tes données personnelles pour t'inscrire !</p>
+					<p>Si tu souhaites créer des playlists, entres tes données personnelles pour t'inscrire !</p>
 					<button class="ghost" id="signUp">S'inscrire</button>
 				</div>
 			</div>
