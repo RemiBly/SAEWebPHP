@@ -62,25 +62,25 @@ try {
 }
 
 
-function ajouteArtiste($db, $nom, $biographie, $photo) {
-    $stmt = $db->prepare("INSERT INTO Artiste (Nom_Artiste, Biographie, Photo) VALUES (:nom, :biographie, :photo)");
-    $stmt->execute([
-        ':nom' => $nom,
-        ':biographie' => $biographie,
-        ':photo' => $photo
-    ]);
-}
+// function ajouteArtiste($db, $nom, $biographie, $photo) {
+//     $stmt = $db->prepare("INSERT INTO Artiste (Nom_Artiste, Biographie, Photo) VALUES (:nom, :biographie, :photo)");
+//     $stmt->execute([
+//         ':nom' => $nom,
+//         ':biographie' => $biographie,
+//         ':photo' => $photo
+//     ]);
+// }
 
-function ajouteAlbum($db, $titre, $annee_de_sortie, $genre, $id_artiste, $pochette) {
-    $stmt = $db->prepare("INSERT INTO Album (Titre_Album, Année_de_sortie, Genre, ID_Artiste, Pochette) VALUES (:titre, :annee, :genre, :id_artiste, :pochette)");
-    $stmt->execute([
-        ':titre' => $titre,
-        ':annee' => $annee_de_sortie,
-        ':genre' => $genre,
-        ':id_artiste' => $id_artiste,
-        ':pochette' => $pochette
-    ]);
-}
+// function ajouteAlbum($db, $titre, $annee_de_sortie, $genre, $id_artiste, $pochette) {
+//     $stmt = $db->prepare("INSERT INTO Album (Titre_Album, Année_de_sortie, Genre, ID_Artiste, Pochette) VALUES (:titre, :annee, :genre, :id_artiste, :pochette)");
+//     $stmt->execute([
+//         ':titre' => $titre,
+//         ':annee' => $annee_de_sortie,
+//         ':genre' => $genre,
+//         ':id_artiste' => $id_artiste,
+//         ':pochette' => $pochette
+//     ]);
+// }
 
 // require_once __DIR__ . '/vendor/autoload.php';
 // use Symfony\Component\Yaml\Yaml;
