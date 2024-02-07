@@ -1,4 +1,7 @@
 <?php
+
+include __DIR__ . '/../../configBD.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titre_album = $_POST['titre_album'];
     $annee_sortie = $_POST['annee_sortie'];
@@ -7,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pochette = $_POST['pochette'];
 
     try {
-        $file_db = new PDO('sqlite:BD.sqlite3');
+        $file_db = new PDO('sqlite:' . DATABASE_PATH);
         $file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $query = "INSERT INTO Album (Titre_Album, Année_de_sortie, Genre, ID_Artiste, Pochette) VALUES (?, ?, ?, ?, ?)";
@@ -23,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php
 try {
-    $bdd = new PDO('sqlite:BD.sqlite3');
+    $bdd = new PDO('sqlite:' . DATABASE_PATH);
 } catch (PDOException $e) {
     die("Erreur de connexion à la base de données : " . $e->getMessage());
 }
@@ -40,7 +43,7 @@ if ($resultat) {
 }
 ?>
 
-<!-- Intégrer les données encodées en JSON dans le script JavaScript -->
+
 <script>
     const dataArtiste = <?php echo $dataArtisteJSON; ?>;
 </script>
