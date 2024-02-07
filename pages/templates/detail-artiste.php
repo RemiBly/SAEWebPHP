@@ -1,6 +1,6 @@
 <?php
 include '../static/data.php';
-include './creationBD.php';
+include '../../creationBD.php';
 $query = "SELECT * FROM Artiste WHERE ID_Artiste = ?";
 $stmt = $file_db->prepare($query);
 $stmt->execute([$_GET['id']]);
@@ -20,6 +20,7 @@ $query = "SELECT DISTINCT Artiste.ID_Artiste, Artiste.Nom_Artiste, Artiste.Photo
 $stmt = $file_db->prepare($query);
 $stmt->execute([$artiste['ID_Artiste'], $artiste['ID_Artiste']]);
 $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +52,7 @@ $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <main>
     <div class="artiste">
         <img src="<?php echo $artiste['Photo'] ?>" alt="img">
-        <div>
+        <div class="contenu">
             <h1><?php echo $artiste['Nom_Artiste'] ?></h1>
             <p><?php echo $artiste['Biographie'] ?></p>
         </div>
