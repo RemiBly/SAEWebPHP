@@ -62,7 +62,13 @@ $titres = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <img src="<?= $titres[$i]['Photo'] ?>" alt="titre<?= $i + 1 ?>" />
                         <div class="contenu__titre">
                             <p class="titre__musique"><span><?= $titres[$i]['Nom_Titre'] ?></span><span> - </span><span><?= $album["Titre_Album"] ?></span></p>
-                            <p class="duree"><?php echo $titres[$i]['Duree'] ?></p>
+                            <p class="duree"><?php
+                            $duree = $titres[$i]['Duree'];
+                            $min = floor($duree / 60);
+                            $sec = $duree % 60;
+                            echo strval($min) . ":" . strval($sec);
+                            if ($sec < 10) {echo "0";}
+                            ?></p>
                         </div>
                     </div>
                     <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>')"></i>
