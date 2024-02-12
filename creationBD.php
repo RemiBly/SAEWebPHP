@@ -54,6 +54,13 @@ try {
         PRIMARY KEY (ID_Album, ID_Utilisateur),
         FOREIGN KEY (ID_Album) REFERENCES Album(ID_Album),
         FOREIGN KEY (ID_Utilisateur) REFERENCES utilisateur(ID_Utilisateur))");
+    
+    $file_db->exec("CREATE TABLE IF NOT EXISTS TitrePlaylist( 
+        ID_Titre INTEGER,
+        ID_Playlist INTEGER,
+        PRIMARY KEY (ID_Titre, ID_Playlist),
+        FOREIGN KEY (ID_Titre) REFERENCES Titre(ID_Titre),
+        FOREIGN KEY (ID_Playlist) REFERENCES Playlist(ID_Playlist))");
 
 
 

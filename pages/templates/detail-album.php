@@ -10,6 +10,16 @@ $query = "SELECT * FROM Titre WHERE ID_Album = ?";
 $stmt = $file_db->prepare($query);
 $stmt->execute([$_GET['id']]);
 $titres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$query = "SELECT * FROM Playlist WHERE ID_Utilisateur = ?";
+$stmt = $file_db->prepare($query);
+$stmt->execute([$_SESSION['ID_Utilisateur']]);
+$playlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$query = "SELECT ID_Playlist FROM Playlist WHERE ID_Utilisateur = ? AND Titre_Playlist = 'Coup de coeur'";
+$stmt = $file_db->prepare($query);
+$stmt->execute([$_SESSION['ID_Utilisateur']]);
+$id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
 ?>
 
 <!DOCTYPE html>
