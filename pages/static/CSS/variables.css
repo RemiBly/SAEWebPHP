@@ -1,35 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-
-*{
-    --valeur-bordure-input : 1.8px;
-    font-family: 'Poppins', sans-serif;
-}
-
-body{
-    background-color: black;
-    color: white;
-    margin: 0;
-    padding: 0;
-  }
-
-::-webkit-scrollbar {
-    width: 5px;
-}
-
-::-webkit-scrollbar-track {
-    background-color: transparent; /* Couleur de fond de la barre de défilement */
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #8888885e; /* Couleur de la poignée de la barre de défilement */
-    border-radius: 6px; /* Rayon de la poignée de la barre de défilement */
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Couleur de la poignée de la barre de défilement au survol */
-}
-
-a{
-    color: #ffffff;
-    text-decoration: none;
-}
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+        * {
+            --valeur-bordure-input: 1.8px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        html {
+            background-color: black;
+        }
+        
+        body {
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        
+         ::-webkit-scrollbar {
+            width: 5px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            background-color: transparent;
+            /* Couleur de fond de la barre de défilement */
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background-color: #8888885e;
+            /* Couleur de la poignée de la barre de défilement */
+            border-radius: 6px;
+            /* Rayon de la poignée de la barre de défilement */
+        }
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+            /* Couleur de la poignée de la barre de défilement au survol */
+        }
+        
+        a {
+            color: #ffffff;
+            text-decoration: none;
+        }
