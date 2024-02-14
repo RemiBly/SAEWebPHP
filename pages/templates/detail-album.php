@@ -52,13 +52,9 @@ $id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
     <main>
         <div class="album">
             <?php if (!isset($album['Pochette']) || $album['Pochette']==="") : ?>
-                <?php if (!isset($album['Photo']) || $album['Photo']==="") : ?>
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Yeat2AliveCover.png/220px-Yeat2AliveCover.png" alt="artiste1" />
-                <?php else : ?>
-                    <img src="<?php echo $album['Photo'] ?>" alt="artiste1" />
-                <?php endif; ?>
+                <img src="./static/images/default.jpg" alt="">
             <?php else : ?>
-                <img src="<?php echo $album['Pochette'] ?>" alt="artiste1" />
+                <img src="data:image/jpeg;base64,<?= $album['Pochette'] ?>" alt="Photo de <?= htmlspecialchars($artiste['Nom_Artiste']) ?>">
             <?php endif; ?>
             <div class="contenu">
                 <h1><?php echo $album["Titre_Album"] ?></h1>
@@ -70,7 +66,7 @@ $id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
                 <div class="titre">
                     <div class="image__int">
                         <p class="int"><?= $i + 1 ?></p>
-                        <img src="<?= $titres[$i]['Photo'] ?>" alt="titre<?= $i + 1 ?>" />
+                            <img src="data:image/jpeg;base64,<?= $album['Pochette'] ?>" alt="Photo de <?= htmlspecialchars($artiste['Nom_Artiste']) ?>">
                         <div class="contenu__titre">
                             <p class="titre__musique"><span><?= $titres[$i]['Nom_Titre'] ?></span><span> - </span><span><?= $album["Titre_Album"] ?></span></p>
                             <p class="duree"><?php

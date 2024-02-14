@@ -140,10 +140,10 @@ function insertDataIntoDatabase($pdo, $data, $type) {
                 $stmtCheckTitre->execute([':Nom_Titre' => $item['Nom_Titre']]);
                 if ($stmtCheckTitre->fetchColumn() == 0) {
                     $binaryData = file_get_contents(__DIR__ . '/pages/static/images/' . $item['Photo']);
-                    echo
+                    $base64Data = base64_encode($binaryData);
                     $stmtInsertTitre->execute([
                         ':Nom_Titre' => $item['Nom_Titre'],
-                        ':Photo' => $binaryData,
+                        ':Photo' => $base64Data,
                         ':Duree' => $item['Duree'],
                         ':Lien' => $item['Lien'],
                         ':ID_Album' => $item['ID_Album'],
