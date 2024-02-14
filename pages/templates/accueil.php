@@ -63,8 +63,6 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="../static/CSS/index.css">
     <link rel="stylesheet" href="../static/CSS/variables.css">
     <link rel="stylesheet" href="../static/CSS/header.css">
-    <link rel="stylesheet" href="../static/CSS/album.css">
-    <link rel="stylesheet" href="../static/CSS/artiste.css">
     <script src="../static/JS/index.js" defer></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
     <title>Document</title>

@@ -51,8 +51,8 @@ $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <main>
     <div class="artiste">
-        <img src="<?php echo $artiste['Photo'] ?>" alt="img">
-        <div>
+        <img src="data:image/jpeg;base64,<?= $artiste['Photo'] ?>" alt="Photo de <?= htmlspecialchars($artiste['Nom_Artiste']) ?>"> 
+        <div class="contenu">
             <h1><?php echo $artiste['Nom_Artiste'] ?></h1>
             <p><?php echo $artiste['Biographie'] ?></p>
         </div>
@@ -86,13 +86,9 @@ $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php foreach ($albumsArtiste as $album) : ?>
                 <a href="./detail-album.php?id=<?php echo $album["ID_Album"] ?>" class="album album__css">
                         <?php if (is_null($album['Pochette']) || $album['Pochette']==="") : ?>
-                            <?php if (is_null($artiste['Photo']) || $artiste['Photo']==="") : ?>
-                                <img src="../static/images/default2.jpg" alt="">
-                            <?php else : ?>
-                                <img src="<?= $artiste['Photo'] ?>" alt="">
-                            <?php endif; ?>
+                        <img src="../static/images/default.jpg" alt="Pochette par défaut">
                         <?php else : ?>
-                            <img src="<?= $album['Pochette'] ?>" alt="">
+                            <img src="data:image/jpeg;base64,<?= $album['Pochette'] ?>" alt="Pochette d'album de <?= htmlspecialchars($album['Titre_Album']) ?>">
                         <?php endif; ?>
                         <div class="contenu__album">
                             <p><?= $album['Année_de_sortie'] ?> - <?= $album['Titre_Album'] ?></p>
@@ -109,7 +105,7 @@ $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php if (is_null($artisteSimilaire['Photo'])) : ?>
                         <img src="./pages/static/images/default.jpg" alt="">
                     <?php else : ?>
-                        <img src="<?= $artisteSimilaire['Photo'] ?>" alt="">
+                        <img src="data:image/jpeg;base64,<?= $artisteSimilaire['Photo'] ?>" alt="Pochette d'album de <?= htmlspecialchars($album['Titre_Album']) ?>">
                     <?php endif; ?>
                     <div class="contenu__artiste__similaire">
                         <h3 class="test-arrow"><span><?= $artisteSimilaire['Nom_Artiste'] ?></span></h3>
