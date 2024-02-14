@@ -326,42 +326,42 @@
   Duree: 368
   Lien: ""
   ID_Album: 1
-  ID_Artiste: 4
+  ID_Artiste: 2
 
 - Nom_Titre: "My Prayer"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 149
   Lien: ""
   ID_Album: 1
-  ID_Artiste: 4
+  ID_Artiste: 2
 
 - Nom_Titre: "Señorita"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 202
   Lien: ""
   ID_Album: 1
-  ID_Artiste: 4
+  ID_Artiste: 2
 
 - Nom_Titre: "H.H.T."
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 248
   Lien: ""
   ID_Album: 1
-  ID_Artiste: 4
+  ID_Artiste: 2
 
 - Nom_Titre: "Nothing Good is Real"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 228
   Lien: ""
   ID_Album: 1
-  ID_Artiste: 4
+  ID_Artiste: 2
 
 - Nom_Titre: "Cuts and Scars"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 130
   Lien: ""
   ID_Album: 1
-  ID_Artiste: 4
+  ID_Artiste: 2
 
 
 - Nom_Titre: "Hutterite Mile"
@@ -369,88 +369,123 @@
   Duree: 244
   Lien: ""
   ID_Album: 2
-  ID_Artiste: 4
+  ID_Artiste: 3
 
 - Nom_Titre: "Outlaw Song"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 269
   Lien: ""
   ID_Album: 2
-  ID_Artiste: 4
+  ID_Artiste: 3
 
 - Nom_Titre: "Blessed Persistence"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 246
   Lien: ""
   ID_Album: 2
-  ID_Artiste: 4
+  ID_Artiste: 3
 
 - Nom_Titre: "Alone and Forsaken"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 169
   Lien: ""
   ID_Album: 2
-  ID_Artiste: 4
+  ID_Artiste: 3
 
 - Nom_Titre: "The Ballad of Carol Lynn"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 184
   Lien: ""
   ID_Album: 5
-  ID_Artiste: 4
+  ID_Artiste: 5
 
 - Nom_Titre: "Don't Wanna Know Why"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 239
   Lien: ""
   ID_Album: 5
-  ID_Artiste: 4
+  ID_Artiste: 5
 
 - Nom_Titre: "Jacksonville Skyline"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 181
   Lien: ""
   ID_Album: 5
-  ID_Artiste: 4
+  ID_Artiste: 5
 
 - Nom_Titre: "Reasons to Lie"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 210
   Lien: ""
   ID_Album: 5
-  ID_Artiste: 4
+  ID_Artiste: 5
 
 - Nom_Titre: "Don't Be Sad"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 201
   Lien: ""
   ID_Album: 5
-  ID_Artiste: 4
+  ID_Artiste: 5
 
 - Nom_Titre: "Queen of the Underworld"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 223
   Lien: ""
   ID_Album: 6
-  ID_Artiste: 4
+  ID_Artiste: 6
 
 - Nom_Titre: "TKO"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 207
   Lien: ""
   ID_Album: 6
-  ID_Artiste: 4
+  ID_Artiste: 6
 
 - Nom_Titre: "Wendy"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 207
   Lien: ""
   ID_Album: 6
-  ID_Artiste: 4
+  ID_Artiste: 6
 
 - Nom_Titre: "Downliner"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
   Duree: 251
   Lien: ""
   ID_Album: 6
+  ID_Artiste: 6
+
+- Nom_Titre: "Political Scientist"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 273
+  Lien: ""
+  ID_Album: 8
+  ID_Artiste: 4
+
+- Nom_Titre: "Afraid Not Scared"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 253
+  Lien: ""
+  ID_Album: 8
+  ID_Artiste: 4
+
+- Nom_Titre: "This House Is Not for Sale"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 233
+  Lien: ""
+  ID_Album: 8
+  ID_Artiste: 4
+
+- Nom_Titre: "Anybody Wanna Take Me Home"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 331
+  Lien: ""
+  ID_Album: 8
+  ID_Artiste: 4
+
+- Nom_Titre: "Love Is Hell"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 199
+  Lien: ""
+  ID_Album: 8
   ID_Artiste: 4
