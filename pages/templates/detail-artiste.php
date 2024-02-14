@@ -7,7 +7,7 @@ $stmt = $file_db->prepare($query);
 $stmt->execute([$_GET['id']]);
 $artiste = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$query = "SELECT * FROM Titre INNER JOIN Album ON Titre.ID_Album = Album.ID_Album WHERE Titre.ID_Artiste = ? ORDER BY Duree DESC LIMIT 5";
+$query = "SELECT * FROM Titre INNER JOIN Album ON Titre.ID_Album = Album.ID_Album WHERE Titre.ID_Artiste = ? ORDER BY Duree DESC LIMIT 3";
 $stmt = $file_db->prepare($query);
 $stmt->execute([$artiste['ID_Artiste']]);
 $titresArtiste = $stmt->fetchAll(PDO::FETCH_ASSOC);

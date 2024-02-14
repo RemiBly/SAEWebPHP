@@ -1,12 +1,322 @@
-- Nom_Titre: AMY
+- Nom_Titre: "(Argument with David Rawlings Concerning Morrissey)"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
-  Duree: 180
-  Lien : https://www.youtube.com/watch?v=jzaen5ZDYZw
+  Duree: 37
+  Lien: ""
   ID_Album: 3
-  ID_Artiste: 4 
-- Nom_Titre: Bartering Lines
+  ID_Artiste: 4
+
+- Nom_Titre: "To Be Young (Is to Be Sad, Is to Be High)"
   Photo: 220px-RyanAdamsHeartbreaker.jpg
-  Duree: 180
-  Lien : https://www.youtube.com/watch?v=jzaen5ZDYZw
+  Duree: 184
+  Lien: ""
   ID_Album: 3
-  ID_Artiste: 4 
+  ID_Artiste: 4
+
+- Nom_Titre: "My Winding Wheel"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 193
+  Lien: ""
+  ID_Album: 3
+  ID_Artiste: 4
+
+- Nom_Titre: "Amy"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 226
+  Lien: ""
+  ID_Album: 3
+  ID_Artiste: 4
+
+- Nom_Titre: "Oh My Sweet Carolina"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 297
+  Lien: ""
+  ID_Album: 3
+  ID_Artiste: 4
+
+- Nom_Titre: "Bartering Lines"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 239
+  Lien: ""
+  ID_Album: 3
+  ID_Artiste: 4
+
+- Nom_Titre: "Call Me On Your Way Back Home"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 189
+  Lien: ""
+  ID_Album: 3
+  ID_Artiste: 4
+
+- Nom_Titre: "Damn, Sam (I Love a Woman That Rains)"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 128
+  Lien: ""
+  ID_Album: 3
+  ID_Artiste: 4
+
+- Nom_Titre: "Come Pick Me Up"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 318
+  Lien: ""
+  ID_Album: 3
+  ID_Artiste: 4
+
+- Nom_Titre: "To Be the One"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 181
+  Lien: ""
+  ID_Album: 3
+  ID_Artiste: 4
+
+- Nom_Titre: "Why Do They Leave?"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 218
+  Lien: ""
+  ID_Album: 3
+  ID_Artiste: 4
+
+- Nom_Titre: "Shakedown on 9th Street"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 173
+  Lien: ""
+  ID_Album: 3
+  ID_Artiste: 4
+
+- Nom_Titre: "Don't Ask for the Water"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 176
+  Lien: ""
+  ID_Album: 3
+  ID_Artiste: 4
+
+- Nom_Titre: "In My Time of Need"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 339
+  Lien: ""
+  ID_Album: 3
+  ID_Artiste: 4
+
+- Nom_Titre: "Sweet Lil Gal (23rd/1st)"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 219
+  Lien: ""
+  ID_Album: 3
+  ID_Artiste: 4
+
+- Nom_Titre: "Gimme Something Good"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 234
+  Lien: ""
+  ID_Album: 4
+  ID_Artiste: 4
+
+- Nom_Titre: "Kim"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 206
+  Lien: ""
+  ID_Album: 4
+  ID_Artiste: 4
+
+- Nom_Titre: "Trouble"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 227
+  Lien: ""
+  ID_Album: 4
+  ID_Artiste: 4
+
+- Nom_Titre: "Am I Safe"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 272
+  Lien: ""
+  ID_Album: 4
+  ID_Artiste: 4
+
+- Nom_Titre: "My Wrecking Ball"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 188
+  Lien: ""
+  ID_Album: 4
+  ID_Artiste: 4
+
+- Nom_Titre: "Stay With Me"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 186
+  Lien: ""
+  ID_Album: 4
+  ID_Artiste: 4
+
+- Nom_Titre: "Shadows"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 322
+  Lien: ""
+  ID_Album: 4
+  ID_Artiste: 4
+
+- Nom_Titre: "Feels Like Fire"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 265
+  Lien: ""
+  ID_Album: 4
+  ID_Artiste: 4
+
+- Nom_Titre: "I Just Might"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 209
+  Lien: ""
+  ID_Album: 4
+  ID_Artiste: 4
+
+- Nom_Titre: "Tired of Giving Up"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 220
+  Lien: ""
+  ID_Album: 4
+  ID_Artiste: 4
+
+- Nom_Titre: "Let Go"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 223
+  Lien: ""
+  ID_Album: 4
+  ID_Artiste: 4
+
+- Nom_Titre: "Vendetta"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 142
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "Collar"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 168
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "Coma for $$$"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 212
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "Riot"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 189
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "Inside My Brain"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 155
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "No Roolz"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 137
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "Snakes and Scorpions"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 178
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "Never Ever"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 202
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "Run It Down"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 149
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "Wasted Hours"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 174
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "Hunger Plan"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 196
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "Nail and Tooth"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 220
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "No Slaves"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 189
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "See No Skin"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 157
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "Secret 66"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 188
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "Too Stoopid"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 205
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "Caspar Lynch"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 226
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "Punk's Dead, Let's Fuck"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 183
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "What Is It"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 218
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
+- Nom_Titre: "The Finger"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 199
+  Lien: ""
+  ID_Album: 7
+  ID_Artiste: 4
+
