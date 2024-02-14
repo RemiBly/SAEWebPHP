@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include __DIR__ . '/../../creationBD.php';
 
 $query = "SELECT * FROM Album INNER JOIN Artiste ON Album.ID_Artiste = Artiste.ID_Artiste WHERE ID_Album = ?";
@@ -14,13 +14,18 @@ $titres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $query = "SELECT * FROM Playlist WHERE ID_Utilisateur = ?";
 $stmt = $file_db->prepare($query);
-$stmt->execute([$_SESSION['ID_Utilisateur']]);
+$stmt->execute([$_SESSION['user_id']]);
 $playlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $query = "SELECT ID_Playlist FROM Playlist WHERE ID_Utilisateur = ? AND Titre_Playlist = 'Coup de coeur'";
 $stmt = $file_db->prepare($query);
-$stmt->execute([$_SESSION['ID_Utilisateur']]);
+$stmt->execute([$_SESSION['user_id']]);
 $id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
+
+$query = "SELECT * FROM Album WHERE Genre = :genre AND ID_Album != :album_id";
+$stmt = $file_db->prepare($query);
+$stmt->execute(array(':genre' => $album['Genre'], ':album_id' => $album['ID_Album']));
+$albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +56,7 @@ $id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
     </div>
     <main>
         <div class="album">
-            <?php if (!isset($album['Pochette']) || $album['Pochette']==="") : ?>
+            <?php if (!isset($album['Pochette']) || $album['Pochette'] === "") : ?>
                 <img src="./static/images/default.jpg" alt="">
             <?php else : ?>
                 <img src="data:image/jpeg;base64,<?= $album['Pochette'] ?>" alt="Photo de <?= htmlspecialchars($artiste['Nom_Artiste']) ?>">
@@ -66,16 +71,18 @@ $id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
                 <div class="titre">
                     <div class="image__int">
                         <p class="int"><?= $i + 1 ?></p>
-                            <img src="data:image/jpeg;base64,<?= $album['Pochette'] ?>" alt="Photo de <?= htmlspecialchars($artiste['Nom_Artiste']) ?>">
+                        <img src="data:image/jpeg;base64,<?= $album['Pochette'] ?>" alt="Photo de <?= htmlspecialchars($artiste['Nom_Artiste']) ?>">
                         <div class="contenu__titre">
                             <p class="titre__musique"><span><?= $titres[$i]['Nom_Titre'] ?></span><span> - </span><span><?= $album["Titre_Album"] ?></span></p>
                             <p class="duree"><?php
-                            $duree = $titres[$i]['Duree'];
-                            $min = floor($duree / 60);
-                            $sec = $duree % 60;
-                            echo strval($min) . ":" . strval($sec);
-                            if ($sec < 10) {echo "0";}
-                            ?></p>
+                                                $duree = $titres[$i]['Duree'];
+                                                $min = floor($duree / 60);
+                                                $sec = $duree % 60;
+                                                echo strval($min) . ":" . strval($sec);
+                                                if ($sec < 10) {
+                                                    echo "0";
+                                                }
+                                                ?></p>
                         </div>
                     </div>
                     <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>')"></i>
@@ -87,29 +94,33 @@ $id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
             } ?>
         </div>
         <div class="liste__albums similaire">
-        <h2>Albums similaires</h2>
-        <div class="carousel">
-            <?php foreach ($albums as $albumSimilaire) : ?>
-                <?php if ($albumSimilaire['Genre'] === $album['Genre'] && $albumSimilaire['ID_Album'] !== $album['ID_Album']) : ?>
-                    <a href="./detail-album.php?id=<?php echo $albumSimilaire["ID_Album"] ?>" class="album album__css">
-                        <?php if (is_null($albumSimilaire['Pochette']) || $albumSimilaire['Pochette']==="") : ?>
-                            <?php if (is_null($albumSimilaire['Photo']) || $albumSimilaire['Photo']==="") : ?>
-                                <img src="../static/images/default2.jpg" alt="">
+            <h2>Albums similaires</h2>
+            <div class="carousel">
+                <?php foreach ($albums_similaires as $albumSimilaire) : ?>
+                    <?php if ($albumSimilaire['ID_Album'] !== $album['ID_Album']) : ?>
+                        <!-- Afficher les détails de l'album similaire -->
+                        <a href="./detail-album.php?id=<?php echo $albumSimilaire["ID_Album"] ?>" class="album album__css">
+                            <!-- Afficher la pochette de l'album -->
+                            <?php if (is_null($albumSimilaire['Pochette']) || $albumSimilaire['Pochette'] === "") : ?>
+                                <?php if (is_null($albumSimilaire['Photo']) || $albumSimilaire['Photo'] === "") : ?>
+                                    <img src="../static/images/default2.jpg" alt="">
+                                <?php else : ?>
+                                    <img src="<?= $albumSimilaire['Photo'] ?>" alt="">
+                                <?php endif; ?>
                             <?php else : ?>
-                                <img src="<?= $albumSimilaire['Photo'] ?>" alt="">
+                                <img src="<?= $albumSimilaire['Pochette'] ?>" alt="">
                             <?php endif; ?>
-                        <?php else : ?>
-                            <img src="<?= $albumSimilaire['Pochette'] ?>" alt="">
-                        <?php endif; ?>
-                        <div class="contenu__album">
-                            <h3 class="test-arrow"><span><?= $albumSimilaire['Titre_Album'] ?></span></h3>
-                            <p><?= $albumSimilaire['Année_de_sortie'] ?> - <?= $albumSimilaire['Nom_Artiste'] ?></p>
-                        </div>
-                    </a>
-                <?php endif; ?>
-            <?php endforeach; ?>
+                            <!-- Afficher le titre et l'artiste de l'album -->
+                            <div class="contenu__album">
+                                <h3 class="test-arrow"><span><?= $albumSimilaire['Titre_Album'] ?></span></h3>
+                                <p><?= $albumSimilaire['Année_de_sortie'] ?> - <?= $albumSimilaire['Nom_Artiste'] ?></p>
+                            </div>
+                        </a>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+
+            </div>
         </div>
-    </div>
     </main>
 </body>
 

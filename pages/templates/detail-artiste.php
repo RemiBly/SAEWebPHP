@@ -65,7 +65,7 @@ $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="titre">
                         <div class="image__int">
                             <p class="int"><?= $i + 1 ?></p>
-                            <img src="<?= $titresArtiste[$i]['Photo'] ?>" alt="titre<?= $i + 1 ?>" />
+                            <img src="data:image/jpeg;base64,<?= $artiste['Photo'] ?>" alt="">
                             <div class="contenu__titre">
                                 <p class="titre__musique"><span><?= $titresArtiste[$i]['Nom_Titre'] ?></span><span> - </span><span><?= $titresArtiste[$i]['Titre_Album'] ?></span></p>
                                 <p class="duree"><?php echo $titresArtiste[$i]['Duree'] ?></p>
