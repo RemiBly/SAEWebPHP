@@ -1,6 +1,7 @@
 <?php
-include '../static/data.php';
-include './creationBD.php';
+
+include __DIR__ . '/../../creationBD.php';
+
 $query = "SELECT * FROM Artiste WHERE ID_Artiste = ?";
 $stmt = $file_db->prepare($query);
 $stmt->execute([$_GET['id']]);

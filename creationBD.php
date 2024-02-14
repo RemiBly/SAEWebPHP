@@ -1,7 +1,7 @@
 <?php
 define('DATABASE_PATH', __DIR__ . '/BD.sqlite3');
 
-include __DIR__ . '/config.php';
+
 date_default_timezone_set('Europe/Paris');
 try {
     $file_db = new PDO('sqlite:' . DATABASE_PATH);
@@ -68,59 +68,92 @@ try {
     echo "Erreur de connexion à la base de données : " . $ex->getMessage();
 }
 
+require_once __DIR__ . '/vendor/autoload.php';
 
-// function ajouteArtiste($db, $nom, $biographie, $photo) {
-//     $stmt = $db->prepare("INSERT INTO Artiste (Nom_Artiste, Biographie, Photo) VALUES (:nom, :biographie, :photo)");
-//     $stmt->execute([
-//         ':nom' => $nom,
-//         ':biographie' => $biographie,
-//         ':photo' => $photo
-//     ]);
-// }
+use Symfony\Component\Yaml\Yaml;
 
-// function ajouteAlbum($db, $titre, $annee_de_sortie, $genre, $id_artiste, $pochette) {
-//     $stmt = $db->prepare("INSERT INTO Album (Titre_Album, Année_de_sortie, Genre, ID_Artiste, Pochette) VALUES (:titre, :annee, :genre, :id_artiste, :pochette)");
-//     $stmt->execute([
-//         ':titre' => $titre,
-//         ':annee' => $annee_de_sortie,
-//         ':genre' => $genre,
-//         ':id_artiste' => $id_artiste,
-//         ':pochette' => $pochette
-//     ]);
-// }
+// Chemin vers le répertoire contenant vos fichiers YML ou un tableau des chemins de fichiers
+$directoryPath = __DIR__ . '/pages/static/YML';
+$files = scandir($directoryPath);
 
-// require_once __DIR__ . '/vendor/autoload.php';
-// use Symfony\Component\Yaml\Yaml;
+foreach ($files as $file) {
+    if (pathinfo($file, PATHINFO_EXTENSION) === 'yml') {
+        $filePath = $directoryPath . '/' . $file;
+        $data = Yaml::parseFile($filePath);
 
-// function traiterFichierYAML($filename, $db) {
-//     $data = Yaml::parse(file_get_contents($filename));
-//     foreach ($data as $entry) {
-//         if (isset($entry['Nom_Artiste'])) {
-//             ajouteArtiste($db, $entry['Nom_Artiste'], $entry['Biographie'], $entry['Photo']);
-//         } else if (isset($entry['title'])) {
-//             // Supposons que 'parent' correspond au Nom_Artiste de l'artiste pour cet album
-//             $id_artiste = $db->query("SELECT ID_Artiste FROM Artiste WHERE Nom_Artiste = '{$entry['parent']}'")->fetchColumn();
-//             $genre = is_array($entry['genre']) ? implode(', ', $entry['genre']) : $entry['genre'];
-//             ajouteAlbum($db, $entry['title'], $entry['releaseYear'], $genre, $id_artiste, $entry['img']);
-//         }
-//     }
-// }
+        // Détermination du type basée sur le nom du fichier
+        if (strpos($file, 'artiste') !== false) {
+            $type = 'artiste';
+        } elseif (strpos($file, 'album') !== false) {
+            $type = 'album';
+        } elseif (strpos($file, 'titre') !== false) {
+            $type = 'titre';
+        } else {
+            // Type par défaut ou gestion d'erreur
+            continue; // Passe au fichier suivant si aucun type reconnu
+        }
 
-// try {
-//     $db = new PDO('sqlite:' . DATABASE_PATH);
-//     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-//     // Assurez-vous de créer les tables Artiste et Album avant de lancer ce script
+        insertDataIntoDatabase($file_db, $data, $type);
+    }
+}
 
-//     // Remplacer par le chemin réel de votre fichier YAML
-//     $filename = 'pages/static/extrait.yml';
-//     traiterFichierYAML($filename, $db);
+function insertDataIntoDatabase($pdo, $data, $type) {
+    try {
+        // Préparation des requêtes de vérification pour chaque type
+        $stmtCheckArtiste = $pdo->prepare("SELECT COUNT(*) FROM Artiste WHERE Nom_Artiste = :Nom_Artiste");
+        $stmtCheckAlbum = $pdo->prepare("SELECT COUNT(*) FROM Album WHERE Titre_Album = :Titre_Album");
+        $stmtCheckTitre = $pdo->prepare("SELECT COUNT(*) FROM Titre WHERE Nom_Titre = :Nom_Titre");
 
-//     echo "Les données ont été ajoutées avec succès.";
-
-// } catch (PDOException $e) {
-//     echo "Erreur : " . $e->getMessage();
-// }
-
-
+        if ($type === 'artiste') {
+            $stmtInsertArtiste = $pdo->prepare("INSERT INTO Artiste (Nom_Artiste, Biographie, Photo) VALUES (:Nom_Artiste, :Biographie, :Photo)");
+            foreach ($data as $item) {
+                $stmtCheckArtiste->execute([':Nom_Artiste' => $item['Nom_Artiste']]);
+                if ($stmtCheckArtiste->fetchColumn() == 0) {
+                    $binaryData = file_get_contents(__DIR__ . '/pages/static/images/' . $item['Photo']);
+                    $base64Data = base64_encode($binaryData);
+                    $stmtInsertArtiste->execute([
+                        ':Nom_Artiste' => $item['Nom_Artiste'],
+                        ':Biographie' => $item['Biographie'],
+                        ':Photo' => $base64Data
+                    ]);
+                }
+            }
+        } elseif ($type === 'album') {
+            $stmtInsertAlbum = $pdo->prepare("INSERT INTO Album (Titre_Album, Année_de_sortie, Genre, ID_Artiste, Pochette) VALUES (:Titre_Album, :Année_de_sortie, :Genre, :ID_Artiste, :Pochette)");
+            foreach ($data as $item) {
+                $stmtCheckAlbum->execute([':Titre_Album' => $item['Titre_Album']]);
+                if ($stmtCheckAlbum->fetchColumn() == 0) {
+                    $binaryData = file_get_contents(__DIR__ . '/pages/static/images/' . $item['Pochette']);
+                    $base64Data = base64_encode($binaryData);
+                    $stmtInsertAlbum->execute([
+                        ':Titre_Album' => $item['Titre_Album'],
+                        ':Année_de_sortie' => $item['Année_de_sortie'],
+                        ':Genre' => $item['Genre'],
+                        ':ID_Artiste' => $item['ID_Artiste'],
+                        ':Pochette' => $base64Data
+                    ]);
+                }
+            }
+        } elseif ($type === 'titre') {
+            $stmtInsertTitre = $pdo->prepare("INSERT INTO Titre (Nom_Titre, Photo, Duree, Lien, ID_Album, ID_Artiste) VALUES (:Nom_Titre, :Photo, :Duree, :Lien, :ID_Album, :ID_Artiste)");
+            foreach ($data as $item) {
+                $stmtCheckTitre->execute([':Nom_Titre' => $item['Nom_Titre']]);
+                if ($stmtCheckTitre->fetchColumn() == 0) {
+                    $binaryData = file_get_contents(__DIR__ . '/pages/static/images/' . $item['Photo']);
+                    echo
+                    $stmtInsertTitre->execute([
+                        ':Nom_Titre' => $item['Nom_Titre'],
+                        ':Photo' => $binaryData,
+                        ':Duree' => $item['Duree'],
+                        ':Lien' => $item['Lien'],
+                        ':ID_Album' => $item['ID_Album'],
+                        ':ID_Artiste' => $item['ID_Artiste']
+                    ]);
+                }
+            }
+        }
+    } catch (PDOException $e) {
+        echo "Erreur d'insertion dans la base de données : " . $e->getMessage();
+    }
+}
 ?>

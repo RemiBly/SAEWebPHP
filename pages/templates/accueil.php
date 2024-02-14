@@ -1,6 +1,30 @@
 <?php
 
-include __DIR__ . '/../../configBD.php';
+
+include __DIR__ . '/../../creationBD.php';
+
+try {
+    $file_db = new PDO('sqlite:' . DATABASE_PATH);
+    $file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Erreur de connexion : " . $e->getMessage();
+    exit;
+}
+
+$resultat = $file_db->query("SELECT Album.*, Artiste.Nom_Artiste FROM Album INNER JOIN Artiste ON Album.ID_Artiste = Artiste.ID_Artiste");
+$albums = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+$result = $file_db->query("SELECT * FROM Artiste");
+$artistes = $result->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+    $stmtPlaylists = $file_db->prepare("SELECT * FROM Playlist WHERE ID_Utilisateur = ?");
+    $stmtPlaylists->execute([$userId]);
+    $playlists = $stmtPlaylists->fetchAll(PDO::FETCH_ASSOC);
+}
 
 $selected = isset($_GET['searchArtist']) && $_GET['searchArtist'] == '1' ? 'artiste' : 'album';
 session_start();
@@ -107,13 +131,12 @@ if (isset($_SESSION['user_id'])) {
         <main>
             <?php if ($selected === 'artiste') : ?>
                 <?php foreach ($artistes as $artiste) : ?>
-
-                    <a href="./detail-artiste.php?id=<?= $artiste['ID_Artiste'] ?>" data-name="<?=$artiste['Nom_Artiste']?>" class="album artiste">
+                    <a href="./detail-artiste.php?id=<?= $artiste['ID_Artiste'] ?>" data-name="<?= $artiste['Nom_Artiste'] ?>" class="album artiste">
                         <?php if (empty($artiste['Photo'])) : ?>
                             <img src="../static/images/default.jpg" alt="Image par défaut">
                         <?php else : ?>
-                            <img src="<?= $artiste['Photo'] ?>" alt="Photo de <?= htmlspecialchars($artiste['Nom_Artiste']) ?>">
-
+                            <!-- Affichage direct de la chaîne base64 stockée dans le HTML -->
+                            <img src="data:image/jpeg;base64,<?= $artiste['Photo'] ?>" alt="Photo de <?= htmlspecialchars($artiste['Nom_Artiste']) ?>">
                         <?php endif; ?>
                         <div class="contenu">
                             <h3 class="test-arrow"><span><?= $artiste['Nom_Artiste'] ?></span></h3>
@@ -123,8 +146,13 @@ if (isset($_SESSION['user_id'])) {
                 <?php endforeach; ?>
             <?php else : ?>
                 <?php foreach ($albums as $album) : ?>
-                    <a href="./detail-album.php?id=<?= $album['ID_Album'] ?>" class="album__css album" data-title="<?= strtolower($album['Titre_Album']) ?>" data-year="<?= strtolower($album['Année_de_sortie']) ?>" data-artist="<?= strtolower($album['Titre_Album']) ?>">
-                        <img src="<?= !empty($album['Pochette']) ? $album['Pochette'] : '../static/images/default.jpg' ?>" alt="Pochette d'album">
+                    <a href="./detail-album.php?id=<?= $album['ID_Album'] ?>" class="album__css album" data-title="<?= strtolower($album['Titre_Album']) ?>" data-year="<?= strtolower($album['Année_de_sortie']) ?>" data-artist="<?= strtolower($album['Nom_Artiste']) ?>" data-genre="<?= strtolower($album['Genre']) ?>">
+                        <?php if (!empty($album['Pochette'])) : ?>
+                            <!-- Affichage direct de la chaîne base64 stockée dans le HTML pour les albums également -->
+                            <img src="data:image/jpeg;base64,<?= $album['Pochette'] ?>" alt="Pochette d'album de <?= htmlspecialchars($album['Titre_Album']) ?>">
+                        <?php else : ?>
+                            <img src="../static/images/default.jpg" alt="Pochette par défaut">
+                        <?php endif; ?>
                         <div class="contenu">
                             <h3 class="test-arrow"><span><?= $album['Titre_Album'] ?></span></h3>
                             <p><?= $album['Année_de_sortie'] ?> - <?= $album['Nom_Artiste'] ?></p>
