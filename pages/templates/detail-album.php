@@ -102,13 +102,9 @@ $albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <a href="./detail-album.php?id=<?php echo $albumSimilaire["ID_Album"] ?>" class="album album__css">
                             <!-- Afficher la pochette de l'album -->
                             <?php if (is_null($albumSimilaire['Pochette']) || $albumSimilaire['Pochette'] === "") : ?>
-                                <?php if (is_null($albumSimilaire['Photo']) || $albumSimilaire['Photo'] === "") : ?>
-                                    <img src="../static/images/default2.jpg" alt="">
-                                <?php else : ?>
-                                    <img src="<?= $albumSimilaire['Photo'] ?>" alt="">
-                                <?php endif; ?>
+                                <img src="../static/images/default2.jpg" alt="">
                             <?php else : ?>
-                                <img src="<?= $albumSimilaire['Pochette'] ?>" alt="">
+                                <img src="data:image/jpeg;base64,<?= $albumSimilaire['Pochette'] ?>" alt="">
                             <?php endif; ?>
                             <!-- Afficher le titre et l'artiste de l'album -->
                             <div class="contenu__album">

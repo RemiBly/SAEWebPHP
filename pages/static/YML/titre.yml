@@ -489,3 +489,172 @@
   Lien: ""
   ID_Album: 8
   ID_Artiste: 4
+
+- Nom_Titre: "Sleeper"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 275
+  Lien: ""
+  ID_Album: 9
+  ID_Artiste: 7
+
+- Nom_Titre: "In My Time of Need"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 273
+  Lien: ""
+  ID_Album: 9
+  ID_Artiste: 7
+
+- Nom_Titre: "Rosemary Moore"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 315
+  Lien: ""
+  ID_Album: 9
+  ID_Artiste: 7
+
+- Nom_Titre: "Caleb Meyer"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 151
+  Lien: ""
+  ID_Album: 9
+  ID_Artiste: 7
+
+- Nom_Titre: "Motherland"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 284
+  Lien: ""
+  ID_Album: 9
+  ID_Artiste: 7
+
+- Nom_Titre: "Rainy Day Blues"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 332
+  Lien: ""
+  ID_Album: 10
+  ID_Artiste: 8
+
+- Nom_Titre: "Songbird"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 160
+  Lien: ""
+  ID_Album: 10
+  ID_Artiste: 8
+
+- Nom_Titre: "Blue Hotel"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 210
+  Lien: ""
+  ID_Album: 10
+  ID_Artiste: 8
+
+- Nom_Titre: "Back to Earth"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 179
+  Lien: ""
+  ID_Album: 10
+  ID_Artiste: 8
+
+- Nom_Titre: "Stella Blue"
+  Photo: 220px-RyanAdamsHeartbreaker.jpg
+  Duree: 383
+  Lien: ""
+  ID_Album: 10
+  ID_Artiste: 8
+
+- Nom_Titre: "Mining for Gold"
+  Photo: default.jpg
+  Duree: 96
+  Lien: ""
+  ID_Album: 11
+  ID_Artiste: 9
+
+- Nom_Titre: "Misguided Angel"
+  Photo: default.jpg
+  Duree: 289
+  Lien: ""
+  ID_Album: 11
+  ID_Artiste: 9
+
+- Nom_Titre: "Blue Moon Revisited (Song for Elvis)"
+  Photo: default.jpg
+  Duree: 338
+  Lien: ""
+  ID_Album: 11
+  ID_Artiste: 9
+
+- Nom_Titre: "I Don't Get It"
+  Photo: default.jpg
+  Duree: 234
+  Lien: ""
+  ID_Album: 11
+  ID_Artiste: 9
+
+- Nom_Titre: "I'm So Lonesome I Could Cry"
+  Photo: default.jpg
+  Duree: 376
+  Lien: ""
+  ID_Album: 11
+  ID_Artiste: 9
+
+- Nom_Titre: "Signal Fade"
+  Photo: default.jpg
+  Duree: 169
+  Lien: ""
+  ID_Album: 12
+  ID_Artiste: 4
+
+- Nom_Titre: "Imminent Galactic War"
+  Photo: default.jpg
+  Duree: 109
+  Lien: ""
+  ID_Album: 12
+  ID_Artiste: 4
+
+- Nom_Titre: "Disappyramid"
+  Photo: default.jpg
+  Duree: 133
+  Lien: ""
+  ID_Album: 12
+  ID_Artiste: 4
+
+- Nom_Titre: "Fire Away"
+  Photo: default.jpg
+  Duree: 62
+  Lien: ""
+  ID_Album: 12
+  ID_Artiste: 4
+
+- Nom_Titre: "Defenders of the Galaxy"
+  Photo: default.jpg
+  Duree: 96
+  Lien: ""
+  ID_Album: 12
+  ID_Artiste: 4
+
+- Nom_Titre: "Anyone But Me (Dial Tone)"
+  Photo: default.jpg
+  Duree: 258
+  Lien: ""
+  ID_Album: 13
+  ID_Artiste: 5
+
+- Nom_Titre: "Don't Wanna Know Why"
+  Photo: default.jpg
+  Duree: 243
+  Lien: ""
+  ID_Album: 13
+  ID_Artiste: 5
+
+- Nom_Titre: "Easy Hearts"
+  Photo: default.jpg
+  Duree: 241
+  Lien: ""
+  ID_Album: 13
+  ID_Artiste: 5
+
+- Nom_Titre: "Sittin' Around"
+  Photo: default.jpg
+  Duree: 246
+  Lien: ""
+  ID_Album: 13
+  ID_Artiste: 5
+
