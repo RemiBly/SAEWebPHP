@@ -33,6 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
             $stmt = $file_db->prepare("INSERT INTO utilisateur (Nom_Utilisateur, Email, Mot_de_Passe, Id_role) VALUES (?, ?, ?, ?)");
             $stmt->execute([$nom, $email, $mdp_hache, $role]);
 
+            $stmt = $file_db->prepare("INSERT INTO Playlist (ID_Utilisateur, Titre_Playlist) VALUES (?, ?)");
+            $stmt->execute([$_SESSION['user_id'], 'Coup de coeur']);
+
             // Enregistrement dans la session
             $_SESSION['user_id'] = $file_db->lastInsertId();
             $_SESSION['user_name'] = $nom;

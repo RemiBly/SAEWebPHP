@@ -97,12 +97,6 @@ if (isset($_SESSION['user_id'])) {
                 </form>
             </div>
             <ul>
-                <li>
-                    <a href="./playlist.php">
-                        <img src="../static/images/coupDeCoeur.jpeg" alt="Image Playlist">
-                        <p>Coup de coeur</p>
-                    </a>
-                </li>
                 <?php foreach ($playlists as $playlist) : ?>
                     <li>
                         <a href="./playlist.php">

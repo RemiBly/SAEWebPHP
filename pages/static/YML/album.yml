@@ -31,14 +31,14 @@
 - Titre_Album: The Fine Art of Self Destruction
   Année_de_sortie: 2002
   Genre: null
-  ID_Artiste: 5
+  ID_Artiste: 6
   Pochette: The_Fine_Art_of_Self_Destruction.jpg
 
 - Titre_Album: We Are Fuck You
   Année_de_sortie: 2003
   Genre: null
   ID_Artiste: 4
-  Pochette: null
+  Pochette: We_Are_Fuck_You.jpg
 
 - Titre_Album: Love Is Hell
   Année_de_sortie: 2004
@@ -74,7 +74,7 @@
   Année_de_sortie: null
   Genre: Alternative country
   ID_Artiste: 5
-  Pochette: null
+  Pochette: fv.jpg
 
 - Titre_Album: Sound & Color
   Année_de_sortie: 2015
@@ -116,4 +116,5 @@
   Année_de_sortie: 2011
   Genre: Folk rock, country rock
   ID_Artiste: 13
-  Pochette: null
+  Pochette: ElevenElevenDaveAlvin.jpg
+
