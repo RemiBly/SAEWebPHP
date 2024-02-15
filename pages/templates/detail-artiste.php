@@ -20,11 +20,6 @@ $query = "SELECT DISTINCT Artiste.ID_Artiste, Artiste.Nom_Artiste, Artiste.Photo
 $stmt = $file_db->prepare($query);
 $stmt->execute([$artiste['ID_Artiste'], $artiste['ID_Artiste']]);
 $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-$query = "SELECT * FROM Playlist WHERE ID_Utilisateur = ?";
-$stmt = $file_db->prepare($query);
-$stmt->execute([$_SESSION['ID_Utilisateur']]);
-$playlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -77,8 +72,6 @@ $playlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                         <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>')"></i>
                         <a target="_blank" href="<?php echo $titresArtiste[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
-                        <button id="plus" onclick="afficherPLaylists(<?= $playlists ?>)">+</button>
-                        <div id="playlists"></div>
                     </div>
                 <?php } ?>
             </div>

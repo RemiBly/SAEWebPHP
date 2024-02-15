@@ -18,6 +18,7 @@ function changementCoeur(id) {
 }
 
 function afficherPlaylists(playlists) {
+    console.log(playlists);
     let elem = document.getElementById("playlists");
     elem.innerHTML = "";
     playlists.forEach(function (playlist) {

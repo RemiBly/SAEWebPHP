@@ -83,6 +83,8 @@ $id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
                     </div>
                     <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>')"></i>
                     <a target="_blank" href="<?php echo $titres[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
+                    <button id="plus" onclick="afficherPlaylists(<?= $playlists ?>)">+</button>
+                    <div id="playlists"></div>
                 </div>
             <?php } ?>
             <?php if (count($titres) === 0) {
