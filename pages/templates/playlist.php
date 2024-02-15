@@ -80,7 +80,7 @@ for ($i = 0; $i < count($titres); $i++) {
                                 </p>
                             </div>
                         </div>
-                        <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur"
+                        <i id="coeur<?= $i + 1 ?>" class="fa-solid fa-heart coeur"
                             onclick="changementCoeur('coeur<?= $i + 1 ?>', '<?= $titres[$i]['ID_Titre'] ?>')"></i>
                         <a target="_blank" href="<?= $titres[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
                     </div>
