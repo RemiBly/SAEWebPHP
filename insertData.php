@@ -45,13 +45,22 @@ foreach ($files as $file) {
     }
 }
 
-
+$adminAdded = false;
 function insertDataIntoDatabase($pdo, $data, $type) {
+    global $adminAdded;
     try {
         // Préparation des requêtes de vérification pour chaque type
         $stmtCheckArtiste = $pdo->prepare("SELECT COUNT(*) FROM Artiste WHERE Nom_Artiste = :Nom_Artiste");
         $stmtCheckAlbum = $pdo->prepare("SELECT COUNT(*) FROM Album WHERE Titre_Album = :Titre_Album");
         $stmtCheckTitre = $pdo->prepare("SELECT COUNT(*) FROM Titre WHERE Nom_Titre = :Nom_Titre");
+        if(!$adminAdded) {
+            $motDePasseAdmin = password_hash('admin1', PASSWORD_DEFAULT);
+            $stmtInsertUtilisateur = $pdo->prepare("INSERT INTO utilisateur (Nom_Utilisateur, Mot_de_Passe, Email, Id_role) VALUES ('admin', :motDePasseAdmin, 'admin@spotmusic.com', 2)");
+            $stmtInsertUtilisateur->bindParam(':motDePasseAdmin', $motDePasseAdmin);
+            $stmtInsertUtilisateur->execute();
+            $adminAdded = true;
+        }
+
 
         if ($type === 'artiste') {
             $stmtInsertArtiste = $pdo->prepare("INSERT INTO Artiste (Nom_Artiste, Biographie, Photo) VALUES (:Nom_Artiste, :Biographie, :Photo)");

@@ -32,16 +32,10 @@ include '../static/data.php';
     <main>
         <div class="content">
             <div class="partie partie__ajout__artiste">
-                <a href="./ajouter_artiste.php" class="ajouter">Ajouter un artiste</a>
+                <a href="./CRUDartiste.php" class="ajouter">Liste des artistes</a>
             </div>
             <div class="partie partie__ajout_album">
-                <a href="./ajouter_album.php" class="ajouter">Ajouter un album</a>
-            </div>
-            <div class="partie partie__ajout_titre">
-                <a href="./ajouter_titre.php" class="ajouter">Ajouter un titre</a>
-            </div>
-            <div class="partie partie__statistique">
-                <a href="./statistique-application.php" class="ajouter">Voir statistiques de l'application</a>
+                <a href="./CRUDalbum.php" class="ajouter">Liste des albums</a>
             </div>
         </div>
     </main>
