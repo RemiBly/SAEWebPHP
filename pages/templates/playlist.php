@@ -49,7 +49,26 @@ if ($playlistId) {
     <?php if (!empty($titres)): ?>
         <ul>
             <?php foreach ($titres as $titre): ?>
-                <li><?= htmlspecialchars($titre['Nom_Titre']) ?> - Durée: <?= $titre['Duree'] ?> minutes</li>
+                <div class="titre">
+                    <div class="image__int">
+                        <p class="int"><?= $i + 1 ?></p>
+                        <img src="../static/images/coupDeCoeur.jpeg" alt="">
+                        <div class="contenu__titre">
+                            <p class="titre__musique"><span><?= $titre['Nom_Titre'] ?></span><span> - </span><span><?= $titre["Titre_Album"] ?></span></p>
+                            <p class="duree"><?php
+                                                $duree = $titre['Duree'];
+                                                $min = floor($duree / 60);
+                                                $sec = $duree % 60;
+                                                echo strval($min) . ":" . strval($sec);
+                                                if ($sec < 10) {
+                                                    echo "0";
+                                                }
+                                                ?></p>
+                        </div>
+                    </div>
+                    <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>', '<?= $titres[$i]['ID_Titre'] ?>')"></i>
+                    <a target="_blank" href="<?php echo $titres[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
+                </div>
             <?php endforeach; ?>
         </ul>
     <?php else: ?>
