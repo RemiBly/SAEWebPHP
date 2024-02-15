@@ -1,5 +1,5 @@
 <?php
-include './pages/templates/creationBD.php';
+include 'creationBD.php';
 session_start();
 
 function redirectHome() {
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
         $email = $_POST['mail'];
         $mdp = $_POST['mdp'];
         $role = 1;
-
+    
         // Vérification si l'email existe déjà
         $stmt = $file_db->prepare("SELECT ID_Utilisateur FROM utilisateur WHERE Email = ?");
         $stmt->execute([$email]);
@@ -32,15 +32,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
             $mdp_hache = password_hash($mdp, PASSWORD_DEFAULT);
             $stmt = $file_db->prepare("INSERT INTO utilisateur (Nom_Utilisateur, Email, Mot_de_Passe, Id_role) VALUES (?, ?, ?, ?)");
             $stmt->execute([$nom, $email, $mdp_hache, $role]);
-
-            $stmt = $file_db->prepare("INSERT INTO Playlist (ID_Utilisateur, Titre_Playlist) VALUES (?, ?)");
-            $stmt->execute([$_SESSION['user_id'], 'Coup de coeur']);
-
-            // Enregistrement dans la session
-            $_SESSION['user_id'] = $file_db->lastInsertId();
+    
+            // Mise à jour de la session avec les informations du nouvel utilisateur
+            $nouvelIDUtilisateur = $file_db->lastInsertId();
+            $_SESSION['user_id'] = $nouvelIDUtilisateur; // Mettre à jour l'ID utilisateur dans la session
             $_SESSION['user_name'] = $nom;
             $_SESSION['user_email'] = $email;
             $_SESSION['Id_role'] = $role;
+    
+            $stmt = $file_db->prepare("INSERT INTO Playlist (ID_Utilisateur, Titre_Playlist) VALUES (?, ?)");
+            $stmt->execute([$nouvelIDUtilisateur, 'Coup de coeur']);
+    
             redirectHome();
         }
     } elseif ($_POST['action'] == 'connexion') {

@@ -36,7 +36,6 @@ $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../static/CSS/artiste.css">
     <link rel="stylesheet" href="../static/CSS/header.css">
     <link rel="stylesheet" href="../static/CSS/carousel.css">
-    <script src="../static/JS/detail-artiste.js" defer></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>

@@ -41,13 +41,13 @@ $albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../static/CSS/artiste.css">
     <link rel="stylesheet" href="../static/CSS/header.css">
     <link rel="stylesheet" href="../static/CSS/carousel.css">
-    <script src="../static/JS/detail-artiste.js" defer></script>
+    <script src="../static/JS/detail-album.js" defer></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 
 <body>
-    <div class="header">
+<div class="header">
         <h1 class="header__title"><a href="./accueil.php"> SPOT'MUSIC</a> </h1>
 
         <div class="account">
@@ -57,13 +57,13 @@ $albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <main>
         <div class="album">
             <?php if (!isset($album['Pochette']) || $album['Pochette'] === "") : ?>
-                <img src="./static/images/default.jpg" alt="">
+                <img src="./static/images/default.jpg" alt="Image par défaut">
             <?php else : ?>
-                <img src="data:image/jpeg;base64,<?= $album['Pochette'] ?>" alt="Photo de <?= htmlspecialchars($artiste['Nom_Artiste']) ?>">
+                <img src="data:image/jpeg;base64,<?= $album['Pochette'] ?>" alt="Photo de <?= htmlspecialchars($album['Nom_Artiste'] ?? 'Artiste inconnu') ?>">
             <?php endif; ?>
             <div class="contenu">
-                <h1><?php echo $album["Titre_Album"] ?></h1>
-                <p class="biographie"><?php echo $album["Nom_Artiste"] ?></p>
+                <h1><?= htmlspecialchars($album["Titre_Album"] ?? 'Titre inconnu') ?></h1>
+                <p class="biographie"><?= htmlspecialchars($album["Nom_Artiste"] ?? 'Artiste inconnu') ?></p>
             </div>
         </div>
         <div class="liste__titres">
@@ -71,7 +71,7 @@ $albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="titre">
                     <div class="image__int">
                         <p class="int"><?= $i + 1 ?></p>
-                        <img src="data:image/jpeg;base64,<?= $album['Pochette'] ?>" alt="Photo de <?= htmlspecialchars($artiste['Nom_Artiste']) ?>">
+                        <img src="data:image/jpeg;base64,<?= $album['Pochette'] ?>" alt="Photo de <?= htmlspecialchars($album['Nom_Artiste'] ?? 'Artiste inconnu') ?>">
                         <div class="contenu__titre">
                             <p class="titre__musique"><span><?= $titres[$i]['Nom_Titre'] ?></span><span> - </span><span><?= $album["Titre_Album"] ?></span></p>
                             <p class="duree"><?php
@@ -85,7 +85,7 @@ $albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 ?></p>
                         </div>
                     </div>
-                    <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>')"></i>
+                    <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>', '<?= $titres[$i]['ID_Titre'] ?>')"></i>
                     <a target="_blank" href="<?php echo $titres[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
                 </div>
             <?php } ?>
@@ -109,7 +109,7 @@ $albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <!-- Afficher le titre et l'artiste de l'album -->
                             <div class="contenu__album">
                                 <h3 class="test-arrow"><span><?= $albumSimilaire['Titre_Album'] ?></span></h3>
-                                <p><?= $albumSimilaire['Année_de_sortie'] ?></p>
+                                <p><?= $albumSimilaire['Année_de_sortie'] ?> - <?= $albumSimilaire['Nom_Artiste'] ?></p>
                             </div>
                         </a>
                     <?php endif; ?>
@@ -118,6 +118,10 @@ $albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </main>
+    <script>
+        // Définir l'ID de la playlist "Coup de cœur" pour utilisation dans le script JS
+        var idCoupDeCoeur = "<?= $id_coup_de_coeur; ?>";
+    </script>
 </body>
 
 </html>
