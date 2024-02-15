@@ -123,7 +123,7 @@ if (isset($_SESSION['user_id'])) {
         <main>
             <?php if ($selected === 'artiste') : ?>
                 <?php foreach ($artistes as $artiste) : ?>
-                    <a href="./detail-artiste.php?id=<?= $artiste['ID_Artiste'] ?>" data-name="<?= $artiste['Nom_Artiste'] ?>" class="album artiste">
+                    <a href="./detail-artiste.php?id=<?= $artiste['ID_Artiste'] ?>" data-name="<?=strtolower($artiste['Nom_Artiste']) ?>" class="album artiste">
                         <?php if (empty($artiste['Photo'])) : ?>
                             <img src="../static/images/default.jpg" alt="Image par défaut">
                         <?php else : ?>
