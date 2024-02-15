@@ -99,7 +99,7 @@ if (isset($_SESSION['user_id'])) {
             <ul>
                 <?php foreach ($playlists as $playlist) : ?>
                     <li>
-                        <a href="./playlist.php">
+                        <a href="./playlist.php?id=<?= $playlist['ID_Playlist'] ?>">
                             <img src="../static/images/coupDeCoeur.jpeg" alt="Image Playlist">
                             <p><?= htmlspecialchars($playlist['Titre_Playlist']) ?></p>
                         </a>
