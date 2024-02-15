@@ -11,8 +11,9 @@ function filterResults(event) {
         var artist = article.dataset.artist;
         var date = article.dataset.year;
         var nomArtiste = article.dataset.name;
+        var genre = article.dataset.genre;
         if (nomArtiste == null) {
-            var isMatch = title.startsWith(searchTerm) || artist.startsWith(searchTerm) || date.startsWith(parseInt(searchTerm));
+            var isMatch = title.startsWith(searchTerm) || artist.startsWith(searchTerm) || date.startsWith(parseInt(searchTerm)) || date.startsWith(genre);
         } else {
             var isMatch = nomArtiste.startsWith(searchTerm);
         }
