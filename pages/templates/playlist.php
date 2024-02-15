@@ -15,7 +15,16 @@ if ($playlistId) {
     echo "Aucune playlist sélectionnée.";
     exit;
 }
-
+// récupérer l'album de chaque titre
+for ($i = 0; $i < count($titres); $i++) {
+    $stmt = $file_db->prepare("SELECT Album.Titre_Album, Album.Pochette FROM Album
+                               INNER JOIN Titre ON Album.ID_Album = Titre.ID_Album
+                               WHERE Titre.ID_Titre = ?");
+    $stmt->execute([$titres[$i]['ID_Titre']]);
+    $album = $stmt->fetch(PDO::FETCH_ASSOC);
+    $titres[$i]["Titre_Album"] = $album["Titre_Album"];
+    $titres[$i]["Pochette"] = $album["Pochette"];
+}
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +63,7 @@ if ($playlistId) {
                             <p class="int">
                                 <?= $i + 1 ?>
                             </p>
-                            <img src="../static/images/coupDeCoeur.jpeg" alt="">
+                            <img src="data:image/jpeg;base64,<?= $titres[$i]['Pochette'] ?>" alt="">
                             <div class="contenu__titre">
                                 <p class="titre__musique"><span>
                                         <?= $titres[$i]['Nom_Titre'] ?>
