@@ -45,36 +45,42 @@ if ($playlistId) {
         </div>
     </div>
     <main>
-    <h2>Titres de la Playlist</h2>
-    <?php if (!empty($titres)): ?>
-        <ul>
-            <?php foreach ($titres as $titre): ?>
-                <div class="titre">
-                    <div class="image__int">
-                        <p class="int"><?= $i + 1 ?></p>
-                        <img src="../static/images/coupDeCoeur.jpeg" alt="">
-                        <div class="contenu__titre">
-                            <p class="titre__musique"><span><?= $titre['Nom_Titre'] ?></span><span> - </span><span><?= $titre["Titre_Album"] ?></span></p>
-                            <p class="duree"><?php
-                                                $duree = $titre['Duree'];
-                                                $min = floor($duree / 60);
-                                                $sec = $duree % 60;
-                                                echo strval($min) . ":" . strval($sec);
-                                                if ($sec < 10) {
-                                                    echo "0";
-                                                }
-                                                ?></p>
+        <h2>Titres de la Playlist</h2>
+        <?php if (!empty($titres)): ?>
+            <ul>
+                <?php for ($i = 0; $i < count($titres); $i++): ?>
+                    <div class="titre">
+                        <div class="image__int">
+                            <p class="int">
+                                <?= $i + 1 ?>
+                            </p>
+                            <img src="../static/images/coupDeCoeur.jpeg" alt="">
+                            <div class="contenu__titre">
+                                <p class="titre__musique"><span>
+                                        <?= $titres[$i]['Nom_Titre'] ?>
+                                    </span><span> - </span><span>
+                                        <?= $titres[$i]["Titre_Album"] ?? '' ?>
+                                    </span></p>
+                                <p class="duree">
+                                    <?php
+                                    $duree = $titres[$i]['Duree'];
+                                    $min = floor($duree / 60);
+                                    $sec = $duree % 60;
+                                    echo strval($min) . ":" . (str_pad($sec, 2, '0', STR_PAD_LEFT));
+                                    ?>
+                                </p>
+                            </div>
                         </div>
+                        <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur"
+                            onclick="changementCoeur('coeur<?= $i + 1 ?>', '<?= $titres[$i]['ID_Titre'] ?>')"></i>
+                        <a target="_blank" href="<?= $titres[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
                     </div>
-                    <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>', '<?= $titres[$i]['ID_Titre'] ?>')"></i>
-                    <a target="_blank" href="<?php echo $titres[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
-                </div>
-            <?php endforeach; ?>
-        </ul>
-    <?php else: ?>
-        <p>Cette playlist est vide.</p>
-    <?php endif; ?>
-</main>
+                <?php endfor; ?>
+            </ul>
+        <?php else: ?>
+            <p>Cette playlist est vide.</p>
+        <?php endif; ?>
+    </main>
 </body>
 
 </html>
