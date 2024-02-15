@@ -1,5 +1,7 @@
 <?php
+
 include 'creationBD.php';
+
 session_start();
 
 function redirectHome() {

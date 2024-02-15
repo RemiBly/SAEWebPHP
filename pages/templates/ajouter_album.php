@@ -1,6 +1,5 @@
 <?php
 
-include __DIR__ . '/../../configBD.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titre_album = $_POST['titre_album'];
