@@ -1,9 +1,22 @@
 <?php
 
+include __DIR__ . '/../../creationBD.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom_artiste = $_POST['nom_artiste'];
     $biographie = $_POST['biographie'];
-    $photo = $_POST['photo'];
+    
+    // Traitement de la photo téléchargée
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
+        // Chemin temporaire du fichier téléchargé
+        $tmpName = $_FILES['photo']['tmp_name'];
+        // Lire le contenu du fichier
+        $photoContent = file_get_contents($tmpName);
+        // Convertir le contenu du fichier en base64
+        $photoBase64 = base64_encode($photoContent);
+    } else {
+        $photoBase64 = ""; // Ou gérer l'erreur selon votre besoin
+    }
 
     try {
         $file_db = new PDO('sqlite:' . DATABASE_PATH);
@@ -11,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $query = "INSERT INTO Artiste (Nom_Artiste, Biographie, Photo) VALUES (?, ?, ?)";
         $stmt = $file_db->prepare($query);
-        $stmt->execute([$nom_artiste, $biographie, $photo]);
+        $stmt->execute([$nom_artiste, $biographie, $photoBase64]);
 
         echo "<p class='message__ajout'>Artiste ajouté avec succès.</p>";
     } catch (PDOException $e) {
@@ -43,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <main>
         <div class="contenu">
             <h2>Ajouter un nouvel Artiste</h2>
-            <form action="ajouter_artiste.php" method="post">
+            <form action="ajouter_artiste.php" method="post" enctype="multipart/form-data">
                 <label for="nom_artiste">Nom de l'artiste</label><br>
                 <input type="text" id="nom_artiste" name="nom_artiste" placeholder="Ex : Yeat"><br>
 
@@ -51,8 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <textarea id="biographie" name="biographie" placeholder="Ex : Reconnu dans le monde entier par ..."></textarea><br>
 
                 <label for="photo">Photo</label><br>
-                <input type="text" id="photo" name="photo" placeholder="Lien image (URL)"><br>
-
+                <input type="file" id="photo" name="photo"><br>
                 <div class="center__btn">
                     <input type="submit" value="Ajouter l'Artiste">
                 </div>
