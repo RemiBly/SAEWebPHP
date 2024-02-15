@@ -25,6 +25,13 @@ for ($i = 0; $i < count($titres); $i++) {
     $titres[$i]["Titre_Album"] = $album["Titre_Album"];
     $titres[$i]["Pochette"] = $album["Pochette"];
 }
+session_start();
+
+// Récupération de la playlist coup de coeur
+$query = "SELECT ID_Playlist FROM Playlist WHERE ID_Utilisateur = ? AND Titre_Playlist = 'Coup de coeur'";
+$stmt = $file_db->prepare($query);
+$stmt->execute([$_SESSION['user_id']]);
+$id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +87,7 @@ for ($i = 0; $i < count($titres); $i++) {
                                 </p>
                             </div>
                         </div>
-                        <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur"
+                        <i id="coeur<?= $i + 1 ?>" class="fa-solid fa-heart coeur"
                             onclick="changementCoeur('coeur<?= $i + 1 ?>', '<?= $titres[$i]['ID_Titre'] ?>')"></i>
                         <a target="_blank" href="<?= $titres[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
                     </div>
@@ -90,6 +97,10 @@ for ($i = 0; $i < count($titres); $i++) {
             <p>Cette playlist est vide.</p>
         <?php endif; ?>
     </main>
+    <script>
+        // Définir l'ID de la playlist "Coup de cœur" pour utilisation dans le script JS
+        var idCoupDeCoeur = "<?= $id_coup_de_coeur; ?>";
+    </script>
 </body>
 
 </html>

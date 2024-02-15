@@ -5,6 +5,7 @@ function changementCoeur(id, idTitre) {
             coeur.classList.remove("fa-regular");
             coeur.classList.add("fa-solid");
             // Utilisation de l'ID de la playlist "Coup de cœur"
+            console.log(idCoupDeCoeur);
             fetch('ajoutTitrePlaylist.php', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -13,12 +14,12 @@ function changementCoeur(id, idTitre) {
             .then(response => response.text())
             .then(response => console.log(response))
             .catch(error => console.error('Error:', error));
-        } else {
+        } else if (coeur.classList.contains("fa-solid")) {
             coeur.classList.remove("fa-solid");
             coeur.classList.add("fa-regular");
             // Ajoutez ici le code pour retirer le titre de la playlist si nécessaire
             // retirer le titre de la playlist
-            fetch('ajouterTitrePlaylist.php', {
+            fetch('ajoutTitrePlaylist.php', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 body: 'action=retirer&titreID=' + idTitre + '&playlistID=' + idCoupDeCoeur
