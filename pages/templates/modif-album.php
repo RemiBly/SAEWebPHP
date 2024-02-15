@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
     $result = $stmt->execute([$titre_album, $id_artiste, $annee_de_sortie, $genre, $pochette, $id_album]);
 
     if ($result) {
-        header("Location: CRUDalbum.php");
+        header("Location: administration.php");
         exit;
     } else {
         echo "<p>Erreur lors de la mise à jour de l'album.</p>";
@@ -53,32 +53,43 @@ if (isset($_POST['submit'])) {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Modifier un Album</title>
-    <!-- Styles ici -->
+    <link rel="stylesheet" href="../static/CSS/variables.css">
+    <link rel="stylesheet" href="../static/CSS/formulaire.css">
 </head>
+
 <body>
-<div class="contenu">
-    <h2>Modifier l'Album</h2>
-    <form action="modif-album.php?id=<?= htmlspecialchars($id_album) ?>" method="post" enctype="multipart/form-data">
-        <label for="titre_album">Titre de l'album</label>
-        <input type="text" id="titre_album" name="titre_album" value="<?= htmlspecialchars($album['Titre_Album']) ?>" required><br>
+    <main>
+        <div class="contenu">
+            <h2>Modifier l'Album</h2>
+            <form action="modif-album.php?id=<?= htmlspecialchars($id_album) ?>" method="post" enctype="multipart/form-data">
+                <label for="titre_album">Titre de l'album</label>
+                <input type="text" id="titre_album" name="titre_album" value="<?= htmlspecialchars($album['Titre_Album']) ?>" required><br>
 
-        <label for="id_artiste">Artiste</label>
-        <input type="text" id="id_artiste" name="id_artiste" value="<?= htmlspecialchars($album['ID_Artiste']) ?>" required><br>
+                <label for="id_artiste">Artiste</label>
+                <input type="text" id="id_artiste" name="id_artiste" value="<?= htmlspecialchars($album['ID_Artiste']) ?>" required><br>
 
-        <label for="annee_de_sortie">Année de sortie</label>
-        <input type="number" id="annee_de_sortie" name="annee_de_sortie" value="<?= htmlspecialchars($album['Année_de_sortie']) ?>" required><br>
+                <label for="annee_de_sortie">Année de sortie</label>
+                <input type="number" id="annee_de_sortie" name="annee_de_sortie" value="<?= htmlspecialchars($album['Année_de_sortie']) ?>" required><br>
 
-        <label for="genre">Genre</label>
-        <input type="text" id="genre" name="genre" value="<?= htmlspecialchars($album['Genre']) ?>" required><br>
+                <label for="genre">Genre</label>
+                <input type="text" id="genre" name="genre" value="<?= htmlspecialchars($album['Genre']) ?>" required><br>
 
-        <label for="pochette">Nouvelle pochette</label>
-        <input type="file" id="pochette" name="pochette"><br>
+                <div id="file-info" style="display: none;">
+                    <img id="preview-image" src="#" alt="Pochette de l'album">
+                </div>
+                <input type="file" id="pochette" name="pochette" required><br>
+                <label id="pochette_css" for="pochette"><span><i class="fa-solid fa-download"></i> Choisir une photo</label></span><br>
 
-        <input type="submit" name="submit" value="Enregistrer les modifications">
-    </form>
-</div>
+                <div class="center__btn">
+                    <input type="submit" name="submit" value="Enregistrer les modifications">
+                </div>
+            </form>
+        </div>
+    </main>
 </body>
+
 </html>

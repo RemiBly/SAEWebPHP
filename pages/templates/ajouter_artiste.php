@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../static/CSS/variables.css">
     <link rel="stylesheet" href="../static/CSS/formulaire.css">
     <link rel="stylesheet" href="../static/CSS/header.css">
-    <script src="../static/JS/administration.js" defer></script>
+    <script src="../static/JS/formArtiste.js" defer></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
 </head>
 
@@ -63,8 +63,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="biographie">Biographie</label><br>
                 <textarea id="biographie" name="biographie" placeholder="Ex : Reconnu dans le monde entier par ..."></textarea><br>
 
-                <label for="photo">Photo</label><br>
-                <input type="file" id="photo" name="photo"><br>
+                <div id="file-info" style="display: none;">
+                    <img id="preview-image" src="#" alt="Pochette de l'album">
+                </div>
+                <input type="file" id="photo" name="photo" required><br>
+                <label id="pochette_css" for="photo"><span><i class="fa-solid fa-download"></i> Choisir une photo</label></span><br>
+
                 <div class="center__btn">
                     <input type="submit" value="Ajouter l'Artiste">
                 </div>

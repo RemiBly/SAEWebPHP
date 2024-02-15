@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $annee_sortie = $_POST['annee_sortie'];
     $genre = $_POST['genre'];
     $id_artiste = intval($_POST['barre-recherche']);
-    
+
     // Traitement de la pochette téléchargée
     if (isset($_FILES['pochette']) && $_FILES['pochette']['error'] == 0) {
         $tmpName = $_FILES['pochette']['tmp_name'];
@@ -26,19 +26,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<p>Erreur lors de l'ajout de l'album : " . $e->getMessage() . "</p>";
     }
 }
+
+if (isset($_GET['get_artists'])) {
+    $query = "SELECT ID_Artiste, Nom_Artiste FROM Artiste";
+    $stmt = $file_db->query($query);
+    $artists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    header('Content-Type: application/json');
+    echo json_encode($artists);
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Ajouter un Album</title>
     <link rel="stylesheet" href="../static/CSS/variables.css">
     <link rel="stylesheet" href="../static/CSS/formulaire.css">
     <link rel="stylesheet" href="../static/CSS/header.css">
-    <script src="../static/JS/administration.js" defer></script>
+    <script src="../static/JS/formAlbum.js" defer></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div class="header">
         <h1 class="header__title"><a href="./accueil.php"> SPOT'MUSIC</a> </h1>
@@ -65,8 +77,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div id="resultats-recherche"></div>
                 </div>
 
-                <label for="pochette">Pochette</label>
+                <div id="file-info" style="display: none;">
+                    <img id="preview-image" src="#" alt="Pochette de l'album">
+                </div>
                 <input type="file" id="pochette" name="pochette" required><br>
+                <label id="pochette_css" for="pochette"><span><i class="fa-solid fa-download"></i> Choisir une photo</label></span><br>
+
 
                 <div class="center__btn">
                     <input type="submit" value="Ajouter l'Album">
@@ -75,4 +91,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </main>
 </body>
+
 </html>

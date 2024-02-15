@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
     $result = $stmt->execute([$nom_artiste, $biographie, $photo, $id_artiste]);
 
     if ($result) {
-        header("Location: CRUDartiste.php");
+        header("Location: administration.php");
         exit;
     } else {
         echo "<p>Erreur lors de la mise à jour de l'artiste.</p>";
@@ -54,10 +54,11 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <title>Modifier un Artiste</title>
-    <!-- Styles -->
+    <link rel="stylesheet" href="../static/CSS/variables.css">
+    <link rel="stylesheet" href="../static/CSS/formulaire.css">
 </head>
 <body>
-<div class="contenu">
+    <main><div class="contenu">
     <h2>Modifier l'Artiste</h2>
     <form action="modif-artiste.php?id=<?= htmlspecialchars($id_artiste) ?>" method="post" enctype="multipart/form-data">
         <label for="nom_artiste">Nom de l'artiste</label>
@@ -69,8 +70,10 @@ if (isset($_POST['submit'])) {
         <label for="photo">Nouvelle photo</label>
         <input type="file" id="photo" name="photo"><br>
 
-        <input type="submit" name="submit" value="Enregistrer les modifications">
+        <div class="center__btn">
+            <input type="submit" name="submit" value="Enregistrer les modifications">
+        </div>
     </form>
-</div>
+</div></main>
 </body>
 </html>

@@ -114,13 +114,6 @@ if (isset($_SESSION['user_id'])) {
             <input class="barre__recherche__input" placeholder="Que souhaitez-vous rechercher ?" type="text" id="search" oninput="filterResults(event)" onkeypress="handleKeyPress(event)">
             <i id="croixSelector" class="fa-solid" onclick="resetInputValue()"></i>
         </div>
-        <div class="recherche-approfondis">
-            <a href="ajouter_artiste.php" class="ajouter-artiste-btn">Ajouter un Artiste</a>
-            <a href="ajouter_album.php" class="ajouter-album-btn">Ajouter un Album</a>
-            <a href="ajouter_titre.php" class="ajouter-album-btn">Ajouter un Titre</a>
-            <a href="CRUDartiste.php" class="ajouter-album-btn">Voir tous les artistes</a>
-            <a href="CRUDalbum.php" class="ajouter-album-btn">Voir tous les albums</a>
-        </div>
 
         <main>
             <?php if ($selected === 'artiste') : ?>
