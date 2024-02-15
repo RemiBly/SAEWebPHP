@@ -30,13 +30,13 @@
 
 - Titre_Album: The Fine Art of Self Destruction
   Année_de_sortie: 2002
-  Genre: null
+  Genre: Rock
   ID_Artiste: 6
   Pochette: The_Fine_Art_of_Self_Destruction.jpg
 
 - Titre_Album: We Are Fuck You
   Année_de_sortie: 2003
-  Genre: null
+  Genre: Punk rock
   ID_Artiste: 4
   Pochette: We_Are_Fuck_You.jpg
 
@@ -71,7 +71,7 @@
   Pochette: 220px-Ryan-adams-orion.jpg
 
 - Titre_Album: Forever Valentine
-  Année_de_sortie: null
+  Année_de_sortie: 1997
   Genre: Alternative country
   ID_Artiste: 5
   Pochette: fv.jpg
@@ -116,5 +116,5 @@
   Année_de_sortie: 2011
   Genre: Folk rock, country rock
   ID_Artiste: 13
-  Pochette: null
+  Pochette: eleven.jpg
 

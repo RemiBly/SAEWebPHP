@@ -24,12 +24,6 @@ function filterResults(event) {
     });
 }
 
-function handleKeyPress(event) {
-    if (event.keyCode === 13) {
-        filterResults();
-    }
-}
-
 function resetInputValue() {
     document.getElementById('search').value = '';
     filterResults();
