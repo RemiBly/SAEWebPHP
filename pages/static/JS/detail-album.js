@@ -17,6 +17,15 @@ function changementCoeur(id, idTitre) {
             coeur.classList.remove("fa-solid");
             coeur.classList.add("fa-regular");
             // Ajoutez ici le code pour retirer le titre de la playlist si nécessaire
+            // retirer le titre de la playlist
+            fetch('ajouterTitrePlaylist.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: 'action=retirer&titreID=' + idTitre + '&playlistID=' + idCoupDeCoeur
+            })
+            .then(response => response.text())
+            .then(response => console.log(response))
+            .catch(error => console.error('Error:', error));
         }
     } else {
         console.error("L'élément avec l'ID " + id + " n'a pas été trouvé.");
