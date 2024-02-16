@@ -48,6 +48,7 @@ if (isset($_GET['get_artists'])) {
     <link rel="stylesheet" href="../static/CSS/formulaire.css">
     <link rel="stylesheet" href="../static/CSS/header.css">
     <script src="../static/JS/formAlbum.js" defer></script>
+    <script src="../static/JS/administration.js"></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
 </head>
 
