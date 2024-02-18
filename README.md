@@ -3,7 +3,7 @@
 ## Description
 Cette application à était réalisé par Juliette ROUSSELET, Rémi BOULAY et Kris TOURE. La demande était qu'à partir des données disponibles dans le fichier album.yml, nous devons développer une application présentant le contenu de cette base de données d'albums de musique.
 
-Le fichier album.yml contient des informations sur quelques albums et artistes, y compris des pochettes d'albums.
+Le fichier album.yml (l'ancien) contient des informations sur quelques albums et artistes, y compris des pochettes d'albums.
 
 Les fonctionnalités attendues :
 
