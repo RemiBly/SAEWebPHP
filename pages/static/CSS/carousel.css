@@ -1,0 +1,12 @@
+.carousel{
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+.carousel::-webkit-scrollbar {
+    height: 5px;
+}
+
+.similaire{
+    margin-top: 10%;
+}

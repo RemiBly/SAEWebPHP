@@ -1,0 +1,41 @@
+.artiste__similaire{
+  text-decoration: none;
+    flex: 0 0 auto;
+    height: 250px;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    padding-top: 1%;
+    background-color: #242424;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+    width: 13rem;
+  }
+  
+  .artiste__similaire:hover{
+    background-color: #3b3b3b;
+  }
+  
+  .artiste__similaire img{
+    width : 7rem;
+    height: 7rem;
+    box-shadow: 0px 0px 50px -10px #FFFFFF;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+  }
+  
+  .artiste__similaire .contenu{
+    text-align: center;
+  }
+
+  .artiste__similaire h3{
+    font-size: 14.04px;
+  } 
+
+  .artiste__similaire p{
+    font-size: 12px;
+  }
