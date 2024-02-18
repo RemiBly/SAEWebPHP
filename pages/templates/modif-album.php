@@ -59,6 +59,8 @@ if (isset($_POST['submit'])) {
     <title>Modifier un Album</title>
     <link rel="stylesheet" href="../static/CSS/variables.css">
     <link rel="stylesheet" href="../static/CSS/formulaire.css">
+    <script src="../static/JS/formAlbum.js" defer></script>
+    <script src="../static/JS/administration.js"></script>
 </head>
 
 <body>

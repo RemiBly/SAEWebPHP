@@ -9,7 +9,7 @@ $artistes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <h1>Liste des Artistes</h1>
 <div class="ajouter-artist">
-    <a href="ajouter_artiste.php" class="btn btn-ajouter">Ajouter un nouvel artiste</a>
+    <a href="ajouter_artiste.php" class="btn btn-ajouter">Ajouter un nouvel artiste <i class="fa-solid fa-plus"></i></a>
 </div>
 <table>
     <thead>

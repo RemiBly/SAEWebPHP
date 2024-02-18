@@ -658,3 +658,240 @@
   ID_Album: 13
   ID_Artiste: 5
 
+- Nom_Titre: "Sound & Color"
+  Photo: default.jpg
+  Duree: 182
+  Lien: ""
+  ID_Album: 10
+  ID_Artiste: 14
+
+- Nom_Titre: "Don't Wanna Fight"
+  Photo: default.jpg
+  Duree: 233
+  Lien: ""
+  ID_Album: 10
+  ID_Artiste: 14
+
+- Nom_Titre: "Dunes"
+  Photo: default.jpg
+  Duree: 258
+  Lien: ""
+  ID_Album: 10
+  ID_Artiste: 14
+
+- Nom_Titre: "Future People"
+  Photo: default.jpg
+  Duree: 202
+  Lien: ""
+  ID_Album: 10
+  ID_Artiste: 14
+
+- Nom_Titre: "Gimme All Your Love"
+  Photo: default.jpg
+  Duree: 243
+  Lien: ""
+  ID_Album: 10
+  ID_Artiste: 14
+
+- Nom_Titre: "Amarillo Highway (for Dave Hickey)"
+  Photo: default.jpg
+  Duree: 150
+  Lien: ""
+  ID_Album: 15
+  ID_Artiste: 11
+
+- Nom_Titre: "Highplains Jamboree"
+  Photo: default.jpg
+  Duree: 180
+  Lien: ""
+  ID_Album: 15
+  ID_Artiste: 11
+
+- Nom_Titre: "The Great Joe Bob (A Regional Tragedy)"
+  Photo: default.jpg
+  Duree: 135
+  Lien: ""
+  ID_Album: 15
+  ID_Artiste: 11
+
+- Nom_Titre: "The Wolfman of Del Rio"
+  Photo: default.jpg
+  Duree: 170
+  Lien: ""
+  ID_Album: 15
+  ID_Artiste: 11
+
+- Nom_Titre: "Lubbock Woman"
+  Photo: default.jpg
+  Duree: 145
+  Lien: ""
+  ID_Album: 15
+  ID_Artiste: 11
+
+- Nom_Titre: "The Juarez Device (aka Texican Badman)"
+  Photo: default.jpg
+  Duree: 155
+  Lien: ""
+  ID_Album: 16
+  ID_Artiste: 11
+
+- Nom_Titre: "The Characters/ A Simple Story"
+  Photo: default.jpg
+  Duree: 165
+  Lien: ""
+  ID_Album: 16
+  ID_Artiste: 11
+
+- Nom_Titre: "Cortez Sail"
+  Photo: default.jpg
+  Duree: 145
+  Lien: ""
+  ID_Album: 16
+  ID_Artiste: 11
+
+- Nom_Titre: "Border Palace"
+  Photo: default.jpg
+  Duree: 175
+  Lien: ""
+  ID_Album: 16
+  ID_Artiste: 11
+
+- Nom_Titre: "Dogwood"
+  Photo: default.jpg
+  Duree: 140
+  Lien: ""
+  ID_Album: 16
+  ID_Artiste: 11
+
+- Nom_Titre: "Pedal Steel"
+  Photo: default.jpg
+  Duree: 150
+  Lien: ""
+  ID_Album: 17
+  ID_Artiste: 11
+
+- Nom_Titre: "Fenceline"
+  Photo: default.jpg
+  Duree: 165
+  Lien: ""
+  ID_Album: 17
+  ID_Artiste: 11
+
+- Nom_Titre: "Rodar Parar Atras"
+  Photo: default.jpg
+  Duree: 135
+  Lien: ""
+  ID_Album: 17
+  ID_Artiste: 11
+
+- Nom_Titre: "Rollback"
+  Photo: default.jpg
+  Duree: 170
+  Lien: ""
+  ID_Album: 17
+  ID_Artiste: 11
+
+- Nom_Titre: "Figure Ate"
+  Photo: default.jpg
+  Duree: 145
+  Lien: ""
+  ID_Album: 17
+  ID_Artiste: 11
+
+- Nom_Titre: "Gone to Texas"
+  Photo: default.jpg
+  Duree: 168
+  Lien: ""
+  ID_Album: 18
+  ID_Artiste: 11
+
+- Nom_Titre: "Room to Room"
+  Photo: default.jpg
+  Duree: 140
+  Lien: ""
+  ID_Album: 18
+  ID_Artiste: 11
+
+- Nom_Titre: "Back to Black"
+  Photo: default.jpg
+  Duree: 172
+  Lien: ""
+  ID_Album: 18
+  ID_Artiste: 11
+
+- Nom_Titre: "Wilderness of This World"
+  Photo: default.jpg
+  Duree: 155
+  Lien: ""
+  ID_Album: 18
+  ID_Artiste: 11
+
+- Nom_Titre: "Little Sandy"
+  Photo: default.jpg
+  Duree: 125
+  Lien: ""
+  ID_Album: 18
+  ID_Artiste: 11
+
+- Nom_Titre: "I'm Lost"
+  Photo: default.jpg
+  Duree: 175
+  Lien: ""
+  ID_Album: 19
+  ID_Artiste: 12
+
+- Nom_Titre: "You"
+  Photo: default.jpg
+  Duree: 208
+  Lien: ""
+  ID_Album: 19
+  ID_Artiste: 12
+
+- Nom_Titre: "4th of July"
+  Photo: default.jpg
+  Duree: 212
+  Lien: ""
+  ID_Album: 19
+  ID_Artiste: 12
+
+- Nom_Titre: "In the Time It Takes"
+  Photo: default.jpg
+  Duree: 189
+  Lien: ""
+  ID_Album: 19
+  ID_Artiste: 12
+
+- Nom_Titre: "Harlan County Line"
+  Photo: default.jpg
+  Duree: 312
+  Lien: ""
+  ID_Album: 20
+  ID_Artiste: 13
+
+- Nom_Titre: "Johnny Ace is Dead"
+  Photo: default.jpg
+  Duree: 267
+  Lien: ""
+  ID_Album: 20
+  ID_Artiste: 13
+
+- Nom_Titre: "Black Rose of Texas"
+  Photo: default.jpg
+  Duree: 292
+  Lien: ""
+  ID_Album: 20
+  ID_Artiste: 13
+
+- Nom_Titre: "Gary, Indiana 1959"
+  Photo: default.jpg
+  Duree: 246
+  Lien: ""
+  ID_Album: 20
+  ID_Artiste: 13
+
+- Nom_Titre: "Run Conejo Run"
+  Photo: default.jpg
+  Duree: 292
+  Lien: ""
+  ID_Album: 20
+  ID_Artiste: 13
