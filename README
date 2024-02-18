@@ -1,4 +1,4 @@
-# Nom du projet
+# SPOTMUSIC
 
 ## Description
 Cette application à était réalisé par Juliette ROUSSELET, Rémi BOULAY et Kris TOURE. La demande était qu'à partir des données disponibles dans le fichier album.yml, nous devons développer une application présentant le contenu de cette base de données d'albums de musique.
@@ -76,6 +76,10 @@ L'application contient un module administrateur. Comme le mot de passe est hash�
 
 - Login : admin@spotmusic.com
 - Mot de passe : admin1
+
+## MDC
+
+![]
 
 ## Diagrammes activité
 
