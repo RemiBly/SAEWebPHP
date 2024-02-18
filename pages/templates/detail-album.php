@@ -110,7 +110,7 @@ $albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <!-- Afficher le titre et l'artiste de l'album -->
                             <div class="contenu__album">
                                 <h3 class="test-arrow"><span><?= $albumSimilaire['Titre_Album'] ?></span></h3>
-                                <p><?= $albumSimilaire['Année_de_sortie'] ?></p>
+                                <p><?= $albumSimilaire['Année_de_sortie'] ?> - <?= $albumSimilaire['Nom_Artiste'] ?></p>
                             </div>
                         </a>
                     <?php endif; ?>
