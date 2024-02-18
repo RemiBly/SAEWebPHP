@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
         $file_db->commit();
 
         // Redirection vers la liste des albums après la suppression
-        header("Location: CRUDalbum.php");
+        header("Location: administration.php");
         exit;
     } catch (PDOException $e) {
         $file_db->rollBack();

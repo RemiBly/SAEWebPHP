@@ -27,7 +27,7 @@ if (isset($_GET['id'])) {
         $file_db->commit();
 
         // Redirection vers la liste des artistes après la suppression
-        header("Location: CRUDartiste.php");
+        header("Location: administration.php");
         exit;
     } catch (PDOException $e) {
         $file_db->rollBack();
