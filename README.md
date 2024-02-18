@@ -1,7 +1,5 @@
 # SPOTMUSIC
 
-Lien GitHub : https://github.com/RemiBly/SAEWebPHP/tree/develop
-
 ## Description
 Cette application à était réalisé par Juliette ROUSSELET, Rémi BOULAY et Kris TOURE. La demande était qu'à partir des données disponibles dans le fichier album.yml, nous devons développer une application présentant le contenu de cette base de données d'albums de musique.
 
