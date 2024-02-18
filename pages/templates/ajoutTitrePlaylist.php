@@ -16,6 +16,7 @@ $playlistID = $_POST['playlistID'] ?? ''; // S'assurer que l'ID de la playlist e
 // Assurez-vous que les données nécessaires sont présentes
 if (empty($titreID) || empty($action) || empty($playlistID)) {
     echo "Données manquantes.";
+    echo "titreID: $titreID, action: $action, playlistID: $playlistID";
     exit;
 }
 

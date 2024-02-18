@@ -2,6 +2,8 @@
 
 include __DIR__ . '/../../creationBD.php';
 
+session_start();
+
 $query = "SELECT * FROM Artiste WHERE ID_Artiste = ?";
 $stmt = $file_db->prepare($query);
 $stmt->execute([$_GET['id']]);
@@ -12,6 +14,20 @@ $stmt = $file_db->prepare($query);
 $stmt->execute([$artiste['ID_Artiste']]);
 $titresArtiste = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+//récupérer l'id de la playlist coup de coeur
+$query = "SELECT ID_Playlist FROM Playlist WHERE ID_Utilisateur = ? AND Titre_Playlist = 'Coup de coeur'";
+$stmt = $file_db->prepare($query);
+$stmt->execute([$_SESSION['user_id']]);
+$id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
+
+// ajouter à chaque titre un boléen qui montre s'il est dans la playlist coup de coeur
+foreach ($titresArtiste as $key => $titre) {
+    $query = "SELECT * FROM TitrePlaylist WHERE ID_Titre = ? AND ID_Playlist = ?";
+    $stmt = $file_db->prepare($query);
+    $stmt->execute([$titre['ID_Titre'], $id_coup_de_coeur]);
+    $titresArtiste[$key]['Coup_de_coeur'] = $stmt->fetch(PDO::FETCH_ASSOC) ? true : false;
+}
+
 $query = "SELECT * FROM Album WHERE ID_Artiste = ?";
 $stmt = $file_db->prepare($query);
 $stmt->execute([$artiste['ID_Artiste']]);
@@ -21,6 +37,11 @@ $query = "SELECT DISTINCT Artiste.ID_Artiste, Artiste.Nom_Artiste, Artiste.Photo
 $stmt = $file_db->prepare($query);
 $stmt->execute([$artiste['ID_Artiste'], $artiste['ID_Artiste']]);
 $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$query = "SELECT * FROM Playlist WHERE ID_Utilisateur = ?";
+$stmt = $file_db->prepare($query);
+$stmt->execute([$_SESSION['user_id']]);
+$playlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +57,7 @@ $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../static/CSS/artiste.css">
     <link rel="stylesheet" href="../static/CSS/header.css">
     <link rel="stylesheet" href="../static/CSS/carousel.css">
+    <script src="../static/JS/detail-album.js" defer></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
     <title>Artiste</title>
 </head>
@@ -67,10 +89,16 @@ $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <img src="data:image/jpeg;base64,<?= $artiste['Photo'] ?>" alt="">
                             <div class="contenu__titre">
                                 <p class="titre__musique"><span><?= $titresArtiste[$i]['Nom_Titre'] ?></span><span> - </span><span><?= $titresArtiste[$i]['Titre_Album'] ?></span></p>
-                                <p class="duree"><?php echo $titresArtiste[$i]['Duree'] ?></p>
+                                <p class="duree"><?php
+                                                $duree = $titresArtiste[$i]['Duree'];
+                                                $min = floor($duree / 60);
+                                                $sec = $duree % 60;
+                                                echo strval($min) . ":" . (str_pad($sec, 2, '0', STR_PAD_LEFT));
+                                                ?></p>
                             </div>
                         </div>
-                        <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>')"></i>
+                        <i id="coeur<?= $i + 1 ?>" class="<?php if ($titresArtiste[$i]['Coup_de_coeur']) {echo "fa-solid";} else {echo "fa-regular";} ?> fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>', '<?= $titresArtiste[$i]['ID_Titre'] ?>')"></i>
+                        <i class="fa-solid fa-plus" onclick="ajouterAPlaylist(<?= $titresArtiste[$i]['ID_Titre'] ?>)"></i>
                         <a target="_blank" href="<?php echo $titresArtiste[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
                     </div>
                 <?php } ?>
@@ -115,6 +143,11 @@ $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
     </main>
+    <script>
+        // Définir l'ID de la playlist "Coup de cœur" pour utilisation dans le script JS
+        var idCoupDeCoeur = "<?= $id_coup_de_coeur; ?>";
+        <?php echo "var playlists = " . json_encode($playlists) . ";"; ?>
+    </script>
 </body>
 
 </html>
