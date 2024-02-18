@@ -11,9 +11,8 @@ function filterResults(event) {
         var artist = article.dataset.artist;
         var date = article.dataset.year;
         var nomArtiste = article.dataset.name;
-        var genre = article.dataset.genre;
         if (nomArtiste == null) {
-            var isMatch = title.startsWith(searchTerm) || artist.startsWith(searchTerm) || date.startsWith(parseInt(searchTerm)) || date.startsWith(genre);
+            var isMatch = title.startsWith(searchTerm) || artist.startsWith(searchTerm) || date.startsWith(parseInt(searchTerm));
         } else {
             var isMatch = nomArtiste.startsWith(searchTerm);
         }
@@ -23,12 +22,6 @@ function filterResults(event) {
             article.classList.add('hidden');
         }
     });
-}
-
-function handleKeyPress(event) {
-    if (event.keyCode === 13) {
-        filterResults();
-    }
 }
 
 function resetInputValue() {

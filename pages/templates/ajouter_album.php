@@ -1,51 +1,42 @@
 <?php
-
+include __DIR__ . '/../../creationBD.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titre_album = $_POST['titre_album'];
     $annee_sortie = $_POST['annee_sortie'];
     $genre = $_POST['genre'];
     $id_artiste = intval($_POST['barre-recherche']);
-    $pochette = $_POST['pochette'];
+
+    // Traitement de la pochette téléchargée
+    if (isset($_FILES['pochette']) && $_FILES['pochette']['error'] == 0) {
+        $tmpName = $_FILES['pochette']['tmp_name'];
+        $pochetteContent = file_get_contents($tmpName);
+        $pochette = base64_encode($pochetteContent);
+    } else {
+        $pochette = ""; // Gérer l'absence de pochette ou erreur selon votre besoin
+    }
 
     try {
-        $file_db = new PDO('sqlite:' . DATABASE_PATH);
-        $file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         $query = "INSERT INTO Album (Titre_Album, Année_de_sortie, Genre, ID_Artiste, Pochette) VALUES (?, ?, ?, ?, ?)";
         $stmt = $file_db->prepare($query);
         $stmt->execute([$titre_album, $annee_sortie, $genre, $id_artiste, $pochette]);
 
-        echo "Album ajouté avec succès.";
+        echo "<p>Album ajouté avec succès.</p>";
     } catch (PDOException $e) {
-        echo "Erreur lors de l'ajout de l'album : " . $e->getMessage();
+        echo "<p>Erreur lors de l'ajout de l'album : " . $e->getMessage() . "</p>";
     }
 }
-?>
 
-<?php
-try {
-    $bdd = new PDO('sqlite:' . DATABASE_PATH);
-} catch (PDOException $e) {
-    die("Erreur de connexion à la base de données : " . $e->getMessage());
+if (isset($_GET['get_artists'])) {
+    $query = "SELECT ID_Artiste, Nom_Artiste FROM Artiste";
+    $stmt = $file_db->query($query);
+    $artists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    header('Content-Type: application/json');
+    echo json_encode($artists);
+    exit;
 }
 
-$sql = "SELECT ID_Artiste, Nom_Artiste FROM Artiste";
-$resultat = $bdd->query($sql);
-
-if ($resultat) {
-    $dataArtiste = $resultat->fetchAll(PDO::FETCH_ASSOC);
-    $dataArtisteJSON = json_encode($dataArtiste);
-    $bdd = null;
-} else {
-    die("Erreur lors de l'exécution de la requête : " . print_r($bdd->errorInfo(), true));
-}
 ?>
-
-
-<script>
-    const dataArtiste = <?php echo $dataArtisteJSON; ?>;
-</script>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -56,14 +47,14 @@ if ($resultat) {
     <link rel="stylesheet" href="../static/CSS/variables.css">
     <link rel="stylesheet" href="../static/CSS/formulaire.css">
     <link rel="stylesheet" href="../static/CSS/header.css">
-    <script src="../static/JS/administration.js" defer></script>
+    <script src="../static/JS/formAlbum.js" defer></script>
+    <script src="../static/JS/administration.js"></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="header">
         <h1 class="header__title"><a href="./accueil.php"> SPOT'MUSIC</a> </h1>
-
         <div class="account">
             <a href="../../index.php">Se déconnecter <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
@@ -71,24 +62,28 @@ if ($resultat) {
     <main>
         <div class="contenu">
             <h2>Ajouter un nouvel Album</h2>
-            <form action="ajouter_album.php" method="post">
-                <label for="titre_album">Titre de l'album</label><br>
-                <input type="text" id="titre_album" name="titre_album" placeholder="Ex : Lyfe"><br>
+            <form action="ajouter_album.php" method="post" enctype="multipart/form-data">
+                <label for="titre_album">Titre de l'album</label>
+                <input type="text" id="titre_album" name="titre_album" required><br>
 
-                <label for="annee_sortie">Année de sortie</label><br>
-                <input type="number" id="annee_sortie" name="annee_sortie" placeholder="Ex : 2024"><br>
+                <label for="annee_sortie">Année de sortie</label>
+                <input type="number" id="annee_sortie" name="annee_sortie" required><br>
 
-                <label for="genre">Genre</label><br>
-                <input type="text" id="genre" name="genre" placeholder="Ex : Rap"><br>
+                <label for="genre">Genre</label>
+                <input type="text" id="genre" name="genre" required><br>
 
                 <div class="recherche-artiste">
-                    <label for="idartiste">ID Artiste</label>
-                    <input type="text" name='barre-recherche' id="barre-recherche" placeholder="Rechercher un artiste">
+                    <label for="id_artiste">Artiste</label>
+                    <input type="text" id="barre-recherche" name="barre-recherche" required>
                     <div id="resultats-recherche"></div>
                 </div>
 
-                <label for="pochette">Pochette (URL)</label><br>
-                <input type="text" id="pochette" name="pochette" placeholder="Lien image (URL)"><br>
+                <div id="file-info" style="display: none;">
+                    <img id="preview-image" src="#" alt="Pochette de l'album">
+                </div>
+                <input type="file" id="pochette" name="pochette" required><br>
+                <label id="pochette_css" for="pochette"><span><i class="fa-solid fa-download"></i> Choisir une photo</label></span><br>
+
 
                 <div class="center__btn">
                     <input type="submit" value="Ajouter l'Album">

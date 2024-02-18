@@ -51,7 +51,7 @@ $albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../static/CSS/carousel.css">
     <script src="../static/JS/detail-album.js" defer></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Album</title>
 </head>
 
 <body>
@@ -101,6 +101,7 @@ $albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="liste__albums similaire">
             <h2>Albums similaires</h2>
+            
             <div class="carousel">
                 <?php foreach ($albums_similaires as $albumSimilaire) : ?>
                     <?php if ($albumSimilaire['ID_Album'] !== $album['ID_Album']) : ?>
@@ -115,7 +116,7 @@ $albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <!-- Afficher le titre et l'artiste de l'album -->
                             <div class="contenu__album">
                                 <h3 class="test-arrow"><span><?= $albumSimilaire['Titre_Album'] ?></span></h3>
-                                <p><?= $albumSimilaire['Année_de_sortie'] ?> - <?= $albumSimilaire['Nom_Artiste'] ?></p>
+                                <p><?= $albumSimilaire['Année_de_sortie'] ?></p>
                             </div>
                         </a>
                     <?php endif; ?>
