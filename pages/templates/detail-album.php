@@ -86,13 +86,12 @@ $albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 $duree = $titres[$i]['Duree'];
                                                 $min = floor($duree / 60);
                                                 $sec = $duree % 60;
-                                                echo strval($min) . ":";
-                                                if ($sec < 10) {echo "0";}
-                                                echo strval($sec);
+                                                echo strval($min) . ":" . (str_pad($sec, 2, '0', STR_PAD_LEFT));
                                                 ?></p>
                         </div>
                     </div>
                     <i id="coeur<?= $i + 1 ?>" class="<?php if ($titres[$i]['Coup_de_coeur']) {echo "fa-solid";} else {echo "fa-regular";} ?> fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>', '<?= $titres[$i]['ID_Titre'] ?>')"></i>
+                    <i class="fa-solid fa-plus" onclick="ajouterAPlaylist(<?= $titres[$i]['ID_Titre'] ?>)"></i>
                     <a target="_blank" href="<?php echo $titres[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
                 </div>
             <?php } ?>
@@ -128,6 +127,7 @@ $albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script>
         // Définir l'ID de la playlist "Coup de cœur" pour utilisation dans le script JS
         var idCoupDeCoeur = "<?= $id_coup_de_coeur; ?>";
+        <?php echo "var playlists = " . json_encode($playlists) . ";"; ?>
     </script>
 </body>
 

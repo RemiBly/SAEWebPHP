@@ -11,6 +11,10 @@ if ($playlistId) {
                                WHERE TitrePlaylist.ID_Playlist = ?");
     $stmt->execute([$playlistId]);
     $titres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // récupérer le nom de la playlist
+    $stmt = $file_db->prepare("SELECT ID_Playlist, Titre_Playlist FROM Playlist WHERE ID_Playlist = ?");
+    $stmt->execute([$playlistId]);
+    $playlist = $stmt->fetch(PDO::FETCH_ASSOC);
 } else {
     echo "Aucune playlist sélectionnée.";
     exit;
@@ -32,6 +36,22 @@ $query = "SELECT ID_Playlist FROM Playlist WHERE ID_Utilisateur = ? AND Titre_Pl
 $stmt = $file_db->prepare($query);
 $stmt->execute([$_SESSION['user_id']]);
 $id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
+
+// ajouter à chaque titre un boléen qui montre s'il est dans la playlist coup de coeur
+foreach ($titres as $key => $titre) {
+    $query = "SELECT * FROM TitrePlaylist WHERE ID_Titre = ? AND ID_Playlist = ?";
+    $stmt = $file_db->prepare($query);
+    $stmt->execute([$titre['ID_Titre'], $id_coup_de_coeur]);
+    $titres[$key]['Coup_de_coeur'] = $stmt->fetch(PDO::FETCH_ASSOC) ? true : false;
+}
+
+// ajouter à chaque titre un boléen qui montre s'il est dans la playlist actuelle
+foreach ($titres as $key => $titre) {
+    $query = "SELECT * FROM TitrePlaylist WHERE ID_Titre = ? AND ID_Playlist = ?";
+    $stmt = $file_db->prepare($query);
+    $stmt->execute([$titre['ID_Titre'], $playlistId]);
+    $titres[$key]['Dans_playlist'] = $stmt->fetch(PDO::FETCH_ASSOC) ? true : false;
+}
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +81,7 @@ $id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
         </div>
     </div>
     <main>
-        <h2>Titres de la Playlist</h2>
+        <h2>Titres de la Playlist <?php echo $playlist["Titre_Playlist"] ?></h2>
         <?php if (!empty($titres)): ?>
             <ul>
                 <?php for ($i = 0; $i < count($titres); $i++): ?>
@@ -87,8 +107,10 @@ $id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
                                 </p>
                             </div>
                         </div>
-                        <i id="coeur<?= $i + 1 ?>" class="fa-solid fa-heart coeur"
+                        <i id="coeur<?= $i + 1 ?>" class="<?php if ($titres[$i]['Coup_de_coeur']) {echo "fa-solid";} else {echo "fa-regular";} ?> fa-heart coeur"
                             onclick="changementCoeur('coeur<?= $i + 1 ?>', '<?= $titres[$i]['ID_Titre'] ?>')"></i>
+                        <i id="poubelle<?= $i+1 ?>" class="<?php if ($titres[$i]['Dans_playlist']) {echo "fa-regular";} else {echo "fa-solid";} ?> fa-trash-can poubelle"
+                            onclick="changementPoubelle('poubelle<?= $i + 1 ?>', '<?= $titres[$i]['ID_Titre'] ?>')"></i>
                         <a target="_blank" href="<?= $titres[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
                     </div>
                 <?php endfor; ?>
@@ -100,6 +122,7 @@ $id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
     <script>
         // Définir l'ID de la playlist "Coup de cœur" pour utilisation dans le script JS
         var idCoupDeCoeur = "<?= $id_coup_de_coeur; ?>";
+        var idPlaylist = "<?= $playlist["ID_Playlist"]; ?>";
     </script>
 </body>
 

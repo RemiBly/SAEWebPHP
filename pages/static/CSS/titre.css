@@ -39,12 +39,12 @@
     color: #7a7a7a;
 }
 
-.coeur{
+.coeur, .poubelle{
     color: #7a7a7a;
     transition: 0.2s ease-in-out;
 }
 
-.coeur:hover{
+.coeur:hover, .poubelle:hover{
     color: #FFF;
 }
 

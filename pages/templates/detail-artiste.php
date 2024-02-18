@@ -37,6 +37,11 @@ $query = "SELECT DISTINCT Artiste.ID_Artiste, Artiste.Nom_Artiste, Artiste.Photo
 $stmt = $file_db->prepare($query);
 $stmt->execute([$artiste['ID_Artiste'], $artiste['ID_Artiste']]);
 $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$query = "SELECT * FROM Playlist WHERE ID_Utilisateur = ?";
+$stmt = $file_db->prepare($query);
+$stmt->execute([$_SESSION['user_id']]);
+$playlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -88,13 +93,12 @@ $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 $duree = $titresArtiste[$i]['Duree'];
                                                 $min = floor($duree / 60);
                                                 $sec = $duree % 60;
-                                                echo strval($min) . ":";
-                                                if ($sec < 10) {echo "0";}
-                                                echo strval($sec);
+                                                echo strval($min) . ":" . (str_pad($sec, 2, '0', STR_PAD_LEFT));
                                                 ?></p>
                             </div>
                         </div>
                         <i id="coeur<?= $i + 1 ?>" class="<?php if ($titresArtiste[$i]['Coup_de_coeur']) {echo "fa-solid";} else {echo "fa-regular";} ?> fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>', '<?= $titresArtiste[$i]['ID_Titre'] ?>')"></i>
+                        <i class="fa-solid fa-plus" onclick="ajouterAPlaylist(<?= $titresArtiste[$i]['ID_Titre'] ?>)"></i>
                         <a target="_blank" href="<?php echo $titresArtiste[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
                     </div>
                 <?php } ?>
@@ -142,6 +146,7 @@ $artistesSimilaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script>
         // Définir l'ID de la playlist "Coup de cœur" pour utilisation dans le script JS
         var idCoupDeCoeur = "<?= $id_coup_de_coeur; ?>";
+        <?php echo "var playlists = " . json_encode($playlists) . ";"; ?>
     </script>
 </body>
 
