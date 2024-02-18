@@ -65,7 +65,7 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="../static/CSS/header.css">
     <script src="../static/JS/index.js" defer></script>
     <script src="https://kit.fontawesome.com/b2318dca58.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Spot'Music - Accueil</title>
 </head>
 
 <body>

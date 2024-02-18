@@ -8,7 +8,7 @@ $albums = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <h1>Liste des Albums</h1>
 <div class="ajouter-artist">
-    <a href="ajouter_album.php" class="btn btn-ajouter" >Ajouter un nouvel album</a>
+    <a href="ajouter_album.php" class="btn btn-ajouter" >Ajouter un nouvel album <i class="fa-solid fa-plus"></i></a>
 </div>
 <table>
     <thead>
