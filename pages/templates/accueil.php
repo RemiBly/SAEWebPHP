@@ -1,7 +1,8 @@
 <?php
 
-
 include __DIR__ . '/../../creationBD.php';
+include __DIR__ . '/../../Classes/Album.php';
+include __DIR__ . '/../../Classes/Artiste.php';
 
 try {
     $file_db = new PDO('sqlite:' . DATABASE_PATH);
@@ -77,78 +78,69 @@ if (isset($_SESSION['user_id'])) {
         </div>
     </div>
     <div class="main__application">
-    <div class="partie__gauche">
-        <div class="jenesaispas">
-            <div class="compte">
-                <h2>Bienvenue, <?= $nomUtilisateur ?></h2>
-                <p class="premiere__lettre__pseudo"><?=strtoupper($nomUtilisateur[0]) ?></p>
+        <div class="partie__gauche">
+            <div class="jenesaispas">
+                <div class="compte">
+                    <h2>Bienvenue, <?= $nomUtilisateur ?></h2>
+                    <p class="premiere__lettre__pseudo"><?= strtoupper($nomUtilisateur[0]) ?></p>
+                </div>
+                <div class="recherche__artiste__album">
+                    <h3 class="rechercher_artiste"><a href="?searchArtist=1"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un artiste</a></h3>
+                    <h3 class="rechercher_album"><a href="?searchArtist=0"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un album</a></h3>
+                </div>
             </div>
-            <div class="recherche__artiste__album">
-                <h3 class="rechercher_artiste"><a href="?searchArtist=1"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un artiste</a></h3>
-                <h3 class="rechercher_album"><a href="?searchArtist=0"><i class="fa-solid fa-magnifying-glass"></i> Rechercher un album</a></h3>
+            <div class="liste__playlist">
+                <div class="ajout__playlist">
+                    <h2><i class="fa-solid fa-list"></i> Votre bibliotèque</h2>
+                    <form action="accueil.php" method="post">
+                        <input type="text" name="titre_playlist" placeholder="Nom de la nouvelle playlist" required>
+                        <button type="submit" name="action" value="ajouter_playlist">Créer Playlist</button>
+                    </form>
+                </div>
+                <ul>
+                    <?php foreach ($playlists as $playlist) : ?>
+                        <li>
+                            <a href="./playlist.php?id=<?= $playlist['ID_Playlist'] ?>">
+                                <img src="../static/images/coupDeCoeur.jpeg" alt="Image Playlist">
+                                <p><?= htmlspecialchars($playlist['Titre_Playlist']) ?></p>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
         </div>
-        <div class="liste__playlist">
-            <div class="ajout__playlist">
-                <h2><i class="fa-solid fa-list"></i> Votre bibliotèque</h2>
-                <form action="accueil.php" method="post">
-                    <input type="text" name="titre_playlist" placeholder="Nom de la nouvelle playlist" required>
-                    <button type="submit" name="action" value="ajouter_playlist">Créer Playlist</button>
-                </form>
+        <div class="partie__droite">
+            <div class="barre__recherche">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input class="barre__recherche__input" placeholder="Que souhaitez-vous rechercher ?" type="text" id="search" oninput="filterResults(event)" onkeypress="handleKeyPress(event)">
+                <i id="croixSelector" class="fa-solid" onclick="resetInputValue()"></i>
             </div>
-            <ul>
-                <?php foreach ($playlists as $playlist) : ?>
-                    <li>
-                        <a href="./playlist.php?id=<?= $playlist['ID_Playlist'] ?>">
-                            <img src="../static/images/coupDeCoeur.jpeg" alt="Image Playlist">
-                            <p><?= htmlspecialchars($playlist['Titre_Playlist']) ?></p>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    </div>
-    <div class="partie__droite">
-        <div class="barre__recherche">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input class="barre__recherche__input" placeholder="Que souhaitez-vous rechercher ?" type="text" id="search" oninput="filterResults(event)" onkeypress="handleKeyPress(event)">
-            <i id="croixSelector" class="fa-solid" onclick="resetInputValue()"></i>
-        </div>
 
-        <main>
-            <?php if ($selected === 'artiste') : ?>
-                <?php foreach ($artistes as $artiste) : ?>
-                    <a href="./detail-artiste.php?id=<?= $artiste['ID_Artiste'] ?>" data-name="<?=strtolower($artiste['Nom_Artiste']) ?>" class="album artiste">
-                        <?php if (empty($artiste['Photo'])) : ?>
-                            <img src="../static/images/default.jpg" alt="Image par défaut">
-                        <?php else : ?>
-                            <!-- Affichage direct de la chaîne base64 stockée dans le HTML -->
-                            <img src="data:image/jpeg;base64,<?= $artiste['Photo'] ?>" alt="Photo de <?= htmlspecialchars($artiste['Nom_Artiste']) ?>">
-                        <?php endif; ?>
-                        <div class="contenu">
-                            <h3 class="test-arrow"><span><?= $artiste['Nom_Artiste'] ?></span></h3>
-                            <p>Artiste</p>
-                        </div>
-                    </a>
-                <?php endforeach; ?>
-            <?php else : ?>
-                <?php foreach ($albums as $album) : ?>
-                    <a href="./detail-album.php?id=<?= $album['ID_Album'] ?>" class="album__css album" data-title="<?= strtolower($album['Titre_Album']) ?>" data-year="<?= strtolower($album['Année_de_sortie']) ?>" data-artist="<?= strtolower($album['Nom_Artiste']) ?>" data-genre="<?= strtolower($album['Genre']) ?>">
-                        <?php if (!empty($album['Pochette'])) : ?>
-                            <!-- Affichage direct de la chaîne base64 stockée dans le HTML pour les albums également -->
-                            <img src="data:image/jpeg;base64,<?= $album['Pochette'] ?>" alt="Pochette d'album de <?= htmlspecialchars($album['Titre_Album']) ?>">
-                        <?php else : ?>
-                            <img src="../static/images/default.jpg" alt="Pochette par défaut">
-                        <?php endif; ?>
-                        <div class="contenu">
-                            <h3 class="test-arrow"><span><?= $album['Titre_Album'] ?></span></h3>
-                            <p><?= $album['Année_de_sortie'] ?> - <?= $album['Nom_Artiste'] ?></p>
-                        </div>
-                    </a>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </main>
-    </div>
+            <main>
+                <?php if ($selected === 'artiste') : ?>
+                    <?php foreach ($artistes as $artiste) : ?>
+                        <?php
+                        $artisteObj = new Artiste($artiste['ID_Artiste'], $artiste['Nom_Artiste'], $artiste['Photo']);
+                        $artisteObj->render();
+                        ?>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <?php foreach ($albums as $album) : ?>
+                        <?php
+                        $albumobj = new Album(
+                            $album['ID_Album'],
+                            $album['Titre_Album'],
+                            $album['Pochette'],
+                            $album['Année_de_sortie'],
+                            $album['Nom_Artiste'],
+                            $album['Genre']
+                        );
+                        $albumobj->render();
+                        ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </main>
+        </div>
     </div>
 </body>
 
