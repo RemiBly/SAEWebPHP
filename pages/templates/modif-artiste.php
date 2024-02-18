@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
         <div id="file-info" style="display: none;">
             <img id="preview-image" src="#" alt="Pochette de l'album">
         </div>
-        <input type="file" id="photo" name="photo" required><br>
+        <input type="file" id="photo" name="photo"><br>
         <label id="pochette_css" for="photo"><span><i class="fa-solid fa-download"></i> Choisir une photo</label></span><br>
 
         <div class="center__btn">
