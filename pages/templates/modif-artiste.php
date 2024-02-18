@@ -56,6 +56,7 @@ if (isset($_POST['submit'])) {
     <title>Modifier un Artiste</title>
     <link rel="stylesheet" href="../static/CSS/variables.css">
     <link rel="stylesheet" href="../static/CSS/formulaire.css">
+    <script src="../static/JS/formArtiste.js" defer></script>
 </head>
 <body>
     <main><div class="contenu">
@@ -67,8 +68,11 @@ if (isset($_POST['submit'])) {
         <label for="biographie">Biographie</label>
         <textarea id="biographie" name="biographie" required><?= htmlspecialchars($artiste['Biographie']) ?></textarea><br>
 
-        <label for="photo">Nouvelle photo</label>
-        <input type="file" id="photo" name="photo"><br>
+        <div id="file-info" style="display: none;">
+            <img id="preview-image" src="#" alt="Pochette de l'album">
+        </div>
+        <input type="file" id="photo" name="photo" required><br>
+        <label id="pochette_css" for="photo"><span><i class="fa-solid fa-download"></i> Choisir une photo</label></span><br>
 
         <div class="center__btn">
             <input type="submit" name="submit" value="Enregistrer les modifications">
