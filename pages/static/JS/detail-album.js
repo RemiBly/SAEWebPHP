@@ -17,7 +17,6 @@ function changementCoeur(id, idTitre) {
         } else if (coeur.classList.contains("fa-solid")) {
             coeur.classList.remove("fa-solid");
             coeur.classList.add("fa-regular");
-            // Ajoutez ici le code pour retirer le titre de la playlist si nécessaire
             // retirer le titre de la playlist
             fetch('ajoutTitrePlaylist.php', {
                 method: 'POST',

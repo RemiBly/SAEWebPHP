@@ -22,6 +22,14 @@ $stmt = $file_db->prepare($query);
 $stmt->execute([$_SESSION['user_id']]);
 $id_coup_de_coeur = $stmt->fetch(PDO::FETCH_ASSOC)['ID_Playlist'];
 
+// ajouter à chaque titre un boléen qui montre s'il est dans la playlist coup de coeur
+foreach ($titres as $key => $titre) {
+    $query = "SELECT * FROM TitrePlaylist WHERE ID_Titre = ? AND ID_Playlist = ?";
+    $stmt = $file_db->prepare($query);
+    $stmt->execute([$titre['ID_Titre'], $id_coup_de_coeur]);
+    $titres[$key]['Coup_de_coeur'] = $stmt->fetch(PDO::FETCH_ASSOC) ? true : false;
+}
+
 $query = "SELECT * FROM Album WHERE Genre = :genre AND ID_Album != :album_id";
 $stmt = $file_db->prepare($query);
 $stmt->execute(array(':genre' => $album['Genre'], ':album_id' => $album['ID_Album']));
@@ -78,14 +86,13 @@ $albums_similaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 $duree = $titres[$i]['Duree'];
                                                 $min = floor($duree / 60);
                                                 $sec = $duree % 60;
-                                                echo strval($min) . ":" . strval($sec);
-                                                if ($sec < 10) {
-                                                    echo "0";
-                                                }
+                                                echo strval($min) . ":";
+                                                if ($sec < 10) {echo "0";}
+                                                echo strval($sec);
                                                 ?></p>
                         </div>
                     </div>
-                    <i id="coeur<?= $i + 1 ?>" class="fa-regular fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>', '<?= $titres[$i]['ID_Titre'] ?>')"></i>
+                    <i id="coeur<?= $i + 1 ?>" class="<?php if ($titres[$i]['Coup_de_coeur']) {echo "fa-solid";} else {echo "fa-regular";} ?> fa-heart coeur" onclick="changementCoeur('coeur<?= $i + 1 ?>', '<?= $titres[$i]['ID_Titre'] ?>')"></i>
                     <a target="_blank" href="<?php echo $titres[$i]["Lien"] ?>"><i class="fa-solid fa-play play"></i></a>
                 </div>
             <?php } ?>
