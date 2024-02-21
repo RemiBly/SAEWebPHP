@@ -79,6 +79,10 @@ L'application contient un module administrateur. Comme le mot de passe est hash√
 - Login : admin@spotmusic.com
 - Mot de passe : admin1
 
+## Diagramme de classe
+
+![Diagramme de classe](./imagesREADME/diagrammeDeClasse.png)
+
 ## MDC
 
 ![MCD](./imagesREADME/MCD.png)
